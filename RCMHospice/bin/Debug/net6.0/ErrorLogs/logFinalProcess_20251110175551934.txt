@@ -1,0 +1,497 @@
+[11/10/2025 5:55:58 PM] Column date found Start 2 for patient Kordonskaya, Roza for date 09/02/2025 and Reimb value 2195.68
+[11/10/2025 5:56:01 PM] Column date found SOC for patient Stein, Golda for date 09/07/2025 and Reimb value 4355.61
+[11/10/2025 5:56:04 PM] Column date found Start 2 for patient Spesovska, Tetiana for date 09/05/2025 and Reimb value 3354.52
+[11/10/2025 5:56:07 PM] Column date found Start 6 for patient Fidler, Anna for date 10/09/2025 and Reimb value 2697.21
+[11/10/2025 5:56:10 PM] Column date found Start 2 for patient Marmershteyn, Izabella for date 09/18/2025 and Reimb value 2042.39
+[11/10/2025 5:56:12 PM] Column date found Start 4 for patient Spokoynaya, Irma for date 09/11/2025 and Reimb value 2039.17
+[11/10/2025 5:56:15 PM] Column date found Start 2 for patient Winnick, Jack for date 09/10/2025 and Reimb value 2042.39
+[11/10/2025 5:56:18 PM] Column date found Start 4 for patient Burban, Inna for date 10/07/2025 and Reimb value 1885.87
+[11/10/2025 5:56:21 PM] Column date found Start 2 for patient Guerrero, Maria with S status in S\Loc, inserting in progress status
+[11/10/2025 5:56:22 PM] Column date found Start 2 for patient Dranovsky, Isabella with S status in S\Loc, inserting in progress status
+[11/10/2025 5:56:24 PM] Column date found Start 3 for patient Svirskiy, Valentin with S status in S\Loc, inserting in progress status
+[11/10/2025 5:56:25 PM] Column date found Start 2 for patient Adamovsky, Ralph with S status in S\Loc, inserting in progress status
+[11/10/2025 5:56:26 PM] Column date found Start 2 for patient Guez, Viviane with S status in S\Loc, inserting in progress status
+[11/10/2025 5:56:28 PM] Column date found Start 4 for patient Leonova, Aleftina with S status in S\Loc, inserting in progress status
+[11/10/2025 5:56:30 PM] Column date found SOC for patient Lopez, Clara for date 08/15/2025 and Reimb value 2143.77
+[11/10/2025 5:56:33 PM] Column date found SOC for patient Damoiseaux, Carole for date 07/22/2025 and Reimb value 3053.5
+[11/10/2025 5:56:36 PM] Column date found SOC for patient Keith, Christine for date 05/09/2025 and Reimb value 2111.29
+[11/10/2025 5:56:39 PM] Column date found SOC for patient Rawlings, Douglas for date 06/18/2025 and Reimb value 2485.51
+[11/10/2025 5:56:42 PM] Column date found Start 2 for patient Keith, Christine for date 06/08/2025 and Reimb value 1647.08
+[11/10/2025 5:56:45 PM] Column date found Start 4 for patient Bautista, Leonardo for date 08/26/2025 and Reimb value 195.92
+[11/10/2025 5:56:48 PM] Column date found Start 5 for patient Bautista, Leonardo for date 09/25/2025 and Reimb value 195.92
+[11/10/2025 5:56:51 PM] Column date found SOC for patient Williams, Josefina for date 06/20/2025 and Reimb value 3464.74
+[11/10/2025 5:56:54 PM] Column date found Start 2 for patient Rawlings, Douglas for date 07/18/2025 and Reimb value 1627.36
+[11/10/2025 5:56:57 PM] Column date found Start 3 for patient Tell, Frances for date 08/11/2025 and Reimb value 1331.48
+[11/10/2025 5:57:00 PM] Column date found Start 2 for patient Murphy, Joshua for date 09/07/2025 and Reimb value 1957.55
+[11/10/2025 5:57:03 PM] Column date found Start 2 for patient Rosenberg, Linda for date 08/21/2025 and Reimb value 1695.68
+[11/10/2025 5:57:06 PM] Column date found Start 3 for patient Morgan Maddox, Paula for date 07/21/2025 and Reimb value 1708.44
+[11/10/2025 5:57:09 PM] Column date found Start 2 for patient Smith, Willie with S status in S\Loc, inserting in progress status
+[11/10/2025 5:57:11 PM] Column date not found for patient Keith, Christine for date 06/08/2025 adding a line as Continued
+[11/10/2025 5:57:11 PM] Column date found Start 4 for patient Riccardi, Michael with S status in S\Loc, inserting in progress status
+[11/10/2025 5:57:12 PM] Column date found SOC for patient Daugherty, Michael with S status in S\Loc, inserting in progress status
+[11/10/2025 5:57:15 PM] Column date not found for patient Sheikhrezaee, Zahra for date 09/18/2025 adding a line as Continued
+[11/10/2025 5:57:15 PM] Column date found SOC for patient Nikroh, Fahimeh for date 09/20/2025 and Reimb value 2504.35
+[11/10/2025 5:57:19 PM] Column date found SOC for patient Rafii, Mehdi for date 09/20/2025 and Reimb value 2504.35
+[11/10/2025 5:57:23 PM] Column date found Start 2 for patient Taherinejad, Aliakbar for date 09/21/2025 and Reimb value 1568.54
+[11/10/2025 5:57:26 PM] Column date found Start 2 for patient Behbahani, Kheiri for date 09/21/2025 and Reimb value 2108.06
+[11/10/2025 5:57:30 PM] Column date found Start 6 for patient Vahman, Elahe for date 09/27/2025 and Reimb value 2286.98
+[11/10/2025 5:57:34 PM] Column date found Start 5 for patient Mehrabi, Morteza for date 10/01/2025 and Reimb value 1412.25
+[11/10/2025 5:57:37 PM] Column date found SOC for patient Seraj, Homa for date 10/02/2025 and Reimb value 2982.8
+[11/10/2025 5:57:41 PM] Column date found Start 2 for patient Hatamiyan, Azam for date 09/21/2025 and Reimb value 1731.12
+[11/10/2025 5:57:45 PM] Column date found Start 2 for patient Kashani, Mary for date 10/01/2025 and Reimb value 2286.98
+[11/10/2025 5:57:49 PM] Column date found Start 5 for patient Moradi Roshankh, Motareh for date 10/01/2025 and Reimb value 1568.54
+[11/10/2025 5:57:52 PM] Column date found Start 2 for patient Firozi, Kianoosh for date 09/21/2025 and Reimb value 2108.06
+[11/10/2025 5:57:56 PM] Column date found Start 6 for patient Farhangpour, Houshang for date 09/27/2025 and Reimb value 2286.98
+[11/10/2025 5:58:00 PM] Column date found SOC for patient Dahi, Farahnaz for date 09/29/2025 and Reimb value 1412.25
+[11/10/2025 5:58:03 PM] Column date found Start 2 for patient Sharifi, Ashraf for date 09/27/2025 and Reimb value 1590.16
+[11/10/2025 5:58:07 PM] Column date found SOC for patient Shakouri, Firouz for date 09/28/2025 and Reimb value 1629.6
+[11/10/2025 5:58:15 PM] Column date found Start 2 for patient Rodriguez, Andres for date 08/31/2025 and Reimb value 3038.14
+[11/10/2025 5:58:26 PM] Column date found SOC for patient Popova, Mariya I for date 08/15/2025 and Reimb value 4247.66
+[11/10/2025 5:58:37 PM] Column date found Start 6 for patient Lauppe, Ellen for date 08/17/2025 and Reimb value 1883.22
+[11/10/2025 5:58:48 PM] Column date found SOC for patient Khasigian, Harry A for date 08/22/2025 and Reimb value 3692.22
+[11/10/2025 5:58:59 PM] Column date found Start 6 for patient Hararah, Kayed M for date 08/10/2025 and Reimb value 2716.52
+[11/10/2025 5:59:10 PM] Column date found Start 3 for patient Maksymiv, Ivan for date 09/09/2025 and Reimb value 1769.17
+[11/10/2025 5:59:20 PM] Column date found Start 2 for patient Kayed, Saadieh R for date 09/05/2025 and Reimb value 1909.17
+[11/10/2025 5:59:31 PM] Column date found SOC for patient Kayed, Saadieh R for date 08/06/2025 and Reimb value 2959.69
+[11/10/2025 5:59:42 PM] Column date found Start 4 for patient Alibakhshi, Sakeneh for date 09/16/2025 and Reimb value 1909.17
+[11/10/2025 5:59:53 PM] Column date found Start 4 for patient Fedorianskyi, Leontii for date 09/07/2025 and Reimb value 2565.97
+[11/10/2025 6:00:05 PM] Column date found Start 3 for patient Solorio, Enedina with S status in S\Loc, inserting in progress status
+[11/10/2025 6:00:11 PM] Column date found Start 6 for patient Mayfield, David H with S status in S\Loc, inserting in progress status
+[11/10/2025 6:00:17 PM] Column date found Start 4 for patient Rodriguez Ce, Margarita with S status in S\Loc, inserting in progress status
+[11/10/2025 6:00:23 PM] Column date found SOC for patient Keech, Damon T with S status in S\Loc, inserting in progress status
+[11/10/2025 6:00:31 PM] Column date found Start 2 for patient Brown, Nelson for date 08/23/2025 and Reimb value 1870.44
+[11/10/2025 6:00:35 PM] Column date found Start 2 for patient Valihora, Steven for date 09/23/2025 and Reimb value 1446.33
+[11/10/2025 6:00:39 PM] Column date found Start 2 for patient Noffsinger, David for date 09/05/2025 and Reimb value 2297.68
+[11/10/2025 6:00:43 PM] Column date found Start 2 for patient Speranza, George for date 09/05/2025 and Reimb value 2188.51
+[11/10/2025 6:00:47 PM] Column date found Start 2 for patient Clark, Rose for date 09/05/2025 and Reimb value 1967.01
+[11/10/2025 6:00:51 PM] Column date found Start 2 for patient Kires, Joanne for date 09/04/2025 and Reimb value 1870.44
+[11/10/2025 6:00:55 PM] Column date found Start 3 for patient White, Elisabeth for date 09/20/2025 and Reimb value 2413.57
+[11/10/2025 6:00:59 PM] Column date found Start 3 for patient Lapidus, Jerome for date 09/26/2025 and Reimb value 2297.68
+[11/10/2025 6:01:03 PM] Column date found SOC for patient Bainer, Sheila for date 09/19/2025 and Reimb value 1838.15
+[11/10/2025 6:01:07 PM] Column date found Start 2 for patient Webb, Doris for date 09/21/2025 and Reimb value 1520.87
+[11/10/2025 6:01:11 PM] Column date found Start 2 for patient Chambers, Dennis for date 09/23/2025 and Reimb value 1576.94
+[11/10/2025 6:01:15 PM] Column date found Start 2 for patient Cubas, Enrique for date 09/25/2025 and Reimb value 2188.51
+[11/10/2025 6:01:19 PM] Column date found Start 2 for patient Madzelan, Cynthia for date 09/25/2025 and Reimb value 1576.94
+[11/10/2025 6:01:24 PM] Column date found SOC for patient Aguilar, Jose with S status in S\Loc, inserting in progress status
+[11/10/2025 6:01:29 PM] Column date found SOC for patient Thai, Johnny for date 08/26/2025 and Reimb value 2524.02
+[11/10/2025 6:01:32 PM] Column date found SOC for patient Khieu, Dien for date 08/26/2025 and Reimb value 2396.54
+[11/10/2025 6:01:34 PM] Column date found Start 3 for patient Le, Anna for date 09/24/2025 and Reimb value 1694.04
+[11/10/2025 6:01:37 PM] Column date found Start 3 for patient Thai, Linh for date 09/26/2025 and Reimb value 1694.04
+[11/10/2025 6:01:40 PM] Column date found Start 3 for patient Nguyen, Vien for date 09/19/2025 and Reimb value 2049.91
+[11/10/2025 6:01:43 PM] Column date found Start 5 for patient Tran, Anh for date 08/03/2025 and Reimb value 2146.21
+[11/10/2025 6:01:45 PM] Column date found Start 2 for patient Nguyen, Suu for date 09/14/2025 and Reimb value 1800.58
+[11/10/2025 6:01:48 PM] Column date found Start 3 for patient Pham, Nhuong V for date 09/27/2025 and Reimb value 1487.86
+[11/10/2025 6:01:51 PM] Column date found SOC for patient Nguyen, Thikimnhun for date 09/02/2025 and Reimb value 2169.56
+[11/10/2025 6:01:53 PM] Column date found SOC for patient Nguyen, Bay for date 09/10/2025 and Reimb value 2977.61
+[11/10/2025 6:01:56 PM] Column date found SOC for patient Nguyen, Tim for date 09/03/2025 and Reimb value 2169.56
+[11/10/2025 6:01:59 PM] Column date found Start 3 for patient Truong, Thu for date 09/27/2025 and Reimb value 1339.59
+[11/10/2025 6:02:02 PM] Column date found SOC for patient Truong, Dzung with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:03 PM] Column date found SOC for patient Nguyen, Kim Lien with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:05 PM] Column date found Start 4 for patient Trieu, Tina with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:06 PM] Column date found Start 2 for patient Tran, Nga with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:08 PM] Column date found SOC for patient Duong, Sum with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:09 PM] Column date found Start 2 for patient Khieu, Dien with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:11 PM] Column date found Start 4 for patient Vo, Liem with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:12 PM] Column date found SOC for patient Nguyen, Oanh with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:14 PM] Column date found Start 4 for patient Vu, Thu with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:15 PM] Column date found SOC for patient Nguyen, Chuoc with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:16 PM] Column date found SOC for patient Le, Thu with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:18 PM] Column date found SOC for patient Ho, Hiep with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:19 PM] Column date found SOC for patient Nguyen Cao, Elizabeth with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:21 PM] Column date found SOC for patient Hanna, Derek for date 06/03/2025 and Reimb value 2415.76
+[11/10/2025 6:02:25 PM] Column date found Start 3 for patient Galenko, Tamara for date 06/17/2025 and Reimb value 2569.06
+[11/10/2025 6:02:28 PM] Column date found SOC for patient Polishchuk, Aleksandr for date 07/08/2025 and Reimb value 3339.72
+[11/10/2025 6:02:31 PM] Column date found Start 2 for patient Polishchuk, Aleksandr for date 08/07/2025 and Reimb value 2481.81
+[11/10/2025 6:02:34 PM] Column date found SOC for patient Dunlap, Deidre Ile for date 07/01/2025 and Reimb value 3053.59
+[11/10/2025 6:02:37 PM] Column date found SOC for patient Bashara, Leila for date 06/30/2025 and Reimb value 3053.59
+[11/10/2025 6:02:40 PM] Column date found SOC for patient Grisby, Ruby for date 07/01/2025 and Reimb value 2039.17
+[11/10/2025 6:02:43 PM] Column date found Start 5 for patient Minor Jr, Matthews for date 06/30/2025 and Reimb value 2195.68
+[11/10/2025 6:02:46 PM] Column date found Start 6 for patient Lozada, Carmen for date 06/30/2025 and Reimb value 2563.65
+[11/10/2025 6:02:49 PM] Column date found Start 2 for patient Barakat, Nuhad with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:51 PM] Column date found SOC for patient Abraham, Sam with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:53 PM] Column date found SOC for patient Bell, Lezanne with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:55 PM] Column date found Start 3 for patient Atunufia, Patricia with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:56 PM] Column date found Start 3 for patient Bowman, Maud Virgi with S status in S\Loc, inserting in progress status
+[11/10/2025 6:02:58 PM] Column date found Start 2 for patient Chernin, Ida with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:00 PM] Column date found Start 2 for patient Fomicheva, Lyubov with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:02 PM] Column date found Start 3 for patient Fingerov, Irina with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:03 PM] Column date found SOC for patient Bereaux, Jean with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:05 PM] Column date found SOC for patient Waller, William with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:07 PM] Column date found SOC for patient Stone, Noreen with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:08 PM] Column date found SOC for patient Cornish, Deborah with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:10 PM] Column date found SOC for patient Kotlov, Emil with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:12 PM] Column date found Start 3 for patient Consing, Alice with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:14 PM] Column date found Start 2 for patient Lube, Eugene with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:16 PM] Column date found Start 3 for patient Mahzooni, Mahboubeh with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:17 PM] Column date found Start 5 for patient Rahaei, Shahla with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:19 PM] Column date found SOC for patient Sharififarahani, Shamsizoha with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:20 PM] Column date found Start 3 for patient Rasam, Ali with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:21 PM] Column date found Start 5 for patient Tabandeh, Mohammad with S status in S\Loc, inserting in progress status
+[11/10/2025 6:03:25 PM] Column date found Start 4 for patient Perets, Taisia for date 09/24/2025 and Reimb value 2065.51
+[11/10/2025 6:03:31 PM] Column date found Start 4 for patient Babitchenko, Tina for date 09/23/2025 and Reimb value 2185.83
+[11/10/2025 6:03:38 PM] Column date found Start 2 for patient Comer, Glenn for date 09/25/2025 and Reimb value 201.63
+[11/10/2025 6:03:44 PM] Column date found SOC for patient Martinez De, Maria for date 09/25/2025 and Reimb value 3000.27
+[11/10/2025 6:03:51 PM] Column date found Start 3 for patient Bocanegra, Juan for date 09/22/2025 and Reimb value 1722.29
+[11/10/2025 6:03:57 PM] Column date found Start 6 for patient Musher, Sofia for date 09/14/2025 and Reimb value 3162.14
+[11/10/2025 6:04:04 PM] Column date found Start 2 for patient Mayer, Thomas M with S status in S\Loc, inserting in progress status
+[11/10/2025 6:04:07 PM] Column date found Start 5 for patient Margulis, Yelena with S status in S\Loc, inserting in progress status
+[11/10/2025 6:04:11 PM] Column date found Start 2 for patient Lui Wu, So K with S status in S\Loc, inserting in progress status
+[11/10/2025 6:04:15 PM] Column date found Start 4 for patient Agarwal, Pramila with S status in S\Loc, inserting in progress status
+[11/10/2025 6:04:18 PM] Column date found Start 6 for patient Kurtich, Leonid with S status in S\Loc, inserting in progress status
+[11/10/2025 6:04:22 PM] Column date found Start 4 for patient De La Cruz, Socorro with S status in S\Loc, inserting in progress status
+[11/10/2025 6:04:26 PM] Column date found Start 2 for patient Kendall, Maria F for date 09/22/2025 and Reimb value 2328.27
+[11/10/2025 6:04:28 PM] Column date found Start 2 for patient Solis, Anna G for date 09/21/2025 and Reimb value 2563.65
+[11/10/2025 6:04:31 PM] Column date found Start 2 for patient Wantland, Lisa for date 10/02/2025 and Reimb value 2328.27
+[11/10/2025 6:04:34 PM] Column date found Start 2 for patient Vandenberg, Ryan A with S status in S\Loc, inserting in progress status
+[11/10/2025 6:04:36 PM] Column date found Start 3 for patient Langston, Charles Ed for date 09/20/2025 and Reimb value 2135.56
+[11/10/2025 6:04:41 PM] Column date found Start 3 for patient White, Roselyn for date 09/21/2025 and Reimb value 1888.93
+[11/10/2025 6:04:46 PM] Column date found SOC for patient Malakian, George for date 09/05/2025 and Reimb value 2555.75
+[11/10/2025 6:04:48 PM] Column date found SOC for patient Barroso, Teresa for date 09/10/2025 and Reimb value 2709.04
+[11/10/2025 6:04:51 PM] Column date found Start 2 for patient Martirossian, Edouard for date 09/10/2025 and Reimb value 1647.08
+[11/10/2025 6:04:54 PM] Column date found Start 2 for patient Torosyan, Vladimir for date 09/05/2025 and Reimb value 1697.83
+[11/10/2025 6:04:56 PM] Column date found Start 2 for patient Abdelmassih, Sabri M for date 09/12/2025 and Reimb value 2569.06
+[11/10/2025 6:04:59 PM] Column date found Start 2 for patient Oganezova, Anaida for date 09/05/2025 and Reimb value 1851.14
+[11/10/2025 6:05:02 PM] Column date found SOC for patient Gvaberidze, Jujuna for date 09/15/2025 and Reimb value 2555.75
+[11/10/2025 6:05:04 PM] Column date found Start 3 for patient Garayan, Anzhela for date 09/30/2025 and Reimb value 2067.52
+[11/10/2025 6:05:07 PM] Column date found Start 3 for patient Avetisyan, Taguhi for date 09/30/2025 and Reimb value 1559.57
+[11/10/2025 6:05:10 PM] Column date found Start 3 for patient Aloyan, Yerdjanik for date 09/30/2025 and Reimb value 1559.57
+[11/10/2025 6:05:12 PM] Column date found SOC for patient Dermengian, Armen for date 09/25/2025 and Reimb value 3427.22
+[11/10/2025 6:05:15 PM] Column date found SOC for patient Nalbans, Ilia for date 09/22/2025 and Reimb value 3100.92
+[11/10/2025 6:05:18 PM] Column date found SOC for patient Aguilar, Jose F for date 09/18/2025 and Reimb value 2709.04
+[11/10/2025 6:05:21 PM] Column date found Start 2 for patient Mahler, Edward for date 09/18/2025 and Reimb value 1831.41
+[11/10/2025 6:05:29 PM] Column date found SOC for patient Warnick, Ivon for date 09/09/2025 and Reimb value 3085.97
+[11/10/2025 6:05:38 PM] Column date found Start 3 for patient Imura, Chairut for date 09/22/2025 and Reimb value 2568.24
+[11/10/2025 6:05:47 PM] Column date found SOC for patient Barrientos, Demetria for date 09/16/2025 and Reimb value 2580.37
+[11/10/2025 6:05:56 PM] Column date found SOC for patient Satchell, Anne for date 09/06/2025 and Reimb value 3573.72
+[11/10/2025 6:06:05 PM] Column date found Start 2 for patient Cardona, Maria for date 09/20/2025 and Reimb value 2420.08
+[11/10/2025 6:06:14 PM] Column date found Start 2 for patient Turner, Ethel for date 09/19/2025 and Reimb value 2573.66
+[11/10/2025 6:06:24 PM] Column date found Start 3 for patient Barnes, Dean for date 09/20/2025 and Reimb value 1889.24
+[11/10/2025 6:06:34 PM] Column date found SOC for patient Baltayan, Mariam for date 09/26/2025 and Reimb value 2605.98
+[11/10/2025 6:06:37 PM] Column date found SOC for patient Nonezyan, Eleonora for date 09/24/2025 and Reimb value 1749.05
+[11/10/2025 6:06:41 PM] Column date found Start 2 for patient Minassian, Rubina for date 09/14/2025 and Reimb value 1608.17
+[11/10/2025 6:06:45 PM] Column date found Start 2 for patient Degirmendzhyan, Maral for date 09/22/2025 and Reimb value 2217.62
+[11/10/2025 6:06:49 PM] Column date found Start 2 for patient Rizhinashvili, Ushangi for date 09/20/2025 and Reimb value 1644.7
+[11/10/2025 6:06:53 PM] Column date found Start 2 for patient Ronina, Gulsum G for date 09/26/2025 and Reimb value 1644.7
+[11/10/2025 6:06:56 PM] Column date found Start 2 for patient Sepiashvili, Nelli D for date 09/20/2025 and Reimb value 2192.51
+[11/10/2025 6:07:00 PM] Column date found Start 4 for patient Bridewell, Patrice L for date 09/07/2025 and Reimb value 1191.33
+[11/10/2025 6:07:04 PM] Column date found SOC for patient Ohanyans, Irina for date 09/21/2025 and Reimb value 2711.78
+[11/10/2025 6:07:08 PM] Column date found Start 2 for patient Aroutiounian, Aida for date 09/26/2025 and Reimb value 2217.62
+[11/10/2025 6:07:12 PM] Column date found Start 4 for patient Joy, Rebecca for date 09/26/2025 and Reimb value 2239.76
+[11/10/2025 6:07:15 PM] Column date found Start 2 for patient Minassian, Edik for date 09/14/2025 and Reimb value 2081.77
+[11/10/2025 6:07:21 PM] Column date found Start 3 for patient Dunlap, Donald D for date 07/01/2025 and Reimb value 370.82
+[11/10/2025 6:07:26 PM] Column date found SOC for patient Beason, Betti for date 09/04/2025 and Reimb value 3438.93
+[11/10/2025 6:07:31 PM] Column date found SOC for patient Brooks, Brenda for date 09/15/2025 and Reimb value 1206.37
+[11/10/2025 6:07:36 PM] Column date found SOC for patient Shoults, Angela R for date 09/09/2025 and Reimb value 2361.02
+[11/10/2025 6:07:41 PM] Column date found SOC for patient Goodchild, Harold F for date 09/19/2025 and Reimb value 2626.97
+[11/10/2025 6:07:46 PM] Column date found Start 2 for patient Butler, Wanda for date 09/11/2025 and Reimb value 1953.59
+[11/10/2025 6:07:51 PM] Column date found Start 2 for patient Noller, William A for date 09/11/2025 and Reimb value 2144.64
+[11/10/2025 6:07:56 PM] Column date found Start 2 for patient Webb, Gloria M for date 09/16/2025 and Reimb value 1525.57
+[11/10/2025 6:08:01 PM] Column date found Start 3 for patient Spann, Cleveland A for date 09/19/2025 and Reimb value 4175.68
+[11/10/2025 6:08:06 PM] Column date found Start 6 for patient Passione, Theresamar for date 09/10/2025 and Reimb value 1953.59
+[11/10/2025 6:08:11 PM] Column date found Start 6 for patient Phillips, Mary E for date 09/11/2025 and Reimb value 1525.57
+[11/10/2025 6:08:16 PM] Column date found Start 4 for patient Cox, Patrick B for date 09/08/2025 and Reimb value 1339.9
+[11/10/2025 6:08:22 PM] Column date found Start 6 for patient Gimbel, Jessica J for date 09/10/2025 and Reimb value 1727.57
+[11/10/2025 6:08:27 PM] Column date found Start 4 for patient Hudson, Leah for date 09/18/2025 and Reimb value 2523.88
+[11/10/2025 6:08:32 PM] Column date found Start 3 for patient Ford, Regina for date 09/19/2025 and Reimb value 2298.7
+[11/10/2025 6:08:37 PM] Column date found SOC for patient Arnott, Adeline M for date 09/26/2025 and Reimb value 1912.38
+[11/10/2025 6:08:42 PM] Column date found Start 3 for patient Haifley, Patricia A for date 09/27/2025 and Reimb value 1301.04
+[11/10/2025 6:08:47 PM] Column date found SOC for patient Ovaguimian, Ervand for date 09/29/2025 and Reimb value 1934.28
+[11/10/2025 6:08:52 PM] Column date found Start 4 for patient Payne, Quivillion for date 09/15/2025 and Reimb value 1827.77
+[11/10/2025 6:08:57 PM] Column date found Start 2 for patient James, Linda N for date 09/10/2025 and Reimb value 1521.47
+[11/10/2025 6:09:02 PM] Column date found SOC for patient Dominguez Amado, Nestor with S status in S\Loc, inserting in progress status
+[11/10/2025 6:09:05 PM] Column date found Start 2 for patient Lewis, Deborah L with S status in S\Loc, inserting in progress status
+[11/10/2025 6:09:10 PM] Column date found SOC for patient Brun, Kendralee for date 09/15/2025 and Reimb value 3657.62
+[11/10/2025 6:09:15 PM] Column date found SOC for patient Hobday, Jack for date 08/28/2025 and Reimb value 3454.82
+[11/10/2025 6:09:21 PM] Column date found SOC for patient Reyna Noriega, Felipe for date 09/19/2025 and Reimb value 1811.48
+[11/10/2025 6:09:27 PM] Column date found Start 4 for patient Lara, Frederick for date 09/11/2025 and Reimb value 1696.7
+[11/10/2025 6:09:33 PM] Column date found SOC for patient Manibusan, Doris for date 09/26/2025 and Reimb value 4472.96
+[11/10/2025 6:09:38 PM] Column date found SOC for patient Hallenbarter, Stanley for date 09/26/2025 and Reimb value 3657.62
+[11/10/2025 6:09:44 PM] Column date found Start 2 for patient Mocan, Aurica for date 09/27/2025 and Reimb value 3681.51
+[11/10/2025 6:09:50 PM] Column date found Start 2 for patient Johnson, Joyce for date 09/28/2025 and Reimb value 2159.38
+[11/10/2025 6:09:55 PM] Column date found Start 2 for patient Grove, James for date 09/12/2025 and Reimb value 2693.17
+[11/10/2025 6:10:01 PM] Column date found Start 2 for patient Chapman, David for date 09/26/2025 and Reimb value 3432.28
+[11/10/2025 6:10:07 PM] Column date found Start 2 for patient Schneider, Dixie for date 10/02/2025 and Reimb value 1997.4
+[11/10/2025 6:10:14 PM] Column date found SOC for patient Hutchinson, Everett with S status in S\Loc, inserting in progress status
+[11/10/2025 6:10:17 PM] Column date found Start 2 for patient Flynn, Rita with S status in S\Loc, inserting in progress status
+[11/10/2025 6:10:23 PM] Column date found SOC for patient Portigal, Felix for date 03/20/2025 and Reimb value 2370.4
+[11/10/2025 6:10:30 PM] Column date found Start 2 for patient Portigal, Felix for date 04/19/2025 and Reimb value 1529.19
+[11/10/2025 6:10:38 PM] Column date found Start 4 for patient Galachyan, Rubik for date 05/23/2025 and Reimb value 1291.99
+[11/10/2025 6:10:45 PM] Column date found SOC for patient Bryantseva, Raisa for date 04/06/2025 and Reimb value 2108.93
+[11/10/2025 6:10:52 PM] Column date found Start 2 for patient Dashevsky, Arkady for date 05/12/2025 and Reimb value 1267.74
+[11/10/2025 6:11:00 PM] Column date found Start 4 for patient Cotov Peranidze, Alexandr for date 05/25/2025 and Reimb value 991.42
+[11/10/2025 6:11:07 PM] Column date found SOC for patient Gorelik, Valeriy for date 04/18/2025 and Reimb value 2349.86
+[11/10/2025 6:11:16 PM] Column date found SOC for patient Artamonova, Natalya for date 04/05/2025 and Reimb value 2108.93
+[11/10/2025 6:11:23 PM] Column date found Start 3 for patient Alexon, Ginie for date 04/26/2025 and Reimb value 1418.04
+[11/10/2025 6:11:31 PM] Column date found SOC for patient Binder, Anna for date 04/12/2025 and Reimb value 2349.86
+[11/10/2025 6:11:38 PM] Column date found SOC for patient Bukrinsky, Aleksander for date 04/19/2025 and Reimb value 2349.86
+[11/10/2025 6:11:45 PM] Column date found Start 2 for patient Brener, Lubov for date 05/16/2025 and Reimb value 1358.1
+[11/10/2025 6:11:53 PM] Column date found Start 2 for patient Artamonova, Natalya for date 05/05/2025 and Reimb value 1267.74
+[11/10/2025 6:12:00 PM] Column date found Start 3 for patient Babitch, Sergei for date 04/15/2025 and Reimb value 2027.26
+[11/10/2025 6:12:08 PM] Column date found SOC for patient Glazkova, Lidia for date 04/23/2025 and Reimb value 2666.68
+[11/10/2025 6:12:15 PM] Column date found Start 2 for patient Bryantseva, Raisa for date 05/06/2025 and Reimb value 1267.74
+[11/10/2025 6:12:23 PM] Column date found Start 2 for patient Chernega, Elizabeth for date 05/16/2025 and Reimb value 1675.16
+[11/10/2025 6:12:30 PM] Column date found Start 3 for patient Brandman, Faina for date 04/18/2025 and Reimb value 1999.46
+[11/10/2025 6:12:38 PM] Column date found SOC for patient Chirokova, Lidiya for date 04/18/2025 and Reimb value 2259.49
+[11/10/2025 6:12:45 PM] Column date found Start 2 for patient Chirokova, Lidiya for date 05/18/2025 and Reimb value 1418.04
+[11/10/2025 6:12:53 PM] Column date found Start 4 for patient Alexon, Ginie for date 05/26/2025 and Reimb value 1233.69
+[11/10/2025 6:13:00 PM] Column date found SOC for patient Dasova, Yelena for date 04/13/2025 and Reimb value 2868.45
+[11/10/2025 6:13:08 PM] Column date found Start 2 for patient Dasova, Yelena for date 05/13/2025 and Reimb value 2027.26
+[11/10/2025 6:13:15 PM] Column date found Start 3 for patient Besfamilnaya, Raisa for date 04/13/2025 and Reimb value 2368.71
+[11/10/2025 6:13:23 PM] Column date found Start 4 for patient Besfamilnaya, Raisa for date 05/13/2025 and Reimb value 2131.84
+[11/10/2025 6:13:30 PM] Column date found SOC for patient Besfamilnyy, Oleg for date 04/10/2025 and Reimb value 2636.96
+[11/10/2025 6:13:38 PM] Column date found Start 2 for patient Besfamilnyy, Oleg for date 05/10/2025 and Reimb value 1795.74
+[11/10/2025 6:13:45 PM] Column date found Start 4 for patient Harutyunyan, Atom for date 05/26/2025 and Reimb value 1894.48
+[11/10/2025 6:13:53 PM] Column date found Start 3 for patient Cotov Peranidze, Alexandr for date 04/25/2025 and Reimb value 1358.1
+[11/10/2025 6:14:00 PM] Column date found Start 4 for patient Babitch, Sergei for date 05/15/2025 and Reimb value 1419.08
+[11/10/2025 6:14:08 PM] Column date found SOC for patient Alimov, Anvar for date 04/03/2025 and Reimb value 2259.49
+[11/10/2025 6:14:15 PM] Column date found Start 2 for patient Alimov, Anvar for date 05/03/2025 and Reimb value 1418.04
+[11/10/2025 6:14:23 PM] Column date found SOC for patient Govdyak, Lyudmila for date 04/21/2025 and Reimb value 2108.93
+[11/10/2025 6:14:30 PM] Column date found Start 2 for patient Govdyak, Lyudmila for date 05/21/2025 and Reimb value 1267.74
+[11/10/2025 6:14:38 PM] Column date found Start 3 for patient Harutyunyan, Atom for date 04/26/2025 and Reimb value 2177.56
+[11/10/2025 6:14:45 PM] Column date found Start 3 for patient Alimov, Rano for date 04/30/2025 and Reimb value 1267.74
+[11/10/2025 6:14:53 PM] Column date found Start 4 for patient Alimov, Rano for date 05/30/2025 and Reimb value 925.45
+[11/10/2025 6:15:00 PM] Column date found SOC for patient Gendler, Igor for date 04/18/2025 and Reimb value 2199.56
+[11/10/2025 6:15:08 PM] Column date found Start 2 for patient Gendler, Igor for date 05/18/2025 and Reimb value 1358.1
+[11/10/2025 6:15:15 PM] Column date found Start 2 for patient Binder, Anna for date 05/12/2025 and Reimb value 1508.43
+[11/10/2025 6:15:23 PM] Column date found Start 2 for patient Gorelik, Valeriy for date 05/18/2025 and Reimb value 1508.43
+[11/10/2025 6:15:30 PM] Column date found SOC for patient Galaktionova, Dina for date 04/12/2025 and Reimb value 2666.68
+[11/10/2025 6:15:38 PM] Column date found Start 2 for patient Galaktionova, Dina for date 05/12/2025 and Reimb value 1825.47
+[11/10/2025 6:15:46 PM] Column date found Start 2 for patient Burkun, Borys for date 05/12/2025 and Reimb value 1529.19
+[11/10/2025 6:15:53 PM] Column date found Start 3 for patient Galachyan, Rubik for date 04/23/2025 and Reimb value 1614.99
+[11/10/2025 6:16:01 PM] Column date found Start 4 for patient Belgeldrud, Grigory for date 05/20/2025 and Reimb value 1824.53
+[11/10/2025 6:16:08 PM] Column date found SOC for patient Chernega, Elizabeth for date 04/16/2025 and Reimb value 2516.37
+[11/10/2025 6:16:16 PM] Column date found Start 2 for patient Bukrinsky, Aleksander for date 05/19/2025 and Reimb value 1508.43
+[11/10/2025 6:16:23 PM] Column date found SOC for patient Brener, Lubov for date 04/16/2025 and Reimb value 2199.56
+[11/10/2025 6:16:31 PM] Column date found Start 2 for patient Glazkova, Lidia for date 05/23/2025 and Reimb value 1825.47
+[11/10/2025 6:16:38 PM] Column date found SOC for patient Dashevsky, Arkady for date 04/12/2025 and Reimb value 2108.93
+[11/10/2025 6:16:46 PM] Column date found Start 3 for patient Belgeldrud, Grigory for date 04/20/2025 and Reimb value 2027.26
+[11/10/2025 6:16:53 PM] Column date found SOC for patient Burkun, Borys for date 04/12/2025 and Reimb value 2370.4
+[11/10/2025 6:17:02 PM] Column date found Start 4 for patient Terlo, Vladimir with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:06 PM] Column date found Start 2 for patient Shinder, Ides with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:12 PM] Column date not found for patient Rybakova, Tatyana for date 03/20/2025 adding a line as Continued
+[11/10/2025 6:17:12 PM] Column date found Start 2 for patient Rybakova, Tatyana with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:17 PM] Column date found Start 5 for patient Voznenko, Dmitry with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:21 PM] Column date found SOC for patient Shinder, Ides with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:25 PM] Column date found Start 4 for patient Shelotkov, Galina with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:29 PM] Column date found SOC for patient Tisdale, Jaye with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:34 PM] Column date found Start 2 for patient Tisdale, Jaye with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:38 PM] Column date found Start 4 for patient Subbotina, Irina with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:43 PM] Column date found Start 3 for patient Shelotkov, Galina with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:47 PM] Column date found Start 3 for patient Terlo, Vladimir with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:51 PM] Column date found Start 4 for patient Voznenko, Dmitry with S status in S\Loc, inserting in progress status
+[11/10/2025 6:17:57 PM] Column date found Start 3 for patient Subbotina, Irina with S status in S\Loc, inserting in progress status
+[11/10/2025 6:18:02 PM] Column date found Start 2 for patient Rixter, Larry for date 04/24/2025 and Reimb value 10036.14
+[11/10/2025 6:18:07 PM] Column date found Start 3 for patient Mendez Curiel, Delfino for date 07/14/2025 and Reimb value 2908.9
+[11/10/2025 6:18:11 PM] Column date found SOC for patient Mendez Curiel, Delfino for date 05/15/2025 and Reimb value 2133.2
+[11/10/2025 6:18:19 PM] Column date found Start 4 for patient Kohanpoolad, Dariush for date 09/25/2025 and Reimb value 2214.36
+[11/10/2025 6:18:27 PM] Column date found Start 5 for patient Schneider, Ronni M for date 09/24/2025 and Reimb value 1533.9
+[11/10/2025 6:18:35 PM] Column date found Start 3 for patient Mohammadi, Mohammad for date 09/25/2025 and Reimb value 9988.43
+[11/10/2025 6:18:44 PM] Column date found Start 2 for patient Yeroshlim, Shoshana for date 09/21/2025 and Reimb value 2061.5
+[11/10/2025 6:18:53 PM] Column date found Start 5 for patient Hakimian, Parichehr for date 09/24/2025 and Reimb value 2061.5
+[11/10/2025 6:19:01 PM] Column date found SOC for patient Khani, Parvin for date 09/24/2025 and Reimb value 2383.42
+[11/10/2025 6:19:10 PM] Column date found Start 3 for patient Ashraf Pour, Goljahan for date 09/26/2025 and Reimb value 10148.58
+[11/10/2025 6:19:18 PM] Column date found SOC for patient Parvaneh, Shahram for date 10/16/2025 and Reimb value 412.63
+[11/10/2025 6:19:27 PM] Column date found Start 3 for patient Emral Shaoul, Aghdas for date 09/27/2025 and Reimb value 1381.06
+[11/10/2025 6:19:35 PM] Column date found Start 5 for patient Soferzadeh Term, F for date 09/26/2025 and Reimb value 1402.17
+[11/10/2025 6:19:43 PM] Column date found Start 4 for patient Gonzalez, Blanca L for date 08/28/2025 and Reimb value 2214.36
+[11/10/2025 6:19:52 PM] Column date found Start 3 for patient Tran, Dinh T for date 09/27/2025 and Reimb value 1367.99
+[11/10/2025 6:19:55 PM] Column date found Start 3 for patient Duong, Nhung T for date 09/24/2025 and Reimb value 1807.17
+[11/10/2025 6:19:58 PM] Column date found Start 3 for patient Nguyen, Yen T for date 09/30/2025 and Reimb value 1367.99
+[11/10/2025 6:20:01 PM] Column date found Start 2 for patient Quan, Bi V for date 09/01/2025 and Reimb value 1540.32
+[11/10/2025 6:20:04 PM] Column date found SOC for patient Vu, Phuong T for date 09/18/2025 and Reimb value 3384.93
+[11/10/2025 6:20:07 PM] Column date found SOC for patient Tsui, Shokyee with S status in S\Loc, inserting in progress status
+[11/10/2025 6:20:09 PM] Column date found Start 4 for patient Pham, Hocthi with S status in S\Loc, inserting in progress status
+[11/10/2025 6:20:10 PM] Column date found Start 2 for patient Tran, Mum D with S status in S\Loc, inserting in progress status
+[11/10/2025 6:20:12 PM] Column date found Start 2 for patient Tran, Nghiep T with S status in S\Loc, inserting in progress status
+[11/10/2025 6:20:13 PM] Column date found Start 2 for patient Tran, Vang V with S status in S\Loc, inserting in progress status
+[11/10/2025 6:20:15 PM] Column date found Start 2 for patient Sam, Le N with S status in S\Loc, inserting in progress status
+[11/10/2025 6:20:19 PM] Column date found SOC for patient Herrera, Maria D for date 09/09/2025 and Reimb value 1747.78
+[11/10/2025 6:20:26 PM] Column date found Start 2 for patient Munoz, Bertha for date 09/13/2025 and Reimb value 2048.01
+[11/10/2025 6:20:33 PM] Column date found Start 2 for patient Ohkawahira, Hidemi for date 09/10/2025 and Reimb value 2072.56
+[11/10/2025 6:20:40 PM] Column date found Start 4 for patient Chavez, Jose for date 09/23/2025 and Reimb value 2183.76
+[11/10/2025 6:20:46 PM] Column date found Start 2 for patient Reese, Anne D for date 09/20/2025 and Reimb value 1600.64
+[11/10/2025 6:20:53 PM] Column date found Start 2 for patient Coopersmith, Sandra B for date 09/22/2025 and Reimb value 2231.62
+[11/10/2025 6:21:00 PM] Column date found Start 3 for patient Barkin, Sandra L for date 09/22/2025 and Reimb value 2621.75
+[11/10/2025 6:21:07 PM] Column date found Start 3 for patient Dralyuk, Yakov for date 09/26/2025 and Reimb value 5411.18
+[11/10/2025 6:21:14 PM] Column date found Start 3 for patient Kwarteng, Samuel K for date 09/23/2025 and Reimb value 2455.31
+[11/10/2025 6:21:20 PM] Column date found Start 3 for patient Sanchez, Victor M for date 09/26/2025 and Reimb value 1780.24
+[11/10/2025 6:21:27 PM] Column date found Start 2 for patient Rogers, Melody S with S status in S\Loc, inserting in progress status
+[11/10/2025 6:21:31 PM] Column date found Start 3 for patient Shelebian, Michael with S status in S\Loc, inserting in progress status
+[11/10/2025 6:21:35 PM] Column date found Start 5 for patient Massarsky, Inessa with S status in S\Loc, inserting in progress status
+[11/10/2025 6:21:39 PM] Column date found SOC for patient Sirbu, Peter with S status in S\Loc, inserting in progress status
+[11/10/2025 6:21:43 PM] Column date found SOC for patient White, Inez with S status in S\Loc, inserting in progress status
+[11/10/2025 6:21:47 PM] Column date found SOC for patient Peykar, Shahin for date 09/16/2025 and Reimb value 1385.08
+[11/10/2025 6:21:50 PM] Column date found Start 6 for patient Ahmadzadehgansh, E for date 09/14/2025 and Reimb value 2067.52
+[11/10/2025 6:21:53 PM] Column date found Start 3 for patient Sharif, Zahra for date 09/09/2025 and Reimb value 1385.08
+[11/10/2025 6:21:56 PM] Column date found Start 2 for patient Shakibkhou, Nemat for date 09/17/2025 and Reimb value 2588.78
+[11/10/2025 6:21:59 PM] Column date found Start 5 for patient Alitabar, Rouhallah for date 09/06/2025 and Reimb value 1538.37
+[11/10/2025 6:22:02 PM] Column date found Start 2 for patient Khoshnevis, Houri for date 09/11/2025 and Reimb value 2220.82
+[11/10/2025 6:22:05 PM] Column date found SOC for patient Tehrani, Parvaneh for date 09/12/2025 and Reimb value 1708.44
+[11/10/2025 6:22:08 PM] Column date found Start 6 for patient Qmarsi, Parvin with S status in S\Loc, inserting in progress status
+[11/10/2025 6:22:09 PM] Column date found Start 2 for patient Eftekhari, Fariba with S status in S\Loc, inserting in progress status
+[11/10/2025 6:22:11 PM] Column date found Start 2 for patient Khaleghi, Khavar with S status in S\Loc, inserting in progress status
+[11/10/2025 6:22:13 PM] Column date found Start 2 for patient Daneshmand Rokh, Homa with S status in S\Loc, inserting in progress status
+[11/10/2025 6:22:14 PM] Column date found Start 2 for patient Daneshmand Rokh, Hamid with S status in S\Loc, inserting in progress status
+[11/10/2025 6:22:16 PM] Column date found Start 3 for patient Etemadi, Mehran with S status in S\Loc, inserting in progress status
+[11/10/2025 6:22:17 PM] Column date found Start 5 for patient Rafiezadeh, Rahmatolla with S status in S\Loc, inserting in progress status
+[11/10/2025 6:22:19 PM] Column date found Start 6 for patient Kioumarsi, Mahshid with S status in S\Loc, inserting in progress status
+[11/10/2025 6:22:20 PM] Column date found Start 2 for patient Holiday, Maxine with S status in S\Loc, inserting in progress status
+[11/10/2025 6:22:22 PM] Column date found Start 4 for patient Eftekhari, Khosrow with S status in S\Loc, inserting in progress status
+[11/10/2025 6:22:24 PM] Column date found Start 2 for patient Movahedi, Mehri for date 09/25/2025 and Reimb value 2067.52
+[11/10/2025 6:22:27 PM] Column date found Start 2 for patient Ghods, Haide for date 09/25/2025 and Reimb value 1406.27
+[11/10/2025 6:22:29 PM] Column date found Start 2 for patient Aval, Mary for date 09/27/2025 and Reimb value 2220.82
+[11/10/2025 6:22:32 PM] Column date found Start 2 for patient Pour Bakhtiar, Homayoun for date 09/26/2025 and Reimb value 2220.82
+[11/10/2025 6:22:35 PM] Column date not found for patient Pineda, Teodoro for date 07/23/2025 adding a line as Continued
+[11/10/2025 6:22:35 PM] Column date not found for patient Pineda, Teodoro for date 08/22/2025 adding a line as Continued
+[11/10/2025 6:22:36 PM] Column date found Start 4 for patient Sarkisyan, Armenui for date 10/01/2025 and Reimb value 1598.26
+[11/10/2025 6:22:39 PM] Column date found Start 2 for patient Vaziri, Effie for date 09/21/2025 and Reimb value 2396.3
+[11/10/2025 6:22:42 PM] Column date found Start 4 for patient Montazeri, Ray for date 09/04/2025 and Reimb value 2220.82
+[11/10/2025 6:22:45 PM] Column date found SOC for patient Sadighi, Mariam for date 09/16/2025 and Reimb value 2264.19
+[11/10/2025 6:22:49 PM] Column date found Start 4 for patient Mostafaee, Laila for date 08/26/2025 and Reimb value 1292.91
+[11/10/2025 6:22:52 PM] Column date found Start 4 for patient Alishahi, Ahmad for date 09/08/2025 and Reimb value 1861.73
+[11/10/2025 6:22:55 PM] Column date found Start 4 for patient Khodadadi, Tooraj for date 09/01/2025 and Reimb value 1493.77
+[11/10/2025 6:22:58 PM] Column date found Start 6 for patient Elganiyan, Shirindokh for date 09/22/2025 and Reimb value 1493.77
+[11/10/2025 6:23:01 PM] Column date found Start 4 for patient Arbaei, Fatemeh for date 09/04/2025 and Reimb value 2067.52
+[11/10/2025 6:23:05 PM] Column date found Start 2 for patient Ghalili, Manouchehr for date 09/03/2025 and Reimb value 2067.52
+[11/10/2025 6:23:08 PM] Column date found Start 4 for patient Mofid, Masoud for date 09/02/2025 and Reimb value 2067.52
+[11/10/2025 6:23:11 PM] Column date found Start 6 for patient Soleimani, Sara for date 09/01/2025 and Reimb value 1493.77
+[11/10/2025 6:23:14 PM] Column date found SOC for patient Rousta Talebaba, Shahr Bano for date 09/09/2025 and Reimb value 2264.19
+[11/10/2025 6:23:17 PM] Column date found Start 4 for patient Limodim, Masoud for date 09/04/2025 and Reimb value 1406.27
+[11/10/2025 6:23:21 PM] Column date found SOC for patient Gabaizadeh, Rabie for date 09/24/2025 and Reimb value 2925.43
+[11/10/2025 6:23:24 PM] Column date found Start 6 for patient Matousian, Eskarlet for date 09/13/2025 and Reimb value 2067.52
+[11/10/2025 6:23:27 PM] Column date found Start 4 for patient Farahmandpour, Molouk for date 08/07/2025 and Reimb value 2220.82
+[11/10/2025 6:23:30 PM] Column date found Start 2 for patient Ghalili, Shahla for date 09/03/2025 and Reimb value 2067.52
+[11/10/2025 6:23:34 PM] Column date found Start 6 for patient Zarifian, Bijan for date 09/13/2025 and Reimb value 1406.04
+[11/10/2025 6:23:37 PM] Column date found Start 4 for patient Biazar, Fatemeh for date 09/13/2025 and Reimb value 1559.57
+[11/10/2025 6:23:41 PM] Column date found Start 4 for patient Khodadadi, Ehsanollah for date 09/01/2025 and Reimb value 2220.82
+[11/10/2025 6:23:44 PM] Column date found Start 6 for patient Behdin, Mahindokht for date 09/08/2025 and Reimb value 1559.57
+[11/10/2025 6:23:47 PM] Column date found Start 6 for patient Yerushalmi, Janet A for date 09/13/2025 and Reimb value 1493.77
+[11/10/2025 6:23:50 PM] Column date found Start 6 for patient Ansari, Vahideh for date 09/09/2025 and Reimb value 1406.27
+[11/10/2025 6:23:53 PM] Column date found Start 2 for patient Nemanim, Flora for date 08/30/2025 and Reimb value 1585.94
+[11/10/2025 6:23:57 PM] Column date found Start 6 for patient Didarzadeh, Masoumeh for date 09/21/2025 and Reimb value 2220.82
+[11/10/2025 6:24:00 PM] Column date found Start 6 for patient Biok Aghaei, Lotfollah for date 08/29/2025 and Reimb value 2986.56
+[11/10/2025 6:24:03 PM] Column date found Start 6 for patient Afzali, Shirin for date 09/13/2025 and Reimb value 1538.37
+[11/10/2025 6:24:06 PM] Column date found Start 6 for patient Soltani, Soraya for date 09/25/2025 and Reimb value 2067.52
+[11/10/2025 6:24:10 PM] Column date found Start 3 for patient Shahabi, Saeideh for date 09/19/2025 and Reimb value 2220.82
+[11/10/2025 6:24:13 PM] Column date found Start 4 for patient Ettehad, Azam for date 09/04/2025 and Reimb value 1646.81
+[11/10/2025 6:24:16 PM] Column date found Start 6 for patient Sotork, Mir for date 09/13/2025 and Reimb value 2220.82
+[11/10/2025 6:24:19 PM] Column date found Start 6 for patient Ghardashem, Mohammad A for date 09/13/2025 and Reimb value 2067.52
+[11/10/2025 6:24:22 PM] Column date found SOC for patient Mehdipour, Parvin for date 09/16/2025 and Reimb value 2456.18
+[11/10/2025 6:24:26 PM] Column date found Start 6 for patient Iryami, Manijeh for date 09/25/2025 and Reimb value 2067.52
+[11/10/2025 6:24:29 PM] Column date found Start 6 for patient Zarifian, Jaleh for date 09/19/2025 and Reimb value 2220.82
+[11/10/2025 6:24:32 PM] Column date found Start 5 for patient Khodayari, Simindokht for date 09/25/2025 and Reimb value 2067.52
+[11/10/2025 6:24:35 PM] Column date found Start 6 for patient Yerushalmi, Parviz for date 09/22/2025 and Reimb value 2067.52
+[11/10/2025 6:24:38 PM] Column date found Start 6 for patient Nassiripour, Mansour for date 09/19/2025 and Reimb value 2067.52
+[11/10/2025 6:24:42 PM] Column date found Start 6 for patient Darbahani, Ahmad for date 09/21/2025 and Reimb value 2067.52
+[11/10/2025 6:24:45 PM] Column date found Start 6 for patient Dabir, Arsalan for date 09/22/2025 and Reimb value 1385.08
+[11/10/2025 6:24:48 PM] Column date found Start 6 for patient Yashar, Soleman S for date 09/22/2025 and Reimb value 2067.52
+[11/10/2025 6:24:51 PM] Column date found SOC for patient Boghosian, Rose with S status in S\Loc, inserting in progress status
+[11/10/2025 6:24:53 PM] Column date found Start 4 for patient Izadian, Farangis with S status in S\Loc, inserting in progress status
+[11/10/2025 6:24:55 PM] Column date found Start 2 for patient Lalehzarian, Mehrangiz with S status in S\Loc, inserting in progress status
+[11/10/2025 6:24:56 PM] Column date found Start 6 for patient Paya, Fatemeh with S status in S\Loc, inserting in progress status
+[11/10/2025 6:24:58 PM] Column date found Start 6 for patient Ghahremani, Shahin with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:00 PM] Column date found Start 6 for patient Shakhani, Shahin with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:02 PM] Column date found SOC for patient Behrooz, Faramarz with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:03 PM] Column date found SOC for patient Setareh, Mahvash with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:05 PM] Column date found Start 2 for patient Kaghazi, Jilla with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:07 PM] Column date found Start 5 for patient Gouran, Fatemeh with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:08 PM] Column date found Start 5 for patient Rahimian Mashha, Fatemeh with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:10 PM] Column date found Start 5 for patient Vahdat, Talieh with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:12 PM] Column date found Start 5 for patient Birjandi, Jafar with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:14 PM] Column date found Start 5 for patient Arbaei, Fatemeh with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:15 PM] Column date found SOC for patient Chadorchi, Fereydoun with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:17 PM] Column date found Start 6 for patient Delazadmatanagh, Zarangiz with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:19 PM] Column date found Start 6 for patient Zamani Anari, Mehrangiz with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:21 PM] Column date not found for patient Amiri Rezavian, Ashkan for date 09/22/2025 adding a line as Continued
+[11/10/2025 6:25:21 PM] Column date found Start 6 for patient Ghahremani, Siavash with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:23 PM] Column date found Start 6 for patient Mabood, Nahideh with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:24 PM] Column date found SOC for patient Mobin, Mary with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:26 PM] Column date found Start 5 for patient Ghaderpour, Ahmad with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:28 PM] Column date found Start 5 for patient Farzam, Batia with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:29 PM] Column date found Start 4 for patient Ashtari, Bahram with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:31 PM] Column date found Start 5 for patient Mofid, Masoud with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:33 PM] Column date found Start 5 for patient Safizadeh, Abdollah with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:35 PM] Column date found Start 5 for patient Ettehad, Azam with S status in S\Loc, inserting in progress status
+[11/10/2025 6:25:38 PM] Column date found Start 2 for patient Guzman De Cende, Maria for date 09/19/2025 and Reimb value 2153.26
+[11/10/2025 6:25:42 PM] Column date found Start 6 for patient Biosah, Patience for date 09/13/2025 and Reimb value 2082.54
+[11/10/2025 6:25:47 PM] Column date found Start 4 for patient Centeno, Jose for date 09/28/2025 and Reimb value 1602.17
+[11/10/2025 6:25:52 PM] Column date found Start 4 for patient Pelayo Lopez, Jesus for date 09/02/2025 and Reimb value 2312.92
+[11/10/2025 6:25:56 PM] Column date found Start 2 for patient Martinez, Norma for date 09/20/2025 and Reimb value 1602.17
+[11/10/2025 6:26:01 PM] Column date found Start 4 for patient Chavez De Monte, J for date 09/28/2025 and Reimb value 2312.92
+[11/10/2025 6:26:06 PM] Column date found Start 5 for patient Rivas Duarte, Liliana for date 09/23/2025 and Reimb value 1555.72
+[11/10/2025 6:26:11 PM] Column date found SOC for patient Ramsey, Shelia J for date 09/02/2025 and Reimb value 3273.68
+[11/10/2025 6:26:14 PM] Column date found Start 5 for patient Lynch, Jean for date 09/04/2025 and Reimb value 1957.79
+[11/10/2025 6:26:17 PM] Column date found SOC for patient Leonard, Melvia for date 09/08/2025 and Reimb value 2243.24
+[11/10/2025 6:26:20 PM] Column date found Start 2 for patient Jones, Keith for date 09/14/2025 and Reimb value 1493.77
+[11/10/2025 6:26:22 PM] Column date found SOC for patient Love, Alvin B for date 09/15/2025 and Reimb value 3099.57
+[11/10/2025 6:26:25 PM] Column date found Start 5 for patient Tang, Heak You for date 09/18/2025 and Reimb value 2136.77
+[11/10/2025 6:26:28 PM] Column date found Start 2 for patient Gillespie, Charleen for date 09/21/2025 and Reimb value 1311.42
+[11/10/2025 6:26:31 PM] Column date found Start 2 for patient Turang, Paul J for date 09/29/2025 and Reimb value 1444.95
+[11/10/2025 6:26:34 PM] Column date found SOC for patient Castillo, Jeanna M for date 09/22/2025 and Reimb value 3591.69
+[11/10/2025 6:26:37 PM] Column date found Start 5 for patient Godbolt, Ricky for date 09/26/2025 and Reimb value 1546.52
+[11/10/2025 6:26:40 PM] Column date found Start 2 for patient Hernandez, Mary A with S status in S\Loc, inserting in progress status
+[11/10/2025 6:26:41 PM] Column date found Start 2 for patient Casey Jr, Willard with S status in S\Loc, inserting in progress status
+[11/10/2025 6:26:43 PM] Column date found Start 2 for patient Espinoza, Christina with S status in S\Loc, inserting in progress status
+[11/10/2025 6:26:45 PM] Column date found Start 2 for patient Chrkhoyan, Susanna for date 09/26/2025 and Reimb value 1941.94
+[11/10/2025 6:26:48 PM] Column date found Start 6 for patient Madaryan, Oganes for date 09/27/2025 and Reimb value 1941.94
+[11/10/2025 6:26:50 PM] Column date found Start 2 for patient Voskanian, Rita for date 09/27/2025 and Reimb value 2059.22
+[11/10/2025 6:26:53 PM] Column date found Start 2 for patient Bagdasarian, Rene for date 09/25/2025 and Reimb value 2267.39
+[11/10/2025 6:26:56 PM] Column date found Start 4 for patient Sahakyan, Marat for date 09/29/2025 and Reimb value 2520.44
+[11/10/2025 6:26:59 PM] Column date found SOC for patient Baghdasaryan, Anna for date 09/26/2025 and Reimb value 1941.94
+[11/10/2025 6:27:02 PM] Column date found Start 4 for patient Israelyan, Aghavni for date 09/27/2025 and Reimb value 2136.59
+[11/10/2025 6:27:05 PM] Column date found SOC for patient Shahverdyan, Oleg for date 09/28/2025 and Reimb value 2700.71
+[11/10/2025 6:27:07 PM] Column date found Start 4 for patient Vardapetyan, Saribek with S status in S\Loc, inserting in progress status
+[11/10/2025 6:27:09 PM] Column date found Start 4 for patient Zakaryan, Viktorya with S status in S\Loc, inserting in progress status
+[11/10/2025 6:27:11 PM] Column date found Start 3 for patient Rogel, Maria for date 09/08/2025 and Reimb value 1598.26
+[11/10/2025 6:27:13 PM] Column date found Start 3 for patient Membreno, Paz for date 09/08/2025 and Reimb value 1538.37
+[11/10/2025 6:27:16 PM] Column date found SOC for patient Taghaboni, Farima for date 09/07/2025 and Reimb value 3100.92
+[11/10/2025 6:27:19 PM] Column date found Start 3 for patient Davenport, Ernest for date 09/06/2025 and Reimb value 2039.17
+[11/10/2025 6:27:21 PM] Column date found Start 3 for patient Pineda, Iris for date 09/16/2025 and Reimb value 1751.56
+[11/10/2025 6:27:24 PM] Column date found Start 2 for patient Stynkaru, Galyna for date 09/27/2025 and Reimb value 2136.77
+[11/10/2025 6:27:27 PM] Column date found SOC for patient Ghazaryan, Khatun for date 09/27/2025 and Reimb value 1851.14
+[11/10/2025 6:27:29 PM] Column date found SOC for patient Laufer, Eleonora for date 09/27/2025 and Reimb value 2355.39
+[11/10/2025 6:27:32 PM] Column date found SOC for patient Laufer, Zakhar for date 09/27/2025 and Reimb value 2393.64
+[11/10/2025 6:27:35 PM] Column date found Start 2 for patient Bigun, Bella for date 09/28/2025 and Reimb value 1851.14
+[11/10/2025 6:27:38 PM] Column date found Start 2 for patient Smallwood, Marcia for date 09/28/2025 and Reimb value 1851.14
+[11/10/2025 6:27:40 PM] Column date found Start 2 for patient Ramirez, Josefina for date 09/30/2025 and Reimb value 2195.68
+[11/10/2025 6:27:43 PM] Column date found SOC for patient Piloyan, Violetta for date 10/01/2025 and Reimb value 2743.79
+[11/10/2025 6:27:46 PM] Column date found Start 2 for patient Taghaboni, Farima with S status in S\Loc, inserting in progress status
+[11/10/2025 6:27:47 PM] Column date found Start 4 for patient Membreno, Paz with S status in S\Loc, inserting in progress status
+[11/10/2025 6:27:49 PM] Column date found Start 4 for patient Davenport, Ernest with S status in S\Loc, inserting in progress status
+[11/10/2025 6:27:50 PM] Column date found Start 4 for patient Rogel, Maria with S status in S\Loc, inserting in progress status
+[11/10/2025 6:27:52 PM] Column date found Start 2 for patient Antikyan, Arutyun with S status in S\Loc, inserting in progress status
+[11/10/2025 6:27:55 PM] Column date found SOC for patient D Pacheco, Matzary for date 08/19/2025 and Reimb value 6346.32
+[11/10/2025 6:28:00 PM] Column date found SOC for patient Stackler, Sandra for date 09/25/2025 and Reimb value 1981.98
+[11/10/2025 6:28:05 PM] Column date found Start 3 for patient Rinker, Kathleen for date 09/23/2025 and Reimb value 3588.26
+[11/10/2025 6:28:10 PM] Column date found Start 6 for patient Borenstein, Bernard for date 09/23/2025 and Reimb value 1758.26
+[11/10/2025 6:28:16 PM] Column date found SOC for patient Titus, Marlys for date 09/23/2025 and Reimb value 3137.93
+[11/10/2025 6:28:21 PM] Column date found SOC for patient Sanford, Debbie for date 09/23/2025 and Reimb value 2943.81
+[11/10/2025 6:28:26 PM] Column date found SOC for patient Nalbandian, Hripsime for date 09/25/2025 and Reimb value 2943.81
+[11/10/2025 6:28:31 PM] Column date found SOC for patient Bauchau, Mijanou for date 09/27/2025 and Reimb value 2793.18
+[11/10/2025 6:28:36 PM] Column date found Start 2 for patient Rosenthal, Suzanne for date 09/28/2025 and Reimb value 1965.87
+[11/10/2025 6:28:41 PM] Column date found Start 2 for patient Hizon, Norma with S status in S\Loc, inserting in progress status
+[11/10/2025 6:28:44 PM] Column date found Start 4 for patient Ghambaryan, Boris with S status in S\Loc, inserting in progress status
+[11/10/2025 6:28:47 PM] Column date found SOC for patient Panunzio, Thom with S status in S\Loc, inserting in progress status
+[11/10/2025 6:28:50 PM] Column date found Start 4 for patient Rempel, Roman with S status in S\Loc, inserting in progress status
+[11/10/2025 6:28:53 PM] Column date found Start 2 for patient Borenstein, Paula with S status in S\Loc, inserting in progress status
+[11/10/2025 6:29:00 PM] Column date found Start 2 for patient Guan, Zheng Z for date 06/19/2025 and Reimb value 2276.8
+[11/10/2025 6:29:11 PM] Column date found Start 2 for patient Liu, John K for date 09/05/2025 and Reimb value 2273.19
+[11/10/2025 6:29:21 PM] Column date found SOC for patient Tan, Lixia for date 08/26/2025 and Reimb value 4309.38
+[11/10/2025 6:29:33 PM] Column date found Start 2 for patient Tan, Lixia for date 09/25/2025 and Reimb value 3195.64
+[11/10/2025 6:29:44 PM] Column date found SOC for patient Kaur, Jagdish for date 03/22/2025 and Reimb value 3524.46
+[11/10/2025 6:29:54 PM] Column date found Start 2 for patient Su, Chunhua for date 09/04/2025 and Reimb value 2882.2
+[11/10/2025 6:30:05 PM] Column date found Start 4 for patient Seka, Buldan O for date 08/31/2025 and Reimb value 2683.26
+[11/10/2025 6:30:16 PM] Column date found SOC for patient Kuang, Zhi F for date 09/05/2025 and Reimb value 3102.26
+[11/10/2025 6:30:27 PM] Column date found SOC for patient Voerge, Cecilia J for date 02/22/2025 and Reimb value 4309.38
+[11/10/2025 6:30:38 PM] Column date found Start 2 for patient Deng, Min for date 09/03/2025 and Reimb value 2646.47
+[11/10/2025 6:30:49 PM] Column date found Start 4 for patient Martin, Shirley B for date 04/30/2025 and Reimb value 2276.8
+[11/10/2025 6:31:00 PM] Column date found Start 2 for patient Mahi, Joginder for date 05/21/2025 and Reimb value 2137.59
+[11/10/2025 6:31:12 PM] Column date found Start 6 for patient Lash, David for date 09/15/2025 and Reimb value 1879.31
+[11/10/2025 6:31:16 PM] Column date found Start 2 for patient Butylkova, Taisa for date 09/18/2025 and Reimb value 3205.32
+[11/10/2025 6:31:21 PM] Column date found Start 6 for patient Spector, Maurine for date 09/28/2025 and Reimb value 3054.75
+[11/10/2025 6:31:26 PM] Column date found Start 5 for patient Legendre, Jo for date 09/20/2025 and Reimb value 2235.19
+[11/10/2025 6:31:31 PM] Column date found Start 2 for patient Medrano, Miguel for date 09/17/2025 and Reimb value 2560.12
+[11/10/2025 6:31:36 PM] Column date found SOC for patient Bingham, Mary for date 09/26/2025 and Reimb value 3042.97
+[11/10/2025 6:31:41 PM] Column date found Start 2 for patient Vu, Nga Thuy for date 09/21/2025 and Reimb value 2451.8
+[11/10/2025 6:31:47 PM] Column date found Start 3 for patient Garcia, Jose for date 09/15/2025 and Reimb value 2328.27
+[11/10/2025 6:31:51 PM] Column date found Start 6 for patient Kalyn, Linda with S status in S\Loc, inserting in progress status

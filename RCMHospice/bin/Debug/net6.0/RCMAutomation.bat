@@ -1,0 +1,1 @@
+Automation_Excel_Compare.exe "..\NOAStatus\NOA Status.xlsx" ..\Agencies QueryFile.csv "..\SearchReport\SearchReport.xlsx" "..\PaymentSummary\High Level Payment Summary.xlsx" "..\AgencyList\AgencyList.xlsx" 

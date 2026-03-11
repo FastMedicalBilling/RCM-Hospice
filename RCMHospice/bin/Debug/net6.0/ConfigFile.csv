@@ -1,0 +1,14 @@
+smtpServer|smtp.gmail.com
+smtpPort|465
+SenderName|Office FS Consulting
+smtpUsername|office@hhabilling.com
+smtpPassword|Ck1315!!
+sendToEmail|max@hhabilling.com;jayberko@gmail.com
+sendToName|Maxim Fastovsky
+googleClientSecretsPath|.\client_secret.json
+googleTokenStoreFolder|.\gmail_tokens
+mfaFrom|no-reply@inovalon.com
+mfaSubjectExact|"Inovalon account email verification code"
+mfaNewerThan|5m
+mfaLabel|in:inbox
+mfaCodeRegex|Your\s+code\s+is[:\s]+(\d{6})

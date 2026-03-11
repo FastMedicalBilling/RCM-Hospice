@@ -1,0 +1,14 @@
+[7/9/2025 10:54:48 PM] Exception: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-74eb9c75734sm128961b3a.0 - gsmtp
+StackTrace:    at MailKit.Net.Smtp.SmtpClient.Authenticate(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(Encoding encoding, String userName, String password, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(String userName, String password, CancellationToken cancellationToken)
+   at ExcelComparer.RCMProcess.SendEmail(String recipientName, String recipientEmails, String subject, String body, String logFilePath, String attachmentFilePath) in C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\RCMProcess.cs:line 1991
+
+[7/9/2025 10:54:48 PM] Exception: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-74eb9c75734sm128961b3a.0 - gsmtp
+StackTrace:    at MailKit.Net.Smtp.SmtpClient.Authenticate(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(Encoding encoding, String userName, String password, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(String userName, String password, CancellationToken cancellationToken)
+   at ExcelComparer.RCMProcess.SendEmail(String recipientName, String recipientEmails, String subject, String body, String logFilePath, String attachmentFilePath) in C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\RCMProcess.cs:line 1991
+

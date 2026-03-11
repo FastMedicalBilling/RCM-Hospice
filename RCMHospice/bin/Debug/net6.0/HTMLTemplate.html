@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Discrepancies Report</title>
+    <style>
+        /* Add some basic styling for the email */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Discrepancies Report</h1>
+        <p>Dear Admin,</p>
+        <p>This is a report of your NOA automation regarding discrepancies between your changes to the agency reports, the following were either not found on agency report or mismatched on date:</p>
+        <ul>
+            {DiscrepanciesList}
+            <!-- Add more discrepancies as needed -->
+        </ul>
+		<br>
+		<p>For the following patients NOA is greater than 3 days:</p>
+		<ul>
+			{patientsMoreThan3DaysList}
+            <!-- Add more discrepancies as needed -->
+        </ul>
+        <p>Thank you for your attention to these matters,</p>
+		<p>Your friendly neighborhood automation ;-)</p>
+    </div>
+</body>
+</html>

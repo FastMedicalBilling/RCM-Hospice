@@ -1,0 +1,5 @@
+RCMHospice/bin/**/token-store/
+RCMHospice/bin/**/temp-token-store/
+RCMHospice/bin/**/client_secret.json
+RCMHospice/bin/**/credentials.json
+RCMHospice/bin/**/Google.Apis.Auth.OAuth2.Responses.TokenResponse*

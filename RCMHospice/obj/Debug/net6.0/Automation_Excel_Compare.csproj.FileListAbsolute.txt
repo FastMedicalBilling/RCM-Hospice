@@ -1,0 +1,532 @@
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.exe
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.deps.json
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.runtimeconfig.json
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ClosedXML.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Irony.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Data.OleDb.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\XLParser.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.AssemblyReference.cache
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.GeneratedMSBuildEditorConfig.editorconfig
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfoInputs.cache
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfo.cs
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CoreCompileInputs.cache
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CopyComplete
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\refint\Automation_Excel_Compare.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.genruntimeconfig.cache
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\ref\Automation_Excel_Compare.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MailKit.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MimeKit.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.exe
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.deps.json
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.runtimeconfig.json
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ClosedXML.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Irony.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MailKit.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MimeKit.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Data.OleDb.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\XLParser.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.AssemblyReference.cache
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfoInputs.cache
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfo.cs
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CoreCompileInputs.cache
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CopyComplete
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\refint\Automation_Excel_Compare.dll
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.genruntimeconfig.cache
+C:\Users\Berko-Desktop\Desktop\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\ref\Automation_Excel_Compare.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.exe
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.deps.json
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.runtimeconfig.json
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ClosedXML.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Irony.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MailKit.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MimeKit.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Data.OleDb.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\XLParser.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.AssemblyReference.cache
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.GeneratedMSBuildEditorConfig.editorconfig
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfoInputs.cache
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfo.cs
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CoreCompileInputs.cache
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CopyComplete
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\refint\Automation_Excel_Compare.dll
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.genruntimeconfig.cache
+C:\BearTech Files\Automation Projects\F&S Consulting\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\ref\Automation_Excel_Compare.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.exe
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.deps.json
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.runtimeconfig.json
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ClosedXML.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Irony.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MailKit.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Office.Interop.Excel.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MimeKit.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Data.OleDb.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\XLParser.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.AssemblyReference.cache
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.GeneratedMSBuildEditorConfig.editorconfig
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfoInputs.cache
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfo.cs
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CoreCompileInputs.cache
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.sourcelink.json
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CopyComplete
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\refint\Automation_Excel_Compare.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.genruntimeconfig.cache
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\ref\Automation_Excel_Compare.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Enums.NET.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MathNet.Numerics.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.Core.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OOXML.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OpenXml4Net.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OpenXmlFormats.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.ImageSharp.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Xml.dll
+C:\Automation\Codebase\NOAProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\OFFICE.DLL
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.exe
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.deps.json
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.runtimeconfig.json
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ClosedXML.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Enums.NET.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Irony.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MailKit.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MathNet.Numerics.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Office.Interop.Excel.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MimeKit.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.Core.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OOXML.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OpenXml4Net.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OpenXmlFormats.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.ImageSharp.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Data.OleDb.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Xml.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\XLParser.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\OFFICE.DLL
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.AssemblyReference.cache
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.GeneratedMSBuildEditorConfig.editorconfig
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfoInputs.cache
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfo.cs
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CoreCompileInputs.cache
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.sourcelink.json
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CopyComplete
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\refint\Automation_Excel_Compare.dll
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.genruntimeconfig.cache
+C:\Automation\Codebase\NOAProcess - Revamped\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\ref\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.exe
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.deps.json
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.runtimeconfig.json
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ClosedXML.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Enums.NET.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Irony.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MailKit.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MathNet.Numerics.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Office.Interop.Excel.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MimeKit.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.Core.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OOXML.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OpenXml4Net.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OpenXmlFormats.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.ImageSharp.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Data.OleDb.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Xml.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\XLParser.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\OFFICE.DLL
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.AssemblyReference.cache
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.GeneratedMSBuildEditorConfig.editorconfig
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfoInputs.cache
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfo.cs
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CoreCompileInputs.cache
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.sourcelink.json
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CopyComplete
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\refint\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.genruntimeconfig.cache
+C:\Automation\Codebase\RCMProcess\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\ref\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.exe
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.deps.json
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.runtimeconfig.json
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ClosedXML.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Enums.NET.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Irony.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MailKit.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MathNet.Numerics.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Office.Interop.Excel.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MimeKit.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.Core.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OOXML.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OpenXml4Net.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OpenXmlFormats.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.ImageSharp.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Data.OleDb.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Xml.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\XLParser.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.AssemblyReference.cache
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.GeneratedMSBuildEditorConfig.editorconfig
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfoInputs.cache
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfo.cs
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CoreCompileInputs.cache
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automati.1021AE53.Up2Date
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\refint\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.genruntimeconfig.cache
+C:\Automation\Codebase\RCMProcess - With Suspense\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\ref\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.exe
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.deps.json
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.runtimeconfig.json
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ClosedXML.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Enums.NET.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Google.Apis.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Google.Apis.Auth.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Google.Apis.Core.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Google.Apis.Gmail.v1.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Irony.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MailKit.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MathNet.Numerics.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Bcl.Memory.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Bcl.TimeProvider.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Office.Interop.Excel.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\MimeKit.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.Core.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OOXML.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OpenXml4Net.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\NPOI.OpenXmlFormats.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\SixLabors.ImageSharp.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.CodeDom.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Data.OleDb.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Management.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Cryptography.Xml.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\Twilio.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\XLParser.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Management.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\OFFICE.DLL
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.AssemblyReference.cache
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.GeneratedMSBuildEditorConfig.editorconfig
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfoInputs.cache
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.AssemblyInfo.cs
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.csproj.CoreCompileInputs.cache
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.sourcelink.json
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automati.1021AE53.Up2Date
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\refint\Automation_Excel_Compare.dll
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.pdb
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\Automation_Excel_Compare.genruntimeconfig.cache
+C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\obj\Debug\net6.0\ref\Automation_Excel_Compare.dll

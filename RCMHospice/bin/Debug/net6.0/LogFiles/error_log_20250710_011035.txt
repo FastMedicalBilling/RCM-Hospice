@@ -1,0 +1,9 @@
+[7/10/2025 1:10:35 AM] Exception: Could not find file 'C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\bin\Debug\net6.0\client_secret.json'.
+StackTrace:    at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at ExcelComparer.RCMProcess.AuthenticateAndGetAccessToken(String clientSecretPath, String[] scopes, String applicationName) in C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\RCMProcess.cs:line 2042
+   at ExcelComparer.RCMProcess.SendEmail(String recipientName, String recipientEmails, String subject, String body, String logFilePath, String attachmentFilePath) in C:\Automation\Codebase\RCMProcess - With Suspense\ExcelCompareAutomation\Automation_Excel_Compare\RCMProcess.cs:line 1963
+

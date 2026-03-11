@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Automation_Excel_Compare": {
+      "commandName": "Project",
+      "commandLineArgs": "..\\Agencies Queryfile.csv \"..\\SearchReport\\Search Report.xlsx\" \"..\\PaymentSummary\\High Level Payment Summary.xlsx\" \"..\\AgencyList\\AgencyList.xlsx\" \"..\\GetHIC\\NOA Status.xlsx\" \"..\\SuspenseReport\\Suspense.xlsx\""
+    }
+  }
+}

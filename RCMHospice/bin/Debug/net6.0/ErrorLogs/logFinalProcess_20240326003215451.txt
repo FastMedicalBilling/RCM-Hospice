@@ -1,0 +1,5 @@
+[3/26/2024 12:32:18 AM] Column date found SOC for patient Petrova, Tatiana I for date 12/21/2022 and Reimb value 9161.75
+[3/26/2024 12:32:21 AM] Column date found SOC for patient Gorodkin, Alexander for date 02/06/2023 and Reimb value 1683.86
+[3/26/2024 12:32:25 AM] Column date not found for patient Petrova, Tatiana I for date 02/19/2023 adding a line as Continued
+[3/26/2024 12:32:25 AM] Column date not found for patient Petrova, Tatiana I for date 01/20/2023 adding a line as Continued
+[3/26/2024 12:32:25 AM] Column date found Start 2 for patient Gorodkin, Alexander for date 03/08/2023 and Reimb value 1683.86

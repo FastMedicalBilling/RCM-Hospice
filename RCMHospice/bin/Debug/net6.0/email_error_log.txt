@@ -1,0 +1,7 @@
+[9/11/2023 9:56:34 AM] Exception: 535: 5.7.8 Username and Password not accepted. Learn more at
+5.7.8  https://support.google.com/mail/?p=BadCredentials t3-20020a170902e84300b001c38cb9199fsm5814430plg.221 - gsmtp
+StackTrace:    at MailKit.Net.Smtp.SmtpClient.Authenticate(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(Encoding encoding, String userName, String password, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(String userName, String password, CancellationToken cancellationToken)
+   at ExcelComparer.NOAProcess.SendNOAEmailWithTemplate(String recipientName, List`1 listOfDiscrepancies) in C:\AutomationFramework\ExcelCompareAutomation\Automation_Excel_Compare\NOAProcess.cs:line 561
+

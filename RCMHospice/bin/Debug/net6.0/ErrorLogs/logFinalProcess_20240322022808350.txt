@@ -1,0 +1,20 @@
+[3/22/2024 2:28:11 AM] Column date found SOC for patient Ajdari, Fred F for date 08/27/2022 and Reimb value 3184.81
+[3/22/2024 2:28:14 AM] Column date found Start 2 for patient Ajdari, Fred F for date 09/26/2022 and Reimb value 2238.07
+[3/22/2024 2:28:17 AM] Column date found Start 3 for patient Ajdari, Fred F for date 10/26/2022 and Reimb value 1965.14
+[3/22/2024 2:28:19 AM] Column date found Start 4 for patient Ajdari, Fred F for date 11/25/2022 and Reimb value 3198.28
+[3/22/2024 2:28:22 AM] Column date found Start 5 for patient Ajdari, Fred F for date 12/25/2022 and Reimb value 1990.12
+[3/22/2024 2:28:24 AM] Column date found Start 6 for patient Ajdari, Fred F for date 01/24/2023 and Reimb value 1990.12
+[3/22/2024 2:28:27 AM] Column date not found for patient Ajdari, Fred F for date 02/23/2023 adding a line as Continued
+[3/22/2024 2:28:27 AM] Column date not found for patient Ajdari, Fred F for date 03/25/2023 adding a line as Continued
+[3/22/2024 2:28:27 AM] Column date found SOC for patient Ajdari, Fred F for date 07/02/2023 and Reimb value 3117.06
+[3/22/2024 2:28:30 AM] Column date found Start 2 for patient Ajdari, Fred F for date 08/01/2023 and Reimb value 2217.28
+[3/22/2024 2:28:32 AM] Column date found Start 3 for patient Ajdari, Fred F for date 08/31/2023 and Reimb value 1745.08
+[3/22/2024 2:28:35 AM] Column date found Start 4 for patient Ajdari, Fred F for date 09/30/2023 and Reimb value 1745.08
+[3/22/2024 2:28:37 AM] Column date found Start 5 for patient Ajdari, Fred F for date 10/30/2023 and Reimb value 1745.08
+[3/22/2024 2:28:52 AM] Column date found Start 6 for patient Ajdari, Fred F for date 11/29/2023 and Reimb value 1745.08
+[3/22/2024 2:28:55 AM] Column date found Start 4 for patient Amanat, Michael for date 08/18/2022 and Reimb value 1659.26
+[3/22/2024 2:28:57 AM] Column date found Start 5 for patient Amanat, Michael for date 09/17/2022 and Reimb value 1697.5
+[3/22/2024 2:29:00 AM] Column date found Start 6 for patient Amanat, Michael for date 10/17/2022 and Reimb value 1697.5
+[3/22/2024 2:29:02 AM] Column date not found for patient Amanat, Michael for date 11/16/2022 adding a line as Continued
+[3/22/2024 2:29:03 AM] Column date not found for patient Amanat, Michael for date 12/16/2022 adding a line as Continued
+[3/22/2024 2:29:03 AM] Column date found SOC for patient Amanat, Michael for date 02/18/2023 and Reimb value 1749.78

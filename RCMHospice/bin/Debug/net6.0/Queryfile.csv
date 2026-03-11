@@ -1,0 +1,12 @@
+Query 1|SELECT * FROM [Changes$]
+select all|SELECT * FROM [worksheet$]
+select all|SELECT * FROM [worksheet$]
+select all future payment|SELECT * FROM [Future Payment$]
+Filter relevant rows for agency|SELECT Agency,[S/Loc],[Patient Name],[Start Date] AS [Admit Date],[Reason Code(s)],[HIC/MBI] FROM [Search Report$] where Agency like('%AgencyName%') and TOB like('%32A%')
+Get patient name and SOC|SELECT [PATIENTS NAME],SOC,[HIC/MBI] FROM [worksheet$] where [HIC/MBI] like('HICnumber')
+Get all in process patients|SELECT [PATIENTS NAME],NOA FROM [Claims 2022$] WHERE [Status] = 'In Process'
+filter agency rows with start date|SELECT * FROM [Claims 2022$]
+get all relevant search table rows|SELECT [Patient Name],[Agency],[Start Date],[Reimb],[HIC/MBI],[TOB],[S/Loc],[Cancelled Date] FROM [Search Report$] WHERE [Agency] like('%AgencyName%')
+search table by TOB|SELECT [Patient Name],[Agency],[Start Date],[Paid Date],[Reimb],[TOB],[HIC/MBI],[S/Loc],[Cancelled Date] FROM [Search Report$] WHERE [Agency] like('%AgencyName%')
+Suspense Table|SELECT * FROM [Suspense$] WHERE [Agency] like('%AgencyName%')
+Payments table|SELECT * FROM [worksheet$] where [Provider] like('%AgencyName%')

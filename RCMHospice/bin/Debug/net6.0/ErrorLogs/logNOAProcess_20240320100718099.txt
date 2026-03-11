@@ -1,0 +1,27 @@
+[3/20/2024 10:07:29 AM] The following Descrepency was found:
+, Agency: Patient Name: Barnich, William Admit Date: 5/6/2023
+, Status File: Patient Name: barnich, william Admit Date: 3/4/2024
+
+[3/20/2024 10:07:39 AM] The following Descrepency was found:
+, Agency: Patient Name: Booher, Richard Admit Date: 9/8/2023
+, Status File: Patient Name: booher, richard Admit Date: 3/7/2024
+
+[3/20/2024 10:07:53 AM] The following Descrepency was found:
+, Agency: Patient Name: Volosina, Zinaida Admit Date: 2/8/2023
+, Status File: Patient Name: volosina, zinaida Admit Date: 3/8/2024
+
+[3/20/2024 10:07:54 AM] The following Descrepency was found:
+, Agency: Patient Name: Volosina, Zinaida Admit Date: 12/1/2023
+, Status File: Patient Name: volosina, zinaida Admit Date: 3/8/2024
+
+[3/20/2024 10:07:59 AM] Patient : pershin, pavel in Agency : Alars was not found and inserted with status Accepted
+[3/20/2024 10:08:00 AM] Patient : bradley, jean in Agency : Alars was not found and inserted with status Accepted
+[3/20/2024 10:08:01 AM] Patient : mccoy, beverly in Agency : Alars was not found and inserted with status Accepted
+[3/20/2024 10:08:03 AM] Patient : loop, frank in Agency : Alars was not found and inserted with status Accepted
+[3/20/2024 10:08:04 AM] Patient : reed, ramona in Agency : Alars was not found and inserted with status Accepted
+[3/20/2024 10:08:04 AM] Patient : goerzen, lydia in Agency : Alars was not found and inserted with status Accepted
+[3/20/2024 10:08:05 AM] Patient : ford, david in Agency : Alars was not found and inserted with status Accepted
+[3/20/2024 10:08:06 AM] The following Descrepency was found:
+, Agency: Patient Name: Yurchuk, Nadezhda Admit Date: 4/13/2023
+, Status File: Patient Name: yurchuk, nadezhda Admit Date: 3/16/2024
+

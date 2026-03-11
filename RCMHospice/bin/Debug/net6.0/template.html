@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{EMAIL_SUBJECT}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    @media only screen and (max-width: 480px) {
+      .wrapper { width: 100% !important; }
+      .mobile-padded { padding: 16px !important; }
+      h2 { font-size: 18px !important; }
+      .small-text { font-size: 13px !important; }
+      .table-responsive { font-size: 12px !important; }
+    }
+  </style>
+</head>
+
+<body style="margin:0; padding:0; background-color:#f4f6f8; font-family:Arial, sans-serif;">
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f8;">
+    <tr>
+      <td align="center" style="padding:20px 10px;">
+
+        <table role="presentation" cellpadding="0" cellspacing="0"
+               class="wrapper"
+               style="width:100%; max-width:600px; background-color:#ffffff; border-radius:6px; overflow:hidden; border:1px solid #d9e2ec;">
+
+          <!-- Header Image -->
+          <tr>
+            <td style="background-color:#0066cc; padding:0; text-align:center;">
+              <img src="cid:fmbheader" alt="Fast Medical Billing" style="display:block; width:100%; height:auto; margin:0 auto;">
+
+            </td>
+          </tr>
+
+          <!-- Title -->
+          <tr>
+            <td class="mobile-padded" style="padding:20px 24px 0 24px; color:#102a43;">
+              <h2 style="margin:0; font-size:20px; font-weight:bold;">{{EMAIL_TITLE}}</h2>
+              <p class="small-text" style="margin:6px 0 0 0; font-size:14px; color:#627d98;">
+                {{CLIENT_NAME}} • {{RUN_DATE}}
+              </p>
+            </td>
+          </tr>
+
+          <!-- Intro -->
+          <tr>
+            <td class="mobile-padded" style="padding:16px 24px; color:#334e68; font-size:14px; line-height:1.5;">
+              <p style="margin:0 0 8px 0;">Good Afternoon {{CLIENT_NAME}},</p>
+              <p style="margin:0 0 8px 0;">Attached is the updated spreadsheet for today.</p>
+              <p style="margin:0;">Here are the upcoming payments:</p>
+            </td>
+          </tr>
+
+          <!-- Table -->
+          <tr>
+            <td class="mobile-padded" style="padding:8px 24px 16px 24px;">
+              <table width="100%" cellpadding="0" cellspacing="0"
+                     class="table-responsive"
+                     style="border-collapse:collapse; font-size:13px;">
+                <thead>
+                  <tr style="background-color:#0066cc; color:#ffffff;">
+                    <th style="padding:8px; border:1px solid #d9e2ec; text-align:left;">Pay Date</th>
+                    <th style="padding:8px; border:1px solid #d9e2ec; text-align:left;">Deposit Date</th>
+                    <th style="padding:8px; border:1px solid #d9e2ec; text-align:right;">Amount</th>
+                    <th style="padding:8px; border:1px solid #d9e2ec; text-align:right;">Amount In Process</th>
+                    <th style="padding:8px; border:1px solid #d9e2ec; text-align:right;">Total</th>
+                    <th style="padding:8px; border:1px solid #d9e2ec; text-align:left;">Notes</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {{PAYMENT_ROWS}}
+                </tbody>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Total Past Due -->
+          <tr>
+            <td class="mobile-padded" style="padding:0 24px 16px 24px;">
+              <p style="margin:0; padding:10px 12px; background-color:#e1effe; border-radius:4px; border:1px solid #c3ddfd; font-size:14px; color:#102a43;">
+                <strong>Total Amount In Process Past Due:</strong>
+                <span style="float:right;">{{TOTAL_PAST_DUE}}</span>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Signature -->
+          <tr>
+            <td class="mobile-padded" style="padding:12px 24px 24px 24px; color:#334e68; font-size:14px; line-height:1.5;">
+              <p style="margin:0 0 4px 0;">Regards,</p>
+              <p style="margin:0; font-weight:bold;">Fast Medical Billing</p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
