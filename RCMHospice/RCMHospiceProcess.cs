@@ -4,6 +4,7 @@ namespace RCMHospice
 {
     class RCMHospiceProcess
     {
+        public static bool DebugMode = false;
         static void Main(string[] args)
         {
             #region prep
@@ -59,8 +60,8 @@ namespace RCMHospice
             }*/
             #endregion
 
-            RCMHospiceHelpers.RunStep("Main NOA Process", () => MainNOAProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
-            RCMHospiceHelpers.RunStep("Final Process", () => FinalProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Main NOA Process", () => MainNOAProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Final Process", () => FinalProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
             RCMHospiceHelpers.RunStep("Future Payment Process", () => FuturePaymentProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
             RCMHospiceHelpers.RunStep("Payment Summary Process", () => PaymentSummaryProcess(xlsFilePaymentSummary, agencyXlsxFiles, csvFilePath));
             RCMHospiceHelpers.RunStep("Suspense Process", () => SuspenseProcess(xlsFileSuspenseReport, agencyXlsxFiles, csvFilePath));

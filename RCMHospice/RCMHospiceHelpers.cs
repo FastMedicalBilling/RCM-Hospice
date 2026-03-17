@@ -2846,7 +2846,10 @@ namespace RCMHospice
             }
             catch (Exception ex)
             {
-                SendSms("18184312850", "18182906235", $"{stepName} has failed during RCM Process");
+                if (!RCMHospiceProcess.DebugMode)
+                    SendSms("18184312850", "18182906235", $"{stepName} has failed during RCM Process");
+                else
+                    Console.WriteLine($"{stepName} has failed during RCM Process - Debug mode on");
                 throw;
             }
         }

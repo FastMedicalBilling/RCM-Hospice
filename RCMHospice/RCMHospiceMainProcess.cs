@@ -93,14 +93,14 @@ namespace RCMHospice
                         string newDate = AddDaysToDate(submitDateValueFromSuspense, 14);
                         if (reimbValueFromSuspense != "")
                         { 
-                            if (TOBValueFromSuspense == "329")
+                            if (TOBValueFromSuspense == "811" || TOBValueFromSuspense == "812" || TOBValueFromSuspense == "813" || TOBValueFromSuspense == "814")
                             {
                                 UpdatePaymentsSheetAggregate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[1], newDate, reimbValueFromSuspense, "suspense projection");
                                 UpdateTotalsFromSuspense(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[1]);
                                 WriteToInProcessTab(xlsfilePathAgency[indexOfAgencies], patientNameFromSuspense, startDateFromSuspense, submitDateValueFromSuspense, reimbValueFromSuspense);
                             }
                         }
-                        else if (TOBValueFromSuspense == "329")
+                        else if (TOBValueFromSuspense == "811" || TOBValueFromSuspense == "812" || TOBValueFromSuspense == "813" || TOBValueFromSuspense == "814")
                         {                           
                             WriteToInProcessTab(xlsfilePathAgency[indexOfAgencies], patientNameFromSuspense, startDateFromSuspense, submitDateValueFromSuspense, reimbValueFromSuspense);
                         }
@@ -511,7 +511,7 @@ namespace RCMHospice
 
                             if (columnNameofFoundDate == null && sLocValueFromSearch.ToLower().StartsWith("p", StringComparison.OrdinalIgnoreCase))
                             {
-                                if (TOBValueFromSearch == "329" || TOBValueFromSearch == "32I" || TOBValueFromSearch == "32G" || TOBValueFromSearch == "327")
+                                if (TOBValueFromSearch == "812" || TOBValueFromSearch == "814" || TOBValueFromSearch == "813" || TOBValueFromSearch == "811" || TOBValueFromSearch == "817" || TOBValueFromSearch == "81G" || TOBValueFromSearch == "81I" || TOBValueFromSearch == "81g" || TOBValueFromSearch == "81i")
                                 {
                                     string lastRowNumberFound = FindNearestRowWithDate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[3], paidDateValueFromSearch, logFilePath);
 
@@ -542,7 +542,7 @@ namespace RCMHospice
                             DataTable resultFromAgency = ExecuteExcelQuery(xlsfilePathAgency[indexOfAgencies], modifiedQuery);
                             resultFromAgency = ConvertDatesToDateOnly(resultFromAgency);
 
-                            if (TOBValueFromSearch == "32G" || TOBValueFromSearch == "327")
+                            if (TOBValueFromSearch == "817" || TOBValueFromSearch == "81G" || TOBValueFromSearch == "81I" || TOBValueFromSearch == "81g" || TOBValueFromSearch == "81i")
                             {
                                 decimal reimbFromPaymentSummary = FindReimbursementAmount(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[2], startDateValueFromSearch, hicValueFromSearch);
 
