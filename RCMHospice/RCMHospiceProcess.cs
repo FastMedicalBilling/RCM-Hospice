@@ -5,7 +5,10 @@ namespace RCMHospice
     class RCMHospiceProcess
     {
         public static bool DebugMode = false;
-        static void Main(string[] args)
+        public static string EIDMPath = @"C:\Automation\Codebase\EIDMReportDownloader\EIDMReportDownloader\EIDMReportsDownload\bin\Debug\net7.0\";
+        public static string MappingFilePath = $"{EIDMPath}MappingFile.csv";
+        public static string EIDMReportsDllPath = $"{EIDMPath}EIDMReportsDownload.dll";
+        static int Main(string[] args)
         {
             #region prep
             Console.Title = "RCM Process";
@@ -18,7 +21,7 @@ namespace RCMHospice
             if (args.Length < 7)
             {
                 Console.WriteLine("Usage: RCM Process <xlsfilePathChanges.xlsx> <xlsfilePathAgency.xlsx> <QueryFile.csv> <SearchReport.xlsx> <PaymentSummary.xlsx> <AgencyList.xlsx> <Suspense.xlsx>");
-                return;
+                return 0;
             }
 
             string agencyDirectoryPath = args[0];
@@ -31,7 +34,7 @@ namespace RCMHospice
             if (!Directory.Exists(agencyDirectoryPath) || !File.Exists(csvFilePath) || !File.Exists(xlsFileSearchReportP) /*|| !File.Exists(xlsFileSearchReportS)*/ || !File.Exists(xlsFilePaymentSummary) || !File.Exists(xlsFileAgencyList) || !File.Exists(xlsFileSuspenseReport))
             {
                 Console.WriteLine("All input files must exist.\n\n Usage: RCM Process <xlsfilePathAgency> <QueryFile.csv> <SearchReport.xlsx> <PaymentSummary.xlsx> <AgencyList.xlsx> <Suspense.xlsx>");
-                return;
+                return 0;
             }
 
             // Get a list of XLSX files in the specified directory
@@ -40,7 +43,7 @@ namespace RCMHospice
             if (agencyXlsxFiles.Length == 0)
             {
                 Console.WriteLine("No XLSX files found in the specified directory.");
-                return;
+                return 0;
             }
 
 
@@ -60,7 +63,7 @@ namespace RCMHospice
             }*/
             #endregion
 
-            //RCMHospiceHelpers.RunStep("Main NOA Process", () => MainNOAProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Main NOE Process", () => NOEProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
             //RCMHospiceHelpers.RunStep("Final Process", () => FinalProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
             RCMHospiceHelpers.RunStep("Future Payment Process", () => FuturePaymentProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
             RCMHospiceHelpers.RunStep("Payment Summary Process", () => PaymentSummaryProcess(xlsFilePaymentSummary, agencyXlsxFiles, csvFilePath));
@@ -77,7 +80,9 @@ namespace RCMHospice
             }
 
             RCMHospiceHelpers.RunStep("Future Summary Process", () => FutureSummaryProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
-            Environment.Exit(0);
+
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            return 0;
         }
     }
 }

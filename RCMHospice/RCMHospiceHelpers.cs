@@ -20,12 +20,842 @@ using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 using System.Runtime.InteropServices;
 using Path = System.IO.Path;
+using System.Diagnostics;
+using Microsoft.VisualBasic.FileIO;
 
 
 namespace RCMHospice
 {
     public static class RCMHospiceHelpers
     {
+        public static (int capYear, string sheetName) GetCapYearAndSheet(DateTime date)
+        {
+            int capYear = date.Month >= 10 ? date.Year + 1 : date.Year;
+            string sheetName = $"Claims FY{capYear.ToString().Substring(2)}";
+
+            return (capYear, sheetName);
+        }
+
+        public static ExcelWorksheet EnsureClaimsYearSheetExists(ExcelPackage package, string sheetName)
+        {
+            ExcelWorksheet existingSheet = package.Workbook.Worksheets[sheetName];
+
+            if (existingSheet != null)
+                return existingSheet;
+
+            ExcelWorksheet templateSheet = package.Workbook.Worksheets["Claims"];
+
+            if (templateSheet == null)
+                throw new Exception($"Template sheet 'Claims' was not found. Cannot create {sheetName}.");
+
+            ExcelWorksheet newSheet = package.Workbook.Worksheets.Add(sheetName, templateSheet);
+            newSheet.Hidden = eWorkSheetHidden.Visible;
+
+            ClearClaimsTemplateData(newSheet);
+
+            return newSheet;
+        }
+
+        public static void ClearClaimsTemplateData(ExcelWorksheet ws)
+        {
+            if (ws.Dimension == null)
+                return;
+
+            int lastRow = ws.Dimension.End.Row;
+            int lastCol = ws.Dimension.End.Column;
+
+            for (int row = 2; row <= lastRow; row++)
+            {
+                for (int col = 1; col <= lastCol; col++)
+                {
+                    ws.Cells[row, col].Value = null;
+                }
+            }
+        }
+
+        public static int GetColumnByHeader(ExcelWorksheet ws, string headerName)
+        {
+            if (ws.Dimension == null)
+                return -1;
+
+            int lastCol = ws.Dimension.End.Column;
+
+            for (int col = 1; col <= lastCol; col++)
+            {
+                string header = ws.Cells[1, col].Text.Trim();
+
+                if (string.Equals(header, headerName, StringComparison.OrdinalIgnoreCase))
+                    return col;
+            }
+
+            return -1;
+        }
+
+        public static List<int> GetMonthColumns(ExcelWorksheet ws)
+        {
+            List<int> monthColumns = new List<int>();
+
+            if (ws.Dimension == null)
+                return monthColumns;
+
+            int lastCol = ws.Dimension.End.Column;
+
+            for (int col = 1; col <= lastCol; col++)
+            {
+                string header = ws.Cells[1, col].Text.Trim();
+
+                if (header.StartsWith("Month", StringComparison.OrdinalIgnoreCase))
+                    monthColumns.Add(col);
+            }
+
+            return monthColumns;
+        }
+
+        public static int FindRowByHicMbi(ExcelWorksheet ws, string hicMbi, int hicMbiCol)
+        {
+            if (ws.Dimension == null || hicMbiCol <= 0)
+                return -1;
+
+            int lastRow = ws.Dimension.End.Row;
+
+            for (int row = 2; row <= lastRow; row++)
+            {
+                string existingHic = ws.Cells[row, hicMbiCol].Text.Trim();
+
+                if (string.Equals(existingHic, hicMbi.Trim(), StringComparison.OrdinalIgnoreCase))
+                    return row;
+            }
+
+            return -1;
+        }
+
+        public static int FindRowByHicAndDate(ExcelWorksheet ws, string hicMbi, DateTime dateToFind, int hicMbiCol, List<int> monthColumns)
+        {
+            if (ws.Dimension == null || hicMbiCol <= 0)
+                return -1;
+
+            int lastRow = ws.Dimension.End.Row;
+
+            for (int row = 2; row <= lastRow; row++)
+            {
+                string existingHic = ws.Cells[row, hicMbiCol].Text.Trim();
+
+                if (!string.Equals(existingHic, hicMbi.Trim(), StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                foreach (int monthCol in monthColumns)
+                {
+                    if (DateTime.TryParse(ws.Cells[row, monthCol].Text, out DateTime cellDate))
+                    {
+                        if (cellDate.Date == dateToFind.Date)
+                            return row;
+                    }
+                }
+            }
+
+            return -1;
+        }
+
+        public static int FindMatchingMonthColumn(ExcelWorksheet ws, int row, DateTime dateToFind, List<int> monthColumns)
+        {
+            foreach (int monthCol in monthColumns)
+            {
+                if (DateTime.TryParse(ws.Cells[row, monthCol].Text, out DateTime cellDate))
+                {
+                    if (cellDate.Date == dateToFind.Date)
+                        return monthCol;
+                }
+            }
+
+            return -1;
+        }
+
+        public static DataTable FilterFinalSearchReportRows(DataTable searchReportTable, string agencyName)
+        {
+            DataTable filteredTable = searchReportTable.Clone();
+
+            string[] validTobs = { "811", "812", "813", "814", "817", "81G", "81I" };
+
+            foreach (DataRow row in searchReportTable.Rows)
+            {
+                string agency = row.Table.Columns.Contains("Agency") ? row["Agency"].ToString().Trim() : "";
+                string tob = row.Table.Columns.Contains("TOB") ? row["TOB"].ToString().Trim() : "";
+
+                bool agencyMatches = agency.IndexOf(agencyName, StringComparison.OrdinalIgnoreCase) >= 0;
+                bool tobMatches = validTobs.Any(x => tob.IndexOf(x, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                if (agencyMatches && tobMatches)
+                    filteredTable.ImportRow(row);
+            }
+
+            return filteredTable;
+        }
+
+        public static double ParseDoubleSafe(string value)
+        {
+            if (double.TryParse(value, out double result))
+                return result;
+
+            return 0;
+        }
+
+        public static DataTable FilterNOESearchReportRows(DataTable searchReportTable, string agencyName)
+        {
+            DataTable filteredTable = searchReportTable.Clone();
+
+            foreach (DataRow row in searchReportTable.Rows)
+            {
+                string agency = row.Table.Columns.Contains("Agency")
+                    ? row["Agency"].ToString().Trim()
+                    : "";
+
+                string tob = row.Table.Columns.Contains("TOB")
+                    ? row["TOB"].ToString().Trim()
+                    : "";
+
+                bool agencyMatches = agency.IndexOf(agencyName, StringComparison.OrdinalIgnoreCase) >= 0;
+
+                bool tobMatches =
+                    tob.IndexOf("81A", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    tob.IndexOf("81C", StringComparison.OrdinalIgnoreCase) >= 0;
+
+                if (agencyMatches && tobMatches)
+                {
+                    filteredTable.ImportRow(row);
+                }
+            }
+
+            return filteredTable;
+        }
+
+        public static void ForceColumnToText(string excelFilePath, string columnHeaderName)
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            var file = new FileInfo(excelFilePath);
+
+            using (var package = new ExcelPackage(file))
+            {
+                var ws = package.Workbook.Worksheets[0];
+                if (ws == null || ws.Dimension == null)
+                    return;
+
+                int startRow = ws.Dimension.Start.Row;
+                int endRow = ws.Dimension.End.Row;
+                int startCol = ws.Dimension.Start.Column;
+                int endCol = ws.Dimension.End.Column;
+
+                // 1. Find the column index by header name
+                int targetCol = -1;
+
+                for (int col = startCol; col <= endCol; col++)
+                {
+                    string header = ws.Cells[startRow, col].Text.Trim();
+
+                    if (string.Equals(header, columnHeaderName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        targetCol = col;
+                        break;
+                    }
+                }
+
+                if (targetCol == -1)
+                {
+                    Console.WriteLine($"Column '{columnHeaderName}' not found.");
+                    return;
+                }
+
+                // 2. Force column format to text
+                ws.Cells[startRow, targetCol, endRow, targetCol].Style.Numberformat.Format = "@";
+
+                // 3. Rewrite values as text (this is the KEY step)
+                for (int row = startRow + 1; row <= endRow; row++)
+                {
+                    var cell = ws.Cells[row, targetCol];
+
+                    string text = cell.Text?.Trim();
+
+                    if (!string.IsNullOrEmpty(text))
+                    {
+                        cell.Value = text;
+                    }
+                }
+
+                package.Save();
+            }
+        }
+        
+        public static int GetNextPatientRow(ExcelWorksheet ws, int patientsNameCol)
+        {
+            if (ws.Dimension == null)
+                return 2;
+
+            int lastRow = ws.Dimension.End.Row;
+
+            for (int row = 2; row <= lastRow; row++)
+            {
+                string patientName = ws.Cells[row, patientsNameCol].Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(patientName))
+                    return row;
+            }
+
+            return lastRow + 1;
+        }
+
+        public static List<DateTime> GenerateMonthDates(DateTime socDate, int capYear)
+        {
+            List<DateTime> months = new List<DateTime>();
+            months.Add(socDate);
+
+            DateTime nextMonth = new DateTime(socDate.Year, socDate.Month, 1).AddMonths(1);
+            DateTime endMonth = new DateTime(capYear, 9, 1);
+
+            while (nextMonth <= endMonth)
+            {
+                months.Add(nextMonth);
+                nextMonth = nextMonth.AddMonths(1);
+            }
+
+            return months;
+        }
+
+        public static void WriteMonthDatesToMonthColumns(ExcelWorksheet ws, int row, List<DateTime> monthDates, List<int> monthColumns)
+        {
+            int count = Math.Min(monthDates.Count, monthColumns.Count);
+
+            for (int i = 0; i < count; i++)
+            {
+                ws.Cells[row, monthColumns[i]].Value = monthDates[i];
+                ws.Cells[row, monthColumns[i]].Style.Numberformat.Format = "m/d/yyyy";
+            }
+        }
+        public static bool HasAnyScheduledNumberForToday(DataTable resultFromPaymentSummary)
+        {
+            if (resultFromPaymentSummary == null)
+                throw new ArgumentNullException(nameof(resultFromPaymentSummary));
+
+            if (!resultFromPaymentSummary.Columns.Contains("Pay Date"))
+                throw new Exception("Column 'Pay Date' was not found.");
+
+            if (!resultFromPaymentSummary.Columns.Contains("Scheduled"))
+                throw new Exception("Column 'Scheduled' was not found.");
+
+            DateTime today = DateTime.Today;
+
+            foreach (DataRow row in resultFromPaymentSummary.Rows)
+            {
+                if (row == null)
+                    continue;
+
+                string payDateText = row["Pay Date"]?.ToString()?.Trim();
+                string scheduledText = row["Scheduled"]?.ToString()?.Trim();
+
+                if (string.IsNullOrWhiteSpace(payDateText) || string.IsNullOrWhiteSpace(scheduledText))
+                    continue;
+
+                if (!DateTime.TryParse(payDateText, out DateTime payDate))
+                    continue;
+
+                if (payDate.Date != today)
+                    continue;
+
+                string cleanedScheduled = scheduledText.Replace("$", "").Replace(",", "").Trim();
+
+                if (decimal.TryParse(cleanedScheduled, out decimal scheduledAmount) && scheduledAmount != 0)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public static void DeleteCsvFiles(string countFilePath, string totalFilePath)
+        {
+            DeleteFileSafe(countFilePath);
+            DeleteFileSafe(totalFilePath);
+        }
+
+        private static void DeleteFileSafe(string filePath)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(filePath))
+                    return;
+
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                    Console.WriteLine($"Deleted file: {filePath}");
+                }
+                else
+                {
+                    Console.WriteLine($"File not found (skip delete): {filePath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to delete file '{filePath}': {ex.Message}");
+            }
+        }
+
+        public static string GetCompanyFileNameFromMappingFile()
+        {
+            if (!File.Exists(RCMHospiceProcess.MappingFilePath))
+                throw new FileNotFoundException("MappingFile.csv was not found.", RCMHospiceProcess.MappingFilePath);
+
+            var lines = File.ReadAllLines(RCMHospiceProcess.MappingFilePath);
+
+            foreach (var line in lines)
+            {
+                if (line.StartsWith("companyFileName|", StringComparison.OrdinalIgnoreCase))
+                {
+                    var parts = line.Split('|');
+
+                    if (parts.Length < 2)
+                        throw new Exception("companyFileName line is malformed.");
+
+                    return parts[1].Trim();
+                }
+            }
+
+            throw new Exception("companyFileName| line not found in MappingFile.csv");
+        }
+
+        public static void PopulateCapTabFromCsvFiles(string xlsxFilePath, string csvFilePath1, string csvFilePath2)
+        {
+            if (string.IsNullOrWhiteSpace(xlsxFilePath))
+                throw new ArgumentException("xlsxFilePath is required.", nameof(xlsxFilePath));
+
+            if (string.IsNullOrWhiteSpace(csvFilePath1))
+                throw new ArgumentException("csvFilePath1 is required.", nameof(csvFilePath1));
+
+            if (string.IsNullOrWhiteSpace(csvFilePath2))
+                throw new ArgumentException("csvFilePath2 is required.", nameof(csvFilePath2));
+
+            if (!File.Exists(xlsxFilePath))
+                throw new FileNotFoundException("Excel file not found.", xlsxFilePath);
+
+            if (!File.Exists(csvFilePath1))
+                throw new FileNotFoundException("CSV file not found.", csvFilePath1);
+
+            if (!File.Exists(csvFilePath2))
+                throw new FileNotFoundException("CSV file not found.", csvFilePath2);
+
+            string countCsvPath = null;
+            string totalCsvPath = null;
+
+            foreach (string csvPath in new[] { csvFilePath1, csvFilePath2 })
+            {
+                string fileName = Path.GetFileName(csvPath);
+
+                if (fileName.IndexOf("count", StringComparison.OrdinalIgnoreCase) >= 0)
+                    countCsvPath = csvPath;
+                else if (fileName.IndexOf("total", StringComparison.OrdinalIgnoreCase) >= 0)
+                    totalCsvPath = csvPath;
+            }
+
+            if (string.IsNullOrWhiteSpace(countCsvPath))
+                throw new Exception("Could not identify the COUNT CSV. One filename must contain 'count'.");
+
+            if (string.IsNullOrWhiteSpace(totalCsvPath))
+                throw new Exception("Could not identify the TOTAL CSV. One filename must contain 'total'.");
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage(new FileInfo(xlsxFilePath)))
+            {
+                ExcelWorksheet ws = package.Workbook.Worksheets["Cap"];
+                if (ws == null)
+                    throw new Exception("Worksheet 'Cap' was not found.");
+
+                int yearColumn = GetWorksheetColumnByHeader(ws, "Year");
+                int psrColumn = GetWorksheetColumnByHeader(ws, "PS&R");
+                int totalColumn = GetWorksheetColumnByHeader(ws, "Total");
+
+                Dictionary<int, int> yearToRowMap = BuildYearToRowMap(ws, yearColumn);
+
+                PopulateCapFromCountCsv(ws, yearToRowMap, psrColumn, countCsvPath);
+                PopulateCapFromTotalCsv(ws, yearToRowMap, totalColumn, totalCsvPath);
+
+                package.Save();
+            }
+        }
+
+        private static void PopulateCapFromCountCsv(ExcelWorksheet ws, Dictionary<int, int> yearToRowMap, int destinationColumn, string countCsvPath)
+        {
+            List<Dictionary<string, string>> rows = ReadCsvAsDictionaries(countCsvPath);
+
+            if (rows.Count == 0)
+                throw new Exception("Count CSV is empty: " + countCsvPath);
+
+            foreach (var row in rows)
+            {
+                string capYearText = GetCsvValue(row, "Cap Year");
+                string beneficiaryCountText = GetCsvValue(row, "Total Beneficiary Count");
+
+                if (!int.TryParse(capYearText, out int capYear))
+                    continue;
+
+                if (!TryParseDecimal(beneficiaryCountText, out decimal beneficiaryCount))
+                    continue;
+
+                if (!yearToRowMap.TryGetValue(capYear, out int targetRow))
+                    continue;
+
+                ws.Cells[targetRow, destinationColumn].Value = beneficiaryCount;
+            }
+        }
+
+        private static void PopulateCapFromTotalCsv(ExcelWorksheet ws, Dictionary<int, int> yearToRowMap, int destinationColumn, string totalCsvPath)
+        {
+            List<Dictionary<string, string>> rows = ReadCsvAsDictionaries(totalCsvPath);
+
+            if (rows.Count == 0)
+                throw new Exception("Total CSV is empty: " + totalCsvPath);
+
+            Dictionary<int, decimal> totalsByCapYear = new Dictionary<int, decimal>();
+
+            foreach (var row in rows)
+            {
+                string serviceFromText = GetCsvValue(row, "Service From");
+                string serviceThroughText = GetCsvValue(row, "Service Through");
+                string amountText = GetCsvValue(row, "Net Reimbursement");
+                string revenueCodeText = GetCsvValue(row, "Revenue Code");
+
+                if (string.IsNullOrWhiteSpace(serviceFromText) ||
+                    string.IsNullOrWhiteSpace(serviceThroughText) ||
+                    string.IsNullOrWhiteSpace(amountText))
+                    continue;
+
+                if (!TryParseDate(serviceFromText, out DateTime serviceFrom))
+                    continue;
+
+                if (!TryParseDate(serviceThroughText, out DateTime serviceThrough))
+                    continue;
+
+                if (!TryParseDecimal(amountText, out decimal amount))
+                    continue;
+
+                if (!string.Equals(revenueCodeText, "**SUM**", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                int capYear = GetCapYearFromRange(serviceFrom, serviceThrough);
+                if (capYear == 0)
+                    continue;
+
+                if (!totalsByCapYear.ContainsKey(capYear))
+                    totalsByCapYear[capYear] = 0m;
+
+                totalsByCapYear[capYear] += amount;
+            }
+
+            foreach (var kvp in totalsByCapYear)
+            {
+                if (!yearToRowMap.TryGetValue(kvp.Key, out int targetRow))
+                    continue;
+
+                ws.Cells[targetRow, destinationColumn].Value = kvp.Value;
+            }
+        }
+
+        private static int GetCapYearFromRange(DateTime fromDate, DateTime throughDate)
+        {
+            if (fromDate.Month == 10 &&
+                fromDate.Day == 1 &&
+                throughDate.Month == 9 &&
+                throughDate.Day == 30 &&
+                throughDate.Year == fromDate.Year + 1)
+            {
+                return throughDate.Year;
+            }
+
+            return 0;
+        }
+
+        private static Dictionary<int, int> BuildYearToRowMap(ExcelWorksheet ws, int yearColumn)
+        {
+            var map = new Dictionary<int, int>();
+
+            if (ws.Dimension == null)
+                throw new Exception("Worksheet 'Cap' is empty.");
+
+            int startRow = ws.Dimension.Start.Row + 1;
+            int endRow = ws.Dimension.End.Row;
+
+            for (int row = startRow; row <= endRow; row++)
+            {
+                string yearText = ws.Cells[row, yearColumn].Text?.Trim();
+
+                if (int.TryParse(yearText, out int year))
+                {
+                    if (!map.ContainsKey(year))
+                        map.Add(year, row);
+                }
+            }
+
+            return map;
+        }
+
+        private static int GetWorksheetColumnByHeader(ExcelWorksheet ws, string headerName)
+        {
+            if (ws.Dimension == null)
+                throw new Exception("Worksheet has no data.");
+
+            int headerRow = ws.Dimension.Start.Row;
+            int startCol = ws.Dimension.Start.Column;
+            int endCol = ws.Dimension.End.Column;
+
+            for (int col = startCol; col <= endCol; col++)
+            {
+                string text = ws.Cells[headerRow, col].Text?.Trim();
+                if (string.Equals(text, headerName, StringComparison.OrdinalIgnoreCase))
+                    return col;
+            }
+
+            throw new Exception($"Header '{headerName}' was not found in worksheet '{ws.Name}'.");
+        }
+
+        private static List<Dictionary<string, string>> ReadCsvAsDictionaries(string csvPath)
+        {
+            var result = new List<Dictionary<string, string>>();
+
+            using (var parser = new TextFieldParser(csvPath))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                parser.HasFieldsEnclosedInQuotes = true;
+                parser.TrimWhiteSpace = false;
+
+                if (parser.EndOfData)
+                    return result;
+
+                string[] headers = parser.ReadFields();
+                if (headers == null || headers.Length == 0)
+                    return result;
+
+                while (!parser.EndOfData)
+                {
+                    string[] fields = parser.ReadFields() ?? Array.Empty<string>();
+                    var row = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+                    for (int i = 0; i < headers.Length; i++)
+                    {
+                        string header = headers[i]?.Trim() ?? "";
+                        string value = i < fields.Length ? fields[i]?.Trim() ?? "" : "";
+                        row[header] = value;
+                    }
+
+                    result.Add(row);
+                }
+            }
+
+            return result;
+        }
+
+        private static string GetCsvValue(Dictionary<string, string> row, string headerName)
+        {
+            foreach (var kvp in row)
+            {
+                if (string.Equals(kvp.Key?.Trim(), headerName, StringComparison.OrdinalIgnoreCase))
+                    return kvp.Value?.Trim() ?? "";
+            }
+
+            return "";
+        }
+
+        private static bool TryParseDate(string input, out DateTime date)
+        {
+            date = DateTime.MinValue;
+
+            if (string.IsNullOrWhiteSpace(input))
+                return false;
+
+            string[] formats =
+            {
+        "M/d/yyyy",
+        "MM/dd/yyyy",
+        "M/d/yy",
+        "MM/dd/yy"
+    };
+
+            return DateTime.TryParseExact(
+                input.Trim(),
+                formats,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out date);
+        }
+
+        private static bool TryParseDecimal(string input, out decimal value)
+        {
+            value = 0m;
+
+            if (string.IsNullOrWhiteSpace(input))
+                return false;
+
+            input = input.Replace("$", "").Replace(",", "").Trim();
+
+            return decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value);
+        }
+
+        public static bool RunEIDMReportsDownloader(out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            try
+            {
+                if (!File.Exists(RCMHospiceProcess.EIDMReportsDllPath))
+                {
+                    errorMessage = $"DLL not found: {RCMHospiceProcess.EIDMReportsDllPath}";
+                    return false;
+                }
+
+                string vstestPath = GetVsTestConsolePath();
+
+                var process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = vstestPath,
+                        Arguments = $"\"{RCMHospiceProcess.EIDMReportsDllPath}\" /Tests:LoginAndDownloadReports",
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    }
+                };
+
+                process.OutputDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrWhiteSpace(e.Data))
+                        Console.WriteLine(e.Data);
+                };
+
+                process.ErrorDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrWhiteSpace(e.Data))
+                        Console.WriteLine("ERR: " + e.Data);
+                };
+
+                process.Start();
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+
+                process.WaitForExit();
+
+                if (process.ExitCode != 0)
+                {
+                    errorMessage = $"vstest failed with exit code {process.ExitCode}";
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        private static string GetVsTestConsolePath()
+        {
+            string vswherePath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+                @"Microsoft Visual Studio\Installer\vswhere.exe");
+
+            if (!File.Exists(vswherePath))
+                throw new Exception("vswhere.exe not found.");
+
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = vswherePath,
+                    Arguments = "-latest -products * -requires Microsoft.VisualStudio.PackageGroup.TestTools.Core -find Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe",
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                }
+            };
+
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd().Trim();
+            process.WaitForExit();
+
+            if (string.IsNullOrWhiteSpace(output) || !File.Exists(output))
+                throw new Exception("Could not locate vstest.console.exe.");
+
+            return output;
+        }
+
+        public static void WriteCompanyCodeToMappingFile(string ccnNumber)
+        {
+            if (string.IsNullOrWhiteSpace(ccnNumber))
+                throw new ArgumentException("CCN number cannot be null or empty.", nameof(ccnNumber));
+
+            if (!File.Exists(RCMHospiceProcess.MappingFilePath))
+                throw new FileNotFoundException("MappingFile.csv was not found.", RCMHospiceProcess.MappingFilePath);
+
+            var lines = File.ReadAllLines(RCMHospiceProcess.MappingFilePath);
+            bool found = false;
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].StartsWith("companyCode|", StringComparison.OrdinalIgnoreCase))
+                {
+                    lines[i] = $"companyCode|{ccnNumber}";
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+                throw new Exception("companyCode line not found in MappingFile.csv");
+
+            File.WriteAllLines(RCMHospiceProcess.MappingFilePath, lines);
+        }
+
+        public static string GetCcnFromCapTab(string xlsxFilePath)
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage(new FileInfo(xlsxFilePath)))
+            {
+                var worksheet = package.Workbook.Worksheets["Cap"];
+                if (worksheet == null)
+                    throw new Exception("Worksheet 'Cap' was not found.");
+
+                int startRow = worksheet.Dimension?.Start.Row ?? 1;
+                int endRow = worksheet.Dimension?.End.Row ?? 1;
+                int startCol = worksheet.Dimension?.Start.Column ?? 1;
+                int endCol = worksheet.Dimension?.End.Column ?? 1;
+
+                for (int row = startRow; row <= endRow; row++)
+                {
+                    for (int col = startCol; col <= endCol; col++)
+                    {
+                        string cellValue = worksheet.Cells[row, col].Text?.Trim();
+
+                        if (string.Equals(cellValue, "CCN", StringComparison.OrdinalIgnoreCase))
+                        {
+                            for (int nextCol = col + 1; nextCol <= endCol; nextCol++)
+                            {
+                                string ccnValue = worksheet.Cells[row, nextCol].Text?.Trim();
+
+                                if (!string.IsNullOrWhiteSpace(ccnValue))
+                                    return ccnValue;
+                            }
+
+                            return string.Empty;
+                        }
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
+
         public static void NamesToProperCaseOnAllAgencies(string[] xlsfilePathAgency)
         {
             for (int indexOfAgencies = 0; indexOfAgencies < xlsfilePathAgency.Length; indexOfAgencies++)
@@ -2858,7 +3688,7 @@ namespace RCMHospice
         {
             try
             {
-                TwilioClient.Init("TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN");
+                TwilioClient.Init("YOUR_TWILIO_ACCOUNT_SID", "YOUR_TWILIO_AUTH_TOKEN");
 
                 var message = MessageResource.Create(
                     body: messageBody,
