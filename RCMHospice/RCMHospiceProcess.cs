@@ -65,21 +65,21 @@ namespace RCMHospice
 
             //RCMHospiceHelpers.RunStep("Main NOE Process", () => NOEProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
             //RCMHospiceHelpers.RunStep("Final Process", () => FinalProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
-            RCMHospiceHelpers.RunStep("Future Payment Process", () => FuturePaymentProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
-            RCMHospiceHelpers.RunStep("Payment Summary Process", () => PaymentSummaryProcess(xlsFilePaymentSummary, agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Future Payment Process", () => FuturePaymentProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Payment Summary Process", () => PaymentSummaryProcess(xlsFilePaymentSummary, agencyXlsxFiles, csvFilePath));
             RCMHospiceHelpers.RunStep("Suspense Process", () => SuspenseProcess(xlsFileSuspenseReport, agencyXlsxFiles, csvFilePath));
-            RCMHospiceHelpers.RunStep("Move Future Payment To Summary Process", () => MoveFuturePaymentToSummaryProcess(agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Move Future Payment To Summary Process", () => MoveFuturePaymentToSummaryProcess(agencyXlsxFiles, csvFilePath));
 
-            #region change to proper case
-            RCMHospiceHelpers.NamesToProperCaseOnAllAgencies(agencyXlsxFiles);
-            #endregion
+            //#region change to proper case
+            //RCMHospiceHelpers.NamesToProperCaseOnAllAgencies(agencyXlsxFiles);
+            //#endregion
 
-            if (DateTime.Today.DayOfWeek != DayOfWeek.Saturday && DateTime.Today.DayOfWeek != DayOfWeek.Sunday)
-            {
-                RCMHospiceHelpers.RunStep("Email Agency List Process", () => EmailAgencyList(xlsFileAgencyList, agencyXlsxFiles, csvFilePath));
-            }
+            //if (DateTime.Today.DayOfWeek != DayOfWeek.Saturday && DateTime.Today.DayOfWeek != DayOfWeek.Sunday)
+            //{
+            //    RCMHospiceHelpers.RunStep("Email Agency List Process", () => EmailAgencyList(xlsFileAgencyList, agencyXlsxFiles, csvFilePath));
+            //}
 
-            RCMHospiceHelpers.RunStep("Future Summary Process", () => FutureSummaryProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Future Summary Process", () => FutureSummaryProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
 
             System.Diagnostics.Process.GetCurrentProcess().Kill();
             return 0;

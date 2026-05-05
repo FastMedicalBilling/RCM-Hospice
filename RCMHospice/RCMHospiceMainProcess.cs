@@ -248,8 +248,14 @@ namespace RCMHospice
                         }
                     }
                 }
-                SortExcelRowsByPaidDate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[5], "Submit Date", "asc");
-                ChangePatientsNameToProperCase(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[5]);
+
+                string inProcessSheetName = sheetNamesOfAgencyFile.FirstOrDefault(x => x.Trim().Equals("In Process", StringComparison.OrdinalIgnoreCase));
+
+                if (string.IsNullOrWhiteSpace(inProcessSheetName))
+                    throw new Exception("Worksheet 'In Process' was not found in sheetNamesOfAgencyFile.");
+
+                SortExcelRowsByPaidDate(xlsfilePathAgency[indexOfAgencies], inProcessSheetName, "Submit Date", "asc");
+                ChangePatientsNameToProperCase(xlsfilePathAgency[indexOfAgencies], inProcessSheetName);
             }
             UndoModifyExcelFile(originalChangesFilename);
         }

@@ -712,6 +712,9 @@ namespace RCMHospice
 
                 string vstestPath = GetVsTestConsolePath();
 
+                StringBuilder outputBuilder = new StringBuilder();
+                StringBuilder errorBuilder = new StringBuilder();
+
                 var process = new Process
                 {
                     StartInfo = new ProcessStartInfo
@@ -722,30 +725,69 @@ namespace RCMHospice
                         RedirectStandardError = true,
                         UseShellExecute = false,
                         CreateNoWindow = true
-                    }
+                    },
+                    EnableRaisingEvents = true
                 };
 
                 process.OutputDataReceived += (s, e) =>
                 {
                     if (!string.IsNullOrWhiteSpace(e.Data))
+                    {
                         Console.WriteLine(e.Data);
+                        outputBuilder.AppendLine(e.Data);
+                    }
                 };
 
                 process.ErrorDataReceived += (s, e) =>
                 {
                     if (!string.IsNullOrWhiteSpace(e.Data))
+                    {
                         Console.WriteLine("ERR: " + e.Data);
+                        errorBuilder.AppendLine(e.Data);
+                    }
                 };
 
                 process.Start();
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
 
+                int timeoutMilliseconds = 10 * 60 * 1000; // 10 minutes
+
+                bool exited = process.WaitForExit(timeoutMilliseconds);
+
+                if (!exited)
+                {
+                    try
+                    {
+                        Console.WriteLine("EIDM downloader is stuck. Killing vstest process tree...");
+
+                        process.Kill(entireProcessTree: true);
+                        process.WaitForExit();
+                    }
+                    catch (Exception killEx)
+                    {
+                        Console.WriteLine("Failed to kill EIDM downloader process: " + killEx.Message);
+                    }
+
+                    errorMessage = "EIDM downloader timed out and was killed.";
+                    return false;
+                }
+
+                // Important: lets async output/error readers finish flushing
                 process.WaitForExit();
 
                 if (process.ExitCode != 0)
                 {
-                    errorMessage = $"vstest failed with exit code {process.ExitCode}";
+                    string output = outputBuilder.ToString();
+                    string errors = errorBuilder.ToString();
+
+                    errorMessage =
+                        $"vstest failed with exit code {process.ExitCode}" +
+                        Environment.NewLine +
+                        errors +
+                        Environment.NewLine +
+                        output;
+
                     return false;
                 }
 
@@ -2472,54 +2514,79 @@ namespace RCMHospice
         public static void SortExcelRowsByPaidDate(string filePath, string worksheetName, string paidDateColumnName, string direction)
         {
             FileInfo fileInfo = new FileInfo(filePath);
+
             using (ExcelPackage package = new ExcelPackage(fileInfo))
             {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[worksheetName];
 
                 if (worksheet == null)
-                {
                     throw new ArgumentException($"Worksheet {worksheetName} not found in the file.");
+
+                if (worksheet.Dimension == null)
+                {
+                    Console.WriteLine($"Worksheet '{worksheetName}' is empty. Skipping sort.");
+                    return;
                 }
 
-                // Identify the column index of the Paid Date column
                 int paidDateColumnIndex = GetColumnNumber(worksheet, paidDateColumnName);
+
                 var start = worksheet.Dimension.Start;
                 var end = worksheet.Dimension.End;
 
-                // Force re-interpretation of the Paid Date column to ensure proper DateTime parsing
                 for (int row = start.Row + 1; row <= end.Row; row++)
                 {
-                    var cellValue = worksheet.Cells[row, paidDateColumnIndex].Value;
-                    if (cellValue != null && cellValue is string)
+                    var cell = worksheet.Cells[row, paidDateColumnIndex];
+                    var cellValue = cell.Value;
+                    var cellText = cell.Text?.Trim();
+
+                    if (cellValue == null || string.IsNullOrWhiteSpace(cellText))
                     {
-                        // Attempt to parse as string and write back as DateTime
+                        Console.WriteLine($"Skipping date parsing for row {row} in worksheet '{worksheet.Name}' because '{paidDateColumnName}' is empty.");
+                        continue;
+                    }
+
+                    if (cellValue is string)
+                    {
                         if (DateTime.TryParse(cellValue.ToString().Trim(), out DateTime parsedDate))
                         {
-                            worksheet.Cells[row, paidDateColumnIndex].Value = parsedDate;
+                            cell.Value = parsedDate;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Skipping date parsing for row {row} in worksheet '{worksheet.Name}' because '{paidDateColumnName}' is invalid. Value: '{cellText}'");
                         }
                     }
                 }
 
-                // Extract all the data from the worksheet
                 var rows = new List<object[]>();
 
-                // Copy all data rows to a list
                 for (int row = start.Row + 1; row <= end.Row; row++)
                 {
                     var rowData = new object[end.Column];
+
                     for (int col = start.Column; col <= end.Column; col++)
                     {
                         rowData[col - 1] = worksheet.Cells[row, col].Value;
                     }
+
                     rows.Add(rowData);
                 }
 
-                // Sort the rows based on the Paid Date column after parsing the dates
-                rows = direction.ToLower() == "desc"
-                    ? rows.OrderByDescending(row => ParseToDate(row[paidDateColumnIndex - 1])).ToList()
-                    : rows.OrderBy(row => ParseToDate(row[paidDateColumnIndex - 1])).ToList();
+                if (direction.Equals("desc", StringComparison.OrdinalIgnoreCase))
+                {
+                    rows = rows
+                        .OrderBy(row => IsEmptyDateValue(row[paidDateColumnIndex - 1]) ? 1 : 0)
+                        .ThenByDescending(row => ParseToDate(row[paidDateColumnIndex - 1]))
+                        .ToList();
+                }
+                else
+                {
+                    rows = rows
+                        .OrderBy(row => IsEmptyDateValue(row[paidDateColumnIndex - 1]) ? 1 : 0)
+                        .ThenBy(row => ParseToDate(row[paidDateColumnIndex - 1]))
+                        .ToList();
+                }
 
-                // Clear the worksheet content (except header)
                 for (int row = start.Row + 1; row <= end.Row; row++)
                 {
                     for (int col = start.Column; col <= end.Column; col++)
@@ -2528,19 +2595,31 @@ namespace RCMHospice
                     }
                 }
 
-                // Write the sorted data back into the worksheet
                 int currentRow = start.Row + 1;
+
                 foreach (var rowData in rows)
                 {
                     for (int col = start.Column; col <= end.Column; col++)
                     {
                         worksheet.Cells[currentRow, col].Value = rowData[col - 1];
                     }
+
                     currentRow++;
                 }
 
                 package.Save();
             }
+        }
+
+        public static bool IsEmptyDateValue(object value)
+        {
+            if (value == null)
+                return true;
+
+            if (value is string text && string.IsNullOrWhiteSpace(text))
+                return true;
+
+            return false;
         }
 
         // A helper function to ensure the cell value is treated as a proper DateTime
@@ -2567,15 +2646,39 @@ namespace RCMHospice
 
         public static int GetColumnNumber(ExcelWorksheet ws, string columnName)
         {
+            if (ws == null)
+                throw new ArgumentNullException(nameof(ws));
+
+            if (ws.Dimension == null)
+                throw new ArgumentException($"Worksheet '{ws.Name}' is empty.");
+
             int colCount = ws.Dimension.End.Column;
+
+            string Normalize(string value)
+            {
+                return value?
+                    .Replace("\u00A0", " ")
+                    .Replace("\r", " ")
+                    .Replace("\n", " ")
+                    .Trim()
+                    .ToLower() ?? string.Empty;
+            }
+
+            string targetColumnName = Normalize(columnName);
+
             for (int i = 1; i <= colCount; i++)
             {
-                if (ws.Cells[1, i].Value != null && ws.Cells[1, i].Value.ToString().ToLower() == columnName.ToLower())
-                {
+                string rawValue = ws.Cells[1, i].Value?.ToString() ?? "";
+                string textValue = ws.Cells[1, i].Text ?? "";
+                string normalizedValue = Normalize(rawValue);
+
+                Console.WriteLine($"Column {i}: Value='{rawValue}' | Text='{textValue}' | Normalized='{normalizedValue}'");
+
+                if (normalizedValue == targetColumnName)
                     return i;
-                }
             }
-            throw new ArgumentException($"Column {columnName} not found in the worksheet.");
+
+            throw new ArgumentException($"Column '{columnName}' not found in worksheet '{ws.Name}'.");
         }
 
         public static decimal FindReimbursementAmount(string fileName, string sheetName, string startDate, string hicValue)
