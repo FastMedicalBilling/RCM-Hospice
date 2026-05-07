@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Spreadsheet;
 using OfficeOpenXml;
 using System.Data;
 using System.Globalization;
@@ -7,147 +8,6 @@ namespace RCMHospice
 {
     public static class RCMHospiceMainProcess
     {
-        public static void NOEProcess(string searchReportPath, string[] agencyFiles, string queryFilePath)
-        {
-            Console.WriteLine("NOE Process Started");
-
-            Directory.CreateDirectory("ErrorLogs");
-            string logFileName = $"logNOEProcess_{DateTime.Now:yyyyMMddHHmmssfff}.txt";
-            string logFilePath = Path.Combine("ErrorLogs", logFileName);
-
-            ArchiveFiles(searchReportPath, "SearchReport");
-
-            string originalChangesFilename = ModifyExcelFile(searchReportPath, "Search");
-
-            for (int indexOfAgencies = 0; indexOfAgencies < agencyFiles.Length; indexOfAgencies++)
-            {
-                ArchiveFiles(agencyFiles[indexOfAgencies], "Agencies");
-            }
-
-            DataTable csvData = ReadCsvFile(queryFilePath, "QueryName", "SqlQuery");
-
-            for (int indexOfAgencies = 0; indexOfAgencies < agencyFiles.Length; indexOfAgencies++)
-            {
-                string agencyFilePath = agencyFiles[indexOfAgencies];
-
-                string agencyName = agencyFilePath
-                    .Replace("C:\\Automation\\Files\\AgenciesHospice\\", "")
-                    .Replace(" HH", "")
-                    .Replace(".xlsx", "")
-                    .Trim();
-
-                Console.WriteLine($"Starting NOE work on {agencyName}");
-                RCMHospiceHelpers.ForceColumnToText(searchReportPath, "TOB");
-
-                string noeQuery = GetSqlQueryByQueryName(csvData, "NOE Filter");
-
-                DataTable resultFromSearchReport = ExecuteExcelQuery(searchReportPath, noeQuery);
-                resultFromSearchReport = ConvertDatesToDateOnly(resultFromSearchReport);
-
-                resultFromSearchReport = RCMHospiceHelpers.FilterNOESearchReportRows(
-                    resultFromSearchReport,
-                    agencyName
-                );
-
-                if (resultFromSearchReport.Rows.Count == 0)
-                {
-                    Console.WriteLine($"No NOE rows found for {agencyName}");
-                    continue;
-                }
-
-                string newFilePath = "RecalculatedFile.xlsx";
-                File.Copy(agencyFilePath, newFilePath, true);
-
-                using (ExcelPackage package = new ExcelPackage(new FileInfo(newFilePath)))
-                {
-                    for (int indexOfPatients = 0; indexOfPatients < resultFromSearchReport.Rows.Count; indexOfPatients++)
-                    {
-                        string patientName = resultFromSearchReport.Rows[indexOfPatients]["Patient Name"].ToString().Trim();
-                        string hicMbi = resultFromSearchReport.Rows[indexOfPatients]["HIC/MBI"].ToString().Trim();
-                        string sLoc = resultFromSearchReport.Rows[indexOfPatients]["S/Loc"].ToString().Trim();
-
-                        if (string.IsNullOrWhiteSpace(hicMbi))
-                            continue;
-
-                        if (!DateTime.TryParse(resultFromSearchReport.Rows[indexOfPatients]["Start Date"].ToString(), out DateTime startDate))
-                            continue;
-
-                        bool startsWithS = sLoc.StartsWith("S", StringComparison.OrdinalIgnoreCase);
-                        bool startsWithP = sLoc.StartsWith("P", StringComparison.OrdinalIgnoreCase);
-
-                        if (!startsWithS && !startsWithP)
-                            continue;
-
-                        string statusToWrite = startsWithP ? "Approved" : "Accepted";
-
-                        var (capYear, sheetName) = RCMHospiceHelpers.GetCapYearAndSheet(startDate);
-
-                        ExcelWorksheet ws;
-
-                        try
-                        {
-                            ws = RCMHospiceHelpers.EnsureClaimsYearSheetExists(package, sheetName);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                            LogError(ex.Message, logFilePath);
-                            continue;
-                        }
-
-                        int patientsNameCol = RCMHospiceHelpers.GetColumnByHeader(ws, "PATIENTS NAME");
-                        int statusCol = RCMHospiceHelpers.GetColumnByHeader(ws, "Status");
-                        int socCol = RCMHospiceHelpers.GetColumnByHeader(ws, "SOC");
-                        int dcStatusCol = RCMHospiceHelpers.GetColumnByHeader(ws, "DC Status");
-                        int hicMbiCol = RCMHospiceHelpers.GetColumnByHeader(ws, "HIC/MBI");
-
-                        List<int> monthColumns = RCMHospiceHelpers.GetMonthColumns(ws);
-
-                        if (patientsNameCol <= 0 || statusCol <= 0 || socCol <= 0 || dcStatusCol <= 0 || hicMbiCol <= 0 || monthColumns.Count == 0)
-                        {
-                            Console.WriteLine($"Required columns were not found on sheet {sheetName} for {agencyName}");
-                            LogError($"Required columns were not found on sheet {sheetName} for {agencyName}", logFilePath);
-                            continue;
-                        }
-
-                        int existingRow = RCMHospiceHelpers.FindRowByHicMbi(ws, hicMbi, hicMbiCol);
-                        int targetRow = existingRow > 0 ? existingRow : RCMHospiceHelpers.GetNextPatientRow(ws, patientsNameCol);
-                        Console.WriteLine($"Writing patient {patientName} to row {targetRow} on {sheetName}");
-
-                        List<DateTime> monthDates = RCMHospiceHelpers.GenerateMonthDates(startDate, capYear);
-
-                        ws.Cells[targetRow, patientsNameCol].Value = patientName;
-                        ws.Cells[targetRow, statusCol].Value = statusToWrite;
-                        ws.Cells[targetRow, socCol].Value = startDate;
-                        ws.Cells[targetRow, socCol].Style.Numberformat.Format = "m/d/yyyy";
-                        ws.Cells[targetRow, dcStatusCol].Value = "Active";
-                        ws.Cells[targetRow, hicMbiCol].Value = hicMbi;
-
-                        RCMHospiceHelpers.WriteMonthDatesToMonthColumns(ws, targetRow, monthDates, monthColumns);
-
-                        if (existingRow > 0)
-                        {
-                            Console.WriteLine($"Updated patient {patientName} with HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}, status {statusToWrite}");
-                            LogError($"Updated patient {patientName} with HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}, status {statusToWrite}", logFilePath);
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Inserted patient {patientName} with HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}, status {statusToWrite}");
-                            LogError($"Inserted patient {patientName} with HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}, status {statusToWrite}", logFilePath);
-                        }
-                    }
-
-                    package.Save();
-                }
-
-                File.Copy(newFilePath, agencyFilePath, true);
-                File.Delete(newFilePath);
-            }
-
-            UndoModifyExcelFile(originalChangesFilename);
-            Console.WriteLine("NOE Process Completed");
-        }
-
         public static void FutureSummaryProcess(string xlsFileSearchReport, string[] xlsfilePathAgency, string csvFilePath)
         {
             Console.WriteLine($"Future Summary Process Initiated");
@@ -160,7 +20,7 @@ namespace RCMHospice
             string body = "Hey Boss,\nThe following Agencies had Not Equal today in the Future Summary Report :\n\n";
 
             DataTable csvData = new DataTable();
-            
+
 
             for (int indexOfAgencies = 0; indexOfAgencies < xlsfilePathAgency.Length; indexOfAgencies++)
             {
@@ -168,8 +28,10 @@ namespace RCMHospice
                 string changesQuery = GetSqlQueryByQueryName(csvData, "search table by TOB");
                 string agencyName = xlsfilePathAgency[indexOfAgencies].Replace("C:\\Automation\\Files\\AgenciesHospice\\", "").Replace(" HH", "").Replace(".xlsx", "");
                 List<string> sheetNamesOfAgencyFile = GetSheetNames(xlsfilePathAgency[indexOfAgencies]);
+                int FutureSummaryTabInd = GetSheetIndexByName(sheetNamesOfAgencyFile, "Future Summary");
+
                 Console.WriteLine($"Starting work on {agencyName}");
-                string statusCheck = CheckStatuses(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[4], agencyName);
+                string statusCheck = CheckStatuses(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[FutureSummaryTabInd], agencyName);
 
                 if (statusCheck != "")
                 {
@@ -217,9 +79,10 @@ namespace RCMHospice
                 ClearTableLeaveHeader(xlsfilePathAgency[indexOfAgencies]);
 
                 List<string> sheetNamesOfAgencyFile = GetSheetNames(xlsfilePathAgency[indexOfAgencies]);
+                int paymentsTabInd = GetSheetIndexByName(sheetNamesOfAgencyFile, "PAYMENTS");
 
                 Console.WriteLine($"Starting work on {agencyName}");
-                ClearColumnsDandE(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[1]);
+                ClearColumnsDandE(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[paymentsTabInd]);
 
                 if (resultFromSuspense.Rows.Count > 0)
                 {
@@ -234,16 +97,16 @@ namespace RCMHospice
 
                         string newDate = AddDaysToDate(submitDateValueFromSuspense, 14);
                         if (reimbValueFromSuspense != "")
-                        { 
+                        {
                             if (TOBValueFromSuspense == "811" || TOBValueFromSuspense == "812" || TOBValueFromSuspense == "813" || TOBValueFromSuspense == "814")
                             {
-                                UpdatePaymentsSheetAggregate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[1], newDate, reimbValueFromSuspense, "suspense projection");
-                                UpdateTotalsFromSuspense(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[1]);
+                                UpdatePaymentsSheetAggregate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[paymentsTabInd], newDate, reimbValueFromSuspense, "suspense projection");
+                                UpdateTotalsFromSuspense(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[paymentsTabInd]);
                                 WriteToInProcessTab(xlsfilePathAgency[indexOfAgencies], patientNameFromSuspense, startDateFromSuspense, submitDateValueFromSuspense, reimbValueFromSuspense);
                             }
                         }
                         else if (TOBValueFromSuspense == "811" || TOBValueFromSuspense == "812" || TOBValueFromSuspense == "813" || TOBValueFromSuspense == "814")
-                        {                           
+                        {
                             WriteToInProcessTab(xlsfilePathAgency[indexOfAgencies], patientNameFromSuspense, startDateFromSuspense, submitDateValueFromSuspense, reimbValueFromSuspense);
                         }
                     }
@@ -415,7 +278,7 @@ namespace RCMHospice
                                 if (index >= 0 && index < filteredresultFromPayment.Columns.Count - 1)
                                 {
                                     // Get the heading name to the right
-                                    formattedAmountPASTDUE = filteredresultFromPayment.Columns[index + 1].ColumnName.Replace('#','.');
+                                    formattedAmountPASTDUE = filteredresultFromPayment.Columns[index + 1].ColumnName.Replace('#', '.');
                                 }
 
                                 if (row["NOTES"].ToString() != "")
@@ -440,18 +303,18 @@ namespace RCMHospice
                                 bool isListMatch = true;
                                 var listOfCells = cellFromList.Split(';');
                                 var listOfYes = isStarted.Split(';');
-                                if(listOfCells.Length != listOfYes.Length)
+                                if (listOfCells.Length != listOfYes.Length)
                                 {
                                     isListMatch = false;
                                 }
 
-                                for (int i=0; i < listOfCells.Length; i++)
+                                for (int i = 0; i < listOfCells.Length; i++)
                                 {
-                                    if (listOfYes[i].ToLower().Contains("yes") && listOfCells[i]!="" && isListMatch == true)
+                                    if (listOfYes[i].ToLower().Contains("yes") && listOfCells[i] != "" && isListMatch == true)
                                     {
                                         SendSms("18184312850", listOfCells[i], textMessageBody);
                                     }
-                                    else 
+                                    else
                                     {
                                         Console.WriteLine($"Mismatching list of cellphone to list of approvals for {agencyName}, text was not sent");
                                     }
@@ -528,12 +391,14 @@ namespace RCMHospice
                 dv.Sort = " [Pay Date] asc";
                 resultFromPaymentSummary = dv.ToTable();
                 List<string> sheetNamesOfAgencyFile = GetSheetNames(xlsfilePathAgency[indexOfAgencies]);
+                int paymentsTabInd = GetSheetIndexByName(sheetNamesOfAgencyFile, "PAYMENTS");
+
                 Console.WriteLine($"Starting work on {agencyName}");
 
                 bool paymentForToday = HasAnyScheduledNumberForToday(resultFromPaymentSummary);
 
-                if(paymentForToday)
-                { 
+                if (paymentForToday)
+                {
                     string ccnNumber = RCMHospiceHelpers.GetCcnFromCapTab(xlsfilePathAgency[indexOfAgencies]);
 
                     if (ccnNumber != "")
@@ -559,8 +424,8 @@ namespace RCMHospice
                     else
                         Console.WriteLine($"No CCN for {xlsfilePathAgency[indexOfAgencies]}");
                 }
-                
-                    
+
+
 
                 if (resultFromPaymentSummary.Rows.Count > 0)
                 {
@@ -573,7 +438,7 @@ namespace RCMHospice
 
                         if (checkNumberFromPaymentSummary != "")
                         {
-                            UpdatePaymentsSheet(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[1], payDateValueFromPaymentSummary, checkAmountFromPaymentSummary, "received");
+                            UpdatePaymentsSheet(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[paymentsTabInd], payDateValueFromPaymentSummary, checkAmountFromPaymentSummary, "received");
                         }
                         else
                         {
@@ -590,7 +455,7 @@ namespace RCMHospice
                             }
                             else
                             {
-                                UpdatePaymentsSheet(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[1], payDateValueFromPaymentSummary, projectedAmountFromPaymentSummary, "projected");
+                                UpdatePaymentsSheet(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[paymentsTabInd], payDateValueFromPaymentSummary, projectedAmountFromPaymentSummary, "projected");
                             }
                         }
 
@@ -615,7 +480,9 @@ namespace RCMHospice
                 string agencyName = xlsfilePathAgency[indexOfAgencies].Replace("C:\\Automation\\Files\\AgenciesHospice\\", "").Replace(" HH", "").Replace(".xlsx", "");
                 Console.WriteLine($"Starting work on {agencyName}");
                 List<string> sheetNamesOfAgencyFile = GetSheetNames(xlsfilePathAgency[indexOfAgencies]);
-                CopyRowToSummary(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[3], sheetNamesOfAgencyFile[2]);
+                int futurepaymentTabInd = GetSheetIndexByName(sheetNamesOfAgencyFile, "Future payment");
+                int PaymentSummaryTabInd = GetSheetIndexByName(sheetNamesOfAgencyFile, "Payment Summary");
+                CopyRowToSummary(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[futurepaymentTabInd], sheetNamesOfAgencyFile[PaymentSummaryTabInd]);
             }
         }
 
@@ -629,7 +496,7 @@ namespace RCMHospice
             string logFileName = $"logFuturePaymentProcess_{DateTime.Now:yyyyMMddHHmmssfff}.txt";
             string logFilePath = System.IO.Path.Combine("ErrorLogs", logFileName);
 
-            
+
             string originalChangesFilename = ModifyExcelFile(xlsFileSearchReport, "Search");
             UpdateDatesUsingHolidays_ReplaceOnly(xlsFileSearchReport, "Paid Date");
 
@@ -663,9 +530,12 @@ namespace RCMHospice
                 dv.Sort = " [Paid Date] desc";
                 resultFromSearch = dv.ToTable();
                 List<string> sheetNamesOfAgencyFile = GetSheetNames(xlsfilePathAgency[indexOfAgencies]);
+                int FuturepaymentTabInd = GetSheetIndexByName(sheetNamesOfAgencyFile, "Future payment");
+                int PaymentSummaryTabInd = GetSheetIndexByName(sheetNamesOfAgencyFile, "Payment Summary");
+
                 bool TOB32Gor327 = false;
                 bool TOB32Ior329 = false;
-                
+
                 Console.WriteLine($"Starting work on {agencyName}");
 
                 if (resultFromSearch.Rows.Count > 0)
@@ -694,11 +564,11 @@ namespace RCMHospice
                             {
                                 if (TOBValueFromSearch == "812" || TOBValueFromSearch == "814" || TOBValueFromSearch == "813" || TOBValueFromSearch == "811" || TOBValueFromSearch == "817" || TOBValueFromSearch == "81G" || TOBValueFromSearch == "81I" || TOBValueFromSearch == "81g" || TOBValueFromSearch == "81i")
                                 {
-                                    string lastRowNumberFound = FindNearestRowWithDate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[3], paidDateValueFromSearch, logFilePath);
+                                    string lastRowNumberFound = FindNearestRowWithDate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[FuturepaymentTabInd], paidDateValueFromSearch, logFilePath);
 
                                     if (lastRowNumberFound != null && reimbValueFromSearch != "0.0000")
                                     {
-                                        InsertRowAndData(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[3], Int32.Parse(lastRowNumberFound), patientNameValueFromSearch, startDateValueFromSearch, paidDateValueFromSearch, reimbValueFromSearch, hicValueFromSearch);
+                                        InsertRowAndData(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[FuturepaymentTabInd], Int32.Parse(lastRowNumberFound), patientNameValueFromSearch, startDateValueFromSearch, paidDateValueFromSearch, reimbValueFromSearch, hicValueFromSearch);
                                         TOB32Ior329 = true;
                                     }
                                 }
@@ -725,9 +595,9 @@ namespace RCMHospice
 
                             if (TOBValueFromSearch == "817" || TOBValueFromSearch == "81G" || TOBValueFromSearch == "81I" || TOBValueFromSearch == "81g" || TOBValueFromSearch == "81i")
                             {
-                                decimal reimbFromPaymentSummary = FindReimbursementAmount(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[2], startDateValueFromSearch, hicValueFromSearch);
+                                decimal reimbFromPaymentSummary = FindReimbursementAmount(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[PaymentSummaryTabInd], startDateValueFromSearch, hicValueFromSearch);
 
-                                decimal notFound = DeductReimbursement(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[3], startDateValueFromSearch, hicValueFromSearch, reimbFromPaymentSummary);
+                                decimal notFound = DeductReimbursement(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[FuturepaymentTabInd], startDateValueFromSearch, hicValueFromSearch, reimbFromPaymentSummary);
 
                                 if (notFound < 0) { LogError($"There are no results in the agency file {agencyName} future payment tab for patient : {patientNameValueFromSearch}", logFilePath); }
                                 else TOB32Gor327 = true;
@@ -735,8 +605,8 @@ namespace RCMHospice
                         }
 
                     }
-                    SortExcelRowsByPaidDate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[2], "Paid Date", "desc");
-                    SortExcelRowsByPaidDate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[3], "Paid Date", "asc");
+                    SortExcelRowsByPaidDate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[PaymentSummaryTabInd], "Paid Date", "desc");
+                    SortExcelRowsByPaidDate(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[FuturepaymentTabInd], "Paid Date", "asc");
                 }
             }
 
@@ -974,611 +844,6 @@ namespace RCMHospice
             UndoModifyExcelFile(originalSearchFilename);
 
             Console.WriteLine("Final Process Completed");
-        }
-
-        //public static void FinalProcess(string xlsFileSearchReport/*, string xlsFileSearchReportS*/, string[] xlsfilePathAgency, string csvFilePath)
-        //{
-        //    Console.WriteLine($"Final Process Initiated");
-        //    // Ensure the log directory exists.
-        //    Directory.CreateDirectory("ErrorLogs");
-
-        //    ArchiveFiles(xlsFileSearchReport, "SearchReport");
-        //    //ArchiveFiles(xlsFileSearchReportS, "SearchReport");
-
-        //    // Generate a unique log file name using a timestamp.
-        //    string logFileName = $"logFinalProcess_{DateTime.Now:yyyyMMddHHmmssfff}.txt";
-        //    string logFilePath = System.IO.Path.Combine("ErrorLogs", logFileName);
-
-        //    string originalChangesFilename = ModifyExcelFile(xlsFileSearchReport, "Search");
-        //    List<string> sheetNamesOfSearchFile = GetSheetNames(originalChangesFilename);
-        //    ChangePatientsNameToProperCase(xlsFileSearchReport, sheetNamesOfSearchFile[0]);
-
-        //    string patientNameValueFromSearch = string.Empty;
-        //    string startDateValueFromSearch = string.Empty;
-        //    string reimbValueFromSearch = string.Empty;
-        //    string hicValueFromSearch = string.Empty;
-        //    string tobValueFromSearch = string.Empty;
-        //    string sLocValueFromSearch = string.Empty;
-        //    string patientNameValueFromAgency = string.Empty;
-        //    string startDateValueFromAgency = string.Empty;
-        //    string hicValueFromAgency = string.Empty;
-        //    string cancelledDateFromSearch = string.Empty;
-        //    DataTable csvData = new DataTable();
-        //    DataTable resultFromSearch = new DataTable();
-        //    DataTable resultFromSearchS = new DataTable();
-        //    Tuple<int, int> indexOfCell = new Tuple<int, int>(0, 0);
-        //    string alphaOfNameCell = string.Empty;
-        //    string alphaOfStatusCell = string.Empty;
-
-        //    for (int indexOfAgencies = 0; indexOfAgencies < xlsfilePathAgency.Length; indexOfAgencies++)
-        //    {
-        //        ProcessAgencyFileDates(xlsfilePathAgency[indexOfAgencies]);
-        //        List<string> sheetNamesOfAgencyFile = GetSheetNames(xlsfilePathAgency[indexOfAgencies]);
-        //        ChangePatientsNameToProperCase(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0]);
-
-        //        csvData = ReadCsvFile(csvFilePath, "QueryName", "SqlQuery");
-        //        string changesQuery = GetSqlQueryByQueryName(csvData, "get all relevant search table rows");
-        //        string agencyName = xlsfilePathAgency[indexOfAgencies].Replace("C:\\Automation\\Files\\AgenciesHospice\\", "").Replace(" HH", "").Replace(".xlsx", "");
-        //        Console.WriteLine($"Starting work on {agencyName}");
-        //        changesQuery = changesQuery.Replace("AgencyName", agencyName);
-        //        resultFromSearch = ExecuteExcelQuery(xlsFileSearchReport, changesQuery);
-        //        resultFromSearch = ConvertDatesToDateOnly(resultFromSearch);
-
-        //        if (resultFromSearch.Rows.Count > 0)
-        //        {
-        //            for (int indexOfPatients = 0; indexOfPatients < resultFromSearch.Rows.Count; indexOfPatients++)
-        //            {
-        //                patientNameValueFromSearch = resultFromSearch.Rows[indexOfPatients]["Patient Name"].ToString();
-        //                startDateValueFromSearch = resultFromSearch.Rows[indexOfPatients]["Start Date"].ToString();
-        //                reimbValueFromSearch = resultFromSearch.Rows[indexOfPatients]["Reimb"].ToString();
-        //                hicValueFromSearch = resultFromSearch.Rows[indexOfPatients]["HIC/MBI"].ToString();
-        //                tobValueFromSearch = resultFromSearch.Rows[indexOfPatients]["TOB"].ToString();
-        //                sLocValueFromSearch = resultFromSearch.Rows[indexOfPatients]["S/Loc"].ToString();
-        //                cancelledDateFromSearch = resultFromSearch.Rows[indexOfPatients]["Cancelled Date"].ToString();
-
-        //                string modifiedQuery = GetSqlQueryByQueryName(csvData, "filter agency rows with start date");
-        //                modifiedQuery = modifiedQuery.Replace("PatientName", patientNameValueFromSearch);
-        //                DataTable resultFromAgency = ExecuteExcelQuery(xlsfilePathAgency[indexOfAgencies], modifiedQuery);
-        //                resultFromAgency = ConvertDatesToDateOnly(resultFromAgency);
-        //                var twistName = patientNameValueFromSearch.Split(",");
-        //                var patientNameValueFromSearchTwisted = twistName[1].Substring(1) + ", " + twistName[0];
-
-        //                string columnNameofFoundDate = FindNextStartOrSOCDateColumn(hicValueFromSearch, resultFromAgency, startDateValueFromSearch);
-
-        //                if (cancelledDateFromSearch == "")
-        //                {
-        //                    if (tobValueFromSearch == "329")
-        //                    {
-        //                        if (sLocValueFromSearch.ToLower().StartsWith("s", StringComparison.OrdinalIgnoreCase))
-        //                        {
-        //                            if (columnNameofFoundDate != null)
-        //                            {
-        //                                LogError($"Column date found {columnNameofFoundDate} for patient {patientNameValueFromSearch} with S status in S\\Loc, inserting in progress status", logFilePath);
-        //                                Console.WriteLine($"Column date found {columnNameofFoundDate} for patient {patientNameValueFromSearch} with S status in S\\Loc, inserting in progress status");
-        //                                indexOfCell = FindCellLocation(xlsfilePathAgency[indexOfAgencies], hicValueFromSearch, columnNameofFoundDate, startDateValueFromSearch);
-        //                                alphaOfNameCell = FindCellLocationAlpha(xlsfilePathAgency[indexOfAgencies], indexOfCell);
-
-        //                                switch (columnNameofFoundDate)
-        //                                {
-        //                                    case "SOC":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 4)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "In Process", "string");
-        //                                        break;
-        //                                    case "Start 2":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 7)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "In Process", "string");
-        //                                        break;
-        //                                    case "Start 3":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 10)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "In Process", "string");
-        //                                        break;
-        //                                    case "Start 4":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 13)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "In Process", "string");
-        //                                        break;
-        //                                    case "Start 5":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 16)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "In Process", "string");
-        //                                        break;
-        //                                    case "Start 6":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 19)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "In Process", "string");
-        //                                        break;
-        //                                    default:
-        //                                        break;
-        //                                }
-        //                            }
-        //                            else if(sLocValueFromSearch.ToLower().StartsWith("p", StringComparison.OrdinalIgnoreCase))
-        //                            {
-        //                                InsertPatientNotFound(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], hicValueFromSearch, startDateValueFromSearch, patientNameValueFromSearch, "Continued");
-        //                                ProcessAgencyFileDates(xlsfilePathAgency[indexOfAgencies]);
-        //                                LogError($"Column date not found for patient {patientNameValueFromSearch} for date {startDateValueFromSearch} adding a line as Continued", logFilePath);
-        //                                Console.WriteLine($"Column date not found for patient {patientNameValueFromSearch} for date {startDateValueFromSearch}");
-        //                            }
-        //                        }
-        //                        else
-        //                        {
-        //                            if (columnNameofFoundDate != null)
-        //                            {
-        //                                indexOfCell = FindCellLocation(xlsfilePathAgency[indexOfAgencies], hicValueFromSearch, columnNameofFoundDate, startDateValueFromSearch);
-        //                                alphaOfNameCell = FindCellLocationAlpha(xlsfilePathAgency[indexOfAgencies], indexOfCell);
-        //                                switch (columnNameofFoundDate)
-        //                                {
-        //                                    case "SOC":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 3)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 4)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                        break;
-        //                                    case "Start 2":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 6)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 7)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                        break;
-        //                                    case "Start 3":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 9)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 10)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                        break;
-        //                                    case "Start 4":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 12)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 13)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                        break;
-        //                                    case "Start 5":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 15)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 16)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                        break;
-        //                                    case "Start 6":
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 18)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 19)[0]);
-        //                                        ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                        break;
-        //                                    default:
-        //                                        break;
-        //                                }
-        //                                ProcessAgencyFileDates(xlsfilePathAgency[indexOfAgencies]);
-        //                                LogError($"Column date found {columnNameofFoundDate} for patient {patientNameValueFromSearch} for date {startDateValueFromSearch} and Reimb value {reimbValueFromSearch}", logFilePath);
-        //                                Console.WriteLine($"Column date found {columnNameofFoundDate} for patient {patientNameValueFromSearch} for date {startDateValueFromSearch} and Reimb value {reimbValueFromSearch}");
-        //                            }
-        //                        }
-        //                    }
-        //                }
-
-        //                if (cancelledDateFromSearch == "")
-        //                {
-        //                    if (tobValueFromSearch == "327" || tobValueFromSearch == "32G" || tobValueFromSearch == "32I")
-        //                    {
-        //                        Double reimbValueFromSearchInt = Double.Parse(reimbValueFromSearch);
-        //                        if (columnNameofFoundDate != null && reimbValueFromSearchInt != 0)
-        //                        {
-        //                            LogError($"Column date found {columnNameofFoundDate} for patient {patientNameValueFromSearch} for date {startDateValueFromSearch} and Reimb value {reimbValueFromSearch}", logFilePath);
-        //                            Console.WriteLine($"Column date found {columnNameofFoundDate} for patient {patientNameValueFromSearch} for date {startDateValueFromSearch} and Reimb value {reimbValueFromSearch}");
-        //                            indexOfCell = FindCellLocation(xlsfilePathAgency[indexOfAgencies], hicValueFromSearch, columnNameofFoundDate, startDateValueFromSearch);
-        //                            alphaOfNameCell = FindCellLocationAlpha(xlsfilePathAgency[indexOfAgencies], indexOfCell);
-
-        //                            switch (columnNameofFoundDate)
-        //                            {
-        //                                case "SOC":
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 3)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 4)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                    break;
-        //                                case "Start 2":
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 6)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 7)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                    break;
-        //                                case "Start 3":
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 9)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 10)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                    break;
-        //                                case "Start 4":
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 12)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 13)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                    break;
-        //                                case "Start 5":
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 15)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 16)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                    break;
-        //                                case "Start 6":
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 18)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, reimbValueFromSearch, "double");
-        //                                    alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 19)[0]);
-        //                                    ModifyCell(xlsfilePathAgency[indexOfAgencies], sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Paid", "string");
-        //                                    break;
-        //                                default:
-        //                                    break;
-        //                            }
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    UndoModifyExcelFile(originalChangesFilename);
-        //}
-
-        //public static void MainNOAProcess(string xlsfilePathChanges, string[] xlsfilePathAgency, string csvFilePath)
-        //{
-        //    Console.WriteLine($"Main NOA Process Initiated");
-        //    // Ensure the log directory exists.
-        //    Directory.CreateDirectory("ErrorLogs");
-
-        //    // Generate a unique log file name using a timestamp.
-        //    string logFileName = $"logNOAProcess_{DateTime.Now:yyyyMMddHHmmssfff}.txt";
-        //    string logFilePath = System.IO.Path.Combine("ErrorLogs", logFileName);
-        //    ArchiveFiles(xlsfilePathChanges, "NOAStatus");
-
-        //    string originalChangesFilename = ModifyExcelFile(xlsfilePathChanges, "Change");
-        //    for (int indexOfAgencies = 0; indexOfAgencies < xlsfilePathAgency.Length; indexOfAgencies++)
-        //    {
-        //        ArchiveFiles(xlsfilePathAgency[indexOfAgencies], "Agencies");
-        //    }
-
-        //    string patientNameValueFromChanges = string.Empty;
-        //    string admitDateValueFromChanges = string.Empty;
-        //    string reasonCodeFromChanges = string.Empty;
-        //    string hicValueFromChanges = string.Empty;
-        //    string patientNameValueFromAgency = string.Empty;
-        //    string hicValueFromAgency = string.Empty;
-        //    string admitDateValueFromAgency = string.Empty;
-        //    List<discrepencies> listOfDiscrepancies = new List<discrepencies>();
-        //    DataTable csvData = new DataTable();
-        //    DataTable resultFromChanges = new DataTable();
-        //    DataTable resultFromChangesWithSorReason = new DataTable();
-
-        //    for (int indexOfAgencies = 0; indexOfAgencies < xlsfilePathAgency.Length; indexOfAgencies++)
-        //    {
-        //        DataTable tableOfPatientsToInsert = new DataTable();
-        //        string newFilePath = "RecalculatedFile.xlsx";
-        //        File.Copy(xlsfilePathAgency[indexOfAgencies], newFilePath, true);
-
-        //        csvData = ReadCsvFile(csvFilePath, "QueryName", "SqlQuery");
-        //        string changesQuery = GetSqlQueryByQueryName(csvData, "Filter relevant rows for agency");
-        //        string agencyName = xlsfilePathAgency[indexOfAgencies].Replace("C:\\Automation\\Files\\AgenciesHospice\\", "").Replace(" HH", "").Replace(".xlsx", "");
-        //        Console.WriteLine($"Starting work on {agencyName}");
-        //        changesQuery = changesQuery.Replace("AgencyName", agencyName);
-        //        resultFromChanges = ExecuteExcelQuery(xlsfilePathChanges, changesQuery);
-        //        resultFromChanges = ConvertDatesToDateOnly(resultFromChanges);
-        //        resultFromChangesWithSorReason = RemoveRowsFromTable(resultFromChanges, 1);
-        //        List<string> sheetNamesOfAgencyFile = GetSheetNames(xlsfilePathAgency[indexOfAgencies]);
-        //        bool insertPatientAccepted = false;
-
-        //        if (resultFromChangesWithSorReason.Rows.Count > 0)
-        //        {
-        //            for (int indexOfPatients = 0; indexOfPatients < resultFromChangesWithSorReason.Rows.Count; indexOfPatients++)
-        //            {
-        //                insertPatientAccepted = false;
-        //                patientNameValueFromChanges = resultFromChangesWithSorReason.Rows[indexOfPatients]["Patient Name"].ToString();
-        //                patientNameValueFromChanges = RemoveMiddleName(patientNameValueFromChanges);
-        //                admitDateValueFromChanges = resultFromChangesWithSorReason.Rows[indexOfPatients]["Admit Date"].ToString();
-        //                reasonCodeFromChanges = resultFromChangesWithSorReason.Rows[indexOfPatients]["Reason Code(s)"].ToString();
-        //                hicValueFromChanges = resultFromChangesWithSorReason.Rows[indexOfPatients]["HIC/MBI"].ToString();
-
-        //                var manipulateLastName = patientNameValueFromChanges.Split(",");
-        //                patientNameValueFromChanges = TrimName(manipulateLastName[0]) + "%," + manipulateLastName[1];
-
-        //                //RecalculateFormulas(xlsfilePathAgency[indexOfAgencies]);
-        //                string modifiedQuery = GetSqlQueryByQueryName(csvData, "Get patient name and SOC");
-        //                modifiedQuery = modifiedQuery.Replace("HICnumber", hicValueFromChanges);
-        //                modifiedQuery = modifiedQuery.Replace("worksheet", sheetNamesOfAgencyFile[0]);
-        //                DataTable resultFromAgency = ExecuteExcelQuery(xlsfilePathAgency[indexOfAgencies], modifiedQuery);
-        //                patientNameValueFromChanges = patientNameValueFromChanges.Replace("%", "");
-        //                if (resultFromAgency.Rows.Count > 0)
-        //                {
-        //                    resultFromAgency = ConvertDatesToDateOnly(resultFromAgency);
-
-        //                    for (int indOfPatients = 0; indOfPatients < resultFromAgency.Rows.Count; indOfPatients++)
-        //                    {
-        //                        Tuple<int, int> indexOfCell = new Tuple<int, int>(0, 0);
-        //                        string alphaOfNameCell = string.Empty;
-        //                        string alphaOfStatusCell = string.Empty;
-
-        //                        if (resultFromAgency.Rows.Count > 0)
-        //                        {
-        //                            // Get the value in the "Patient Name" column for the first row.
-        //                            patientNameValueFromAgency = resultFromAgency.Rows[indOfPatients]["Patients Name"].ToString();
-        //                            hicValueFromAgency = resultFromAgency.Rows[indOfPatients]["HIC/MBI"].ToString();
-        //                            patientNameValueFromAgency = RemoveMiddleName(patientNameValueFromAgency);
-
-        //                            admitDateValueFromAgency = resultFromAgency.Rows[indOfPatients]["SOC"].ToString();
-
-        //                            if (DateTime.TryParseExact(admitDateValueFromAgency, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
-        //                            {
-        //                                admitDateValueFromAgency = parsedDate.ToString("M/d/yyyy");
-        //                            }
-
-        //                            if (DateTime.TryParseExact(admitDateValueFromChanges, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out parsedDate))
-        //                            {
-        //                                admitDateValueFromChanges = parsedDate.ToString("M/d/yyyy");
-        //                            }
-
-        //                            indexOfCell = FindCellLocation(xlsfilePathAgency[indexOfAgencies], hicValueFromAgency, admitDateValueFromAgency);
-        //                            if (indexOfCell != null)
-        //                            {
-        //                                alphaOfNameCell = FindCellLocationAlpha(xlsfilePathAgency[indexOfAgencies], hicValueFromAgency, admitDateValueFromAgency);
-        //                                alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 1)[0]);
-        //                            }
-
-        //                            if (hicValueFromAgency == hicValueFromChanges && admitDateValueFromAgency == admitDateValueFromChanges)
-        //                            {
-        //                                insertPatientAccepted = false;
-        //                                if (reasonCodeFromChanges != "37263")
-        //                                {
-        //                                    ModifyCell(newFilePath, sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Accepted", "string");
-        //                                    Console.WriteLine($"Patient : {patientNameValueFromAgency} in Agency : {agencyName} was found and modified to Accepted");
-        //                                }
-        //                                else
-        //                                {
-        //                                    ModifyCell(newFilePath, sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Approved", "string");
-        //                                    Console.WriteLine($"Patient : {patientNameValueFromAgency} in Agency : {agencyName} was found and modified to Approved"); ;
-        //                                }
-        //                            }
-        //                            else
-        //                            {
-        //                                // Add items to the list
-        //                                insertPatientAccepted = true;
-        //                            }
-        //                        }
-        //                        else
-        //                        {
-        //                            //name was not found in agency file
-        //                            listOfDiscrepancies.Add(new discrepencies { Agency = agencyName, PatientName = patientNameValueFromChanges, AdmitDate = admitDateValueFromChanges });
-        //                            LogError($"The following Descrepency was found:\n, Agency: Patient Name: {patientNameValueFromAgency} Admit Date: {admitDateValueFromAgency}\n, Status File: Patient Name: {patientNameValueFromChanges} Admit Date: {admitDateValueFromChanges}\n", logFilePath);
-        //                        }
-        //                    }
-        //                    if (insertPatientAccepted)
-        //                        tableOfPatientsToInsert = AddOrUpdateRow(tableOfPatientsToInsert, hicValueFromChanges, admitDateValueFromChanges, patientNameValueFromChanges);
-        //                }
-        //                else
-        //                {
-        //                    InsertPatientNotFound(newFilePath, sheetNamesOfAgencyFile[0], hicValueFromChanges, admitDateValueFromChanges, patientNameValueFromChanges, "Accepted");
-        //                    Console.WriteLine($"Patient : {patientNameValueFromChanges} in Agency : {agencyName} was not found and inserted with status Accepted");
-        //                    LogError($"Patient : {patientNameValueFromChanges} in Agency : {agencyName} was not found and inserted with status Accepted", logFilePath);
-        //                }
-        //            }
-        //        }
-
-        //        if (insertPatientAccepted)
-        //        {
-        //            for (int indexOfInserts = 0; indexOfInserts < tableOfPatientsToInsert.Rows.Count; indexOfInserts++)
-        //            {
-        //                InsertPatientNotFound(newFilePath, sheetNamesOfAgencyFile[0], tableOfPatientsToInsert.Rows[indexOfInserts]["hicValueFromChanges"].ToString(), tableOfPatientsToInsert.Rows[indexOfInserts]["admitDateValueFromChanges"].ToString(), tableOfPatientsToInsert.Rows[indexOfInserts]["patientNameValueFromChanges"].ToString(), "Accepted");
-        //                Console.WriteLine($"Patient : {tableOfPatientsToInsert.Rows[indexOfInserts]["patientNameValueFromChanges"].ToString()} in Agency : {agencyName} was not found and inserted with status Accepted");
-        //                LogError($"Patient : {tableOfPatientsToInsert.Rows[indexOfInserts]["patientNameValueFromChanges"].ToString()} in Agency : {agencyName} was not found and inserted with status Accepted", logFilePath);
-        //            }
-        //        }
-
-        //        File.Delete(xlsfilePathAgency[indexOfAgencies]);
-        //        File.Move(newFilePath, xlsfilePathAgency[indexOfAgencies]);
-        //    }
-
-        //    List<discrepencies> patientsMoreThan3Days = new List<discrepencies>();
-        //    for (int indexOfAgencies = 0; indexOfAgencies < xlsfilePathAgency.Length; indexOfAgencies++)
-        //    {
-        //        //check if "in process" status is over 3 days
-        //        csvData = ReadCsvFile(csvFilePath, "QueryName", "SqlQuery");
-        //        string inProcessQuery = GetSqlQueryByQueryName(csvData, "Get all in process patients");
-        //        DataTable inProcessResultFromAgency = ExecuteExcelQuery(xlsfilePathAgency[indexOfAgencies], inProcessQuery);
-        //        string agencyName = GetFileNameWithoutExtension(xlsfilePathAgency[indexOfAgencies]);
-        //        patientsMoreThan3Days.AddRange(GetPatientsWith3DaysOrMoreDifference(inProcessResultFromAgency, agencyName));
-        //    }
-
-        //    //send email of discrepencies if available
-        //    if (listOfDiscrepancies.Count > 0 || patientsMoreThan3Days.Count > 0)
-        //    {
-        //        DataTable configurationInfo = ReadCsvFile("ConfigFile.csv", "SmtpInfo", "Details");
-        //        string sendToEmail = GetCSVInfoByInfoName(configurationInfo, "SmtpInfo", "Details", "sendToEmail");
-        //        string sendToName = GetCSVInfoByInfoName(configurationInfo, "SmtpInfo", "Details", "sendToName");
-        //        SendNOAEmailWithTemplate(sendToName, sendToEmail, listOfDiscrepancies, patientsMoreThan3Days);
-        //    }
-
-        //    UndoModifyExcelFile(originalChangesFilename);
-        //} 
-
-        public static void MainNOAProcess(string xlsfilePathChanges, string[] xlsfilePathAgency, string csvFilePath)
-        {
-            Console.WriteLine($"Main NOA Process Initiated");
-            // Ensure the log directory exists.
-            Directory.CreateDirectory("ErrorLogs");
-
-            // Generate a unique log file name using a timestamp.
-            string logFileName = $"logNOAProcess_{DateTime.Now:yyyyMMddHHmmssfff}.txt";
-            string logFilePath = System.IO.Path.Combine("ErrorLogs", logFileName);
-            ArchiveFiles(xlsfilePathChanges, "NOAStatus");
-
-            string originalChangesFilename = ModifyExcelFile(xlsfilePathChanges, "Change");
-            for (int indexOfAgencies = 0; indexOfAgencies < xlsfilePathAgency.Length; indexOfAgencies++)
-            {
-                ArchiveFiles(xlsfilePathAgency[indexOfAgencies], "Agencies");
-            }
-
-            string patientNameValueFromChanges = string.Empty;
-            string admitDateValueFromChanges = string.Empty;
-            string reasonCodeFromChanges = string.Empty;
-            string hicValueFromChanges = string.Empty;
-            string patientNameValueFromAgency = string.Empty;
-            string hicValueFromAgency = string.Empty;
-            string admitDateValueFromAgency = string.Empty;
-            List<discrepencies> listOfDiscrepancies = new List<discrepencies>();
-            DataTable csvData = new DataTable();
-            DataTable resultFromChanges = new DataTable();
-            DataTable resultFromChangesWithSorReason = new DataTable();
-
-            for (int indexOfAgencies = 0; indexOfAgencies < xlsfilePathAgency.Length; indexOfAgencies++)
-            {
-                DataTable tableOfPatientsToInsert = new DataTable();
-                string newFilePath = "RecalculatedFile.xlsx";
-                File.Copy(xlsfilePathAgency[indexOfAgencies], newFilePath, true);
-
-                csvData = ReadCsvFile(csvFilePath, "QueryName", "SqlQuery");
-                string changesQuery = GetSqlQueryByQueryName(csvData, "Filter relevant rows for agency");
-                string agencyName = xlsfilePathAgency[indexOfAgencies].Replace("C:\\Automation\\Files\\AgenciesHospice\\", "").Replace(" HH", "").Replace(".xlsx", "");
-                Console.WriteLine($"Starting work on {agencyName}");
-                changesQuery = changesQuery.Replace("AgencyName", agencyName);
-                resultFromChanges = ExecuteExcelQuery(xlsfilePathChanges, changesQuery);
-                resultFromChanges = ConvertDatesToDateOnly(resultFromChanges);
-                resultFromChangesWithSorReason = RemoveRowsFromTable(resultFromChanges, 1);
-                List<string> sheetNamesOfAgencyFile = GetSheetNames(xlsfilePathAgency[indexOfAgencies]);
-                bool insertPatientAccepted = false;
-
-                if (resultFromChangesWithSorReason.Rows.Count > 0)
-                {
-                    for (int indexOfPatients = 0; indexOfPatients < resultFromChangesWithSorReason.Rows.Count; indexOfPatients++)
-                    {
-                        insertPatientAccepted = false;
-                        patientNameValueFromChanges = resultFromChangesWithSorReason.Rows[indexOfPatients]["Patient Name"].ToString();
-                        patientNameValueFromChanges = RemoveMiddleName(patientNameValueFromChanges);
-                        admitDateValueFromChanges = resultFromChangesWithSorReason.Rows[indexOfPatients]["Admit Date"].ToString();
-                        reasonCodeFromChanges = resultFromChangesWithSorReason.Rows[indexOfPatients]["Reason Code(s)"].ToString();
-                        hicValueFromChanges = resultFromChangesWithSorReason.Rows[indexOfPatients]["HIC/MBI"].ToString();
-
-                        var manipulateLastName = patientNameValueFromChanges.Split(",");
-                        patientNameValueFromChanges = TrimName(manipulateLastName[0]) + "%," + manipulateLastName[1];
-
-                        //RecalculateFormulas(xlsfilePathAgency[indexOfAgencies]);
-                        string modifiedQuery = GetSqlQueryByQueryName(csvData, "Get patient name and SOC");
-                        modifiedQuery = modifiedQuery.Replace("HICnumber", hicValueFromChanges);
-                        modifiedQuery = modifiedQuery.Replace("worksheet", sheetNamesOfAgencyFile[0]);
-                        DataTable resultFromAgency = ExecuteExcelQuery(xlsfilePathAgency[indexOfAgencies], modifiedQuery);
-                        patientNameValueFromChanges = patientNameValueFromChanges.Replace("%", "");
-                        if (resultFromAgency.Rows.Count > 0)
-                        {
-                            resultFromAgency = ConvertDatesToDateOnly(resultFromAgency);
-
-                            for (int indOfPatients = 0; indOfPatients < resultFromAgency.Rows.Count; indOfPatients++)
-                            {
-                                Tuple<int, int> indexOfCell = new Tuple<int, int>(0, 0);
-                                string alphaOfNameCell = string.Empty;
-                                string alphaOfStatusCell = string.Empty;
-
-                                if (resultFromAgency.Rows.Count > 0)
-                                {
-                                    // Get the value in the "Patient Name" column for the first row.
-                                    patientNameValueFromAgency = resultFromAgency.Rows[indOfPatients]["Patients Name"].ToString();
-                                    hicValueFromAgency = resultFromAgency.Rows[indOfPatients]["HIC/MBI"].ToString();
-                                    patientNameValueFromAgency = RemoveMiddleName(patientNameValueFromAgency);
-
-                                    admitDateValueFromAgency = resultFromAgency.Rows[indOfPatients]["SOC"].ToString();
-
-                                    if (DateTime.TryParseExact(admitDateValueFromAgency, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
-                                    {
-                                        admitDateValueFromAgency = parsedDate.ToString("M/d/yyyy");
-                                    }
-
-                                    if (DateTime.TryParseExact(admitDateValueFromChanges, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out parsedDate))
-                                    {
-                                        admitDateValueFromChanges = parsedDate.ToString("M/d/yyyy");
-                                    }
-
-                                    indexOfCell = FindCellLocation(xlsfilePathAgency[indexOfAgencies], hicValueFromAgency, admitDateValueFromAgency);
-                                    if (indexOfCell != null)
-                                    {
-                                        alphaOfNameCell = FindCellLocationAlpha(xlsfilePathAgency[indexOfAgencies], hicValueFromAgency, admitDateValueFromAgency);
-                                        alphaOfStatusCell = ReplaceLetterInIndex(alphaOfNameCell, GetExcelColumnName(indexOfCell.Item2 + 1)[0]);
-                                    }
-
-                                    if (hicValueFromAgency == hicValueFromChanges && admitDateValueFromAgency == admitDateValueFromChanges)
-                                    {
-                                        insertPatientAccepted = false;
-                                        if (reasonCodeFromChanges != "37263" || reasonCodeFromChanges == "")
-                                        {
-                                            ModifyCell(newFilePath, sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Accepted", "string");
-                                            LogError($"Patient : {patientNameValueFromAgency} in Agency : {agencyName} was found and modified to Accepted", logFilePath);
-                                            Console.WriteLine($"Patient : {patientNameValueFromAgency} in Agency : {agencyName} was found and modified to Accepted");
-                                        }
-                                        else
-                                        {
-                                            ModifyCell(newFilePath, sheetNamesOfAgencyFile[0], alphaOfStatusCell, "Approved", "string");
-                                            LogError($"Patient : {patientNameValueFromAgency} in Agency : {agencyName} was found and modified to Approved", logFilePath);
-                                            Console.WriteLine($"Patient : {patientNameValueFromAgency} in Agency : {agencyName} was found and modified to Approved"); ;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        // Add items to the list
-                                        insertPatientAccepted = true;
-                                    }
-                                }
-                                else
-                                {
-                                    //name was not found in agency file
-                                    listOfDiscrepancies.Add(new discrepencies { Agency = agencyName, PatientName = patientNameValueFromChanges, AdmitDate = admitDateValueFromChanges });
-                                    LogError($"The following Descrepency was found:\n, Agency: Patient Name: {patientNameValueFromAgency} Admit Date: {admitDateValueFromAgency}\n, Status File: Patient Name: {patientNameValueFromChanges} Admit Date: {admitDateValueFromChanges}\n", logFilePath);
-                                }
-                            }
-                            if (insertPatientAccepted)
-                                tableOfPatientsToInsert = AddOrUpdateRow(tableOfPatientsToInsert, hicValueFromChanges, admitDateValueFromChanges, patientNameValueFromChanges, reasonCodeFromChanges);
-                        }
-                        else
-                        {
-                            InsertPatientNotFound(newFilePath, sheetNamesOfAgencyFile[0], hicValueFromChanges, admitDateValueFromChanges, patientNameValueFromChanges, "Accepted");
-                            Console.WriteLine($"Patient : {patientNameValueFromChanges} in Agency : {agencyName} was not found and inserted with status Accepted");
-                            LogError($"Patient : {patientNameValueFromChanges} in Agency : {agencyName} was not found and inserted with status Accepted", logFilePath);
-                        }
-                    }
-                }
-
-                if (insertPatientAccepted)
-                {
-                    for (int indexOfInserts = 0; indexOfInserts < tableOfPatientsToInsert.Rows.Count; indexOfInserts++)
-                    {
-
-                        if (tableOfPatientsToInsert.Rows[indexOfInserts]["reasonCodeFromChanges"].ToString() == "37263")
-                        {
-                            InsertPatientNotFound(newFilePath, sheetNamesOfAgencyFile[0], tableOfPatientsToInsert.Rows[indexOfInserts]["hicValueFromChanges"].ToString(), tableOfPatientsToInsert.Rows[indexOfInserts]["admitDateValueFromChanges"].ToString(), tableOfPatientsToInsert.Rows[indexOfInserts]["patientNameValueFromChanges"].ToString(), "Approved");
-                            LogError($"Patient : {patientNameValueFromAgency} in Agency : {agencyName} was found and modified to Approved", logFilePath);
-                            Console.WriteLine($"Patient : {patientNameValueFromAgency} in Agency : {agencyName} was found and modified to Approved");
-                        }
-                        else
-                        {
-                            InsertPatientNotFound(newFilePath, sheetNamesOfAgencyFile[0], tableOfPatientsToInsert.Rows[indexOfInserts]["hicValueFromChanges"].ToString(), tableOfPatientsToInsert.Rows[indexOfInserts]["admitDateValueFromChanges"].ToString(), tableOfPatientsToInsert.Rows[indexOfInserts]["patientNameValueFromChanges"].ToString(), "Accepted");
-                            Console.WriteLine($"Patient : {tableOfPatientsToInsert.Rows[indexOfInserts]["patientNameValueFromChanges"].ToString()} in Agency : {agencyName} was not found and inserted with status Accepted");
-                            LogError($"Patient : {tableOfPatientsToInsert.Rows[indexOfInserts]["patientNameValueFromChanges"].ToString()} in Agency : {agencyName} was not found and inserted with status Accepted", logFilePath);
-                        }
-                    }
-                }
-
-                File.Delete(xlsfilePathAgency[indexOfAgencies]);
-                File.Move(newFilePath, xlsfilePathAgency[indexOfAgencies]);
-            }
-
-            List<discrepencies> patientsMoreThan3Days = new List<discrepencies>();
-            for (int indexOfAgencies = 0; indexOfAgencies < xlsfilePathAgency.Length; indexOfAgencies++)
-            {
-                //check if "in process" status is over 3 days
-                csvData = ReadCsvFile(csvFilePath, "QueryName", "SqlQuery");
-                string inProcessQuery = GetSqlQueryByQueryName(csvData, "Get all in process patients");
-                DataTable inProcessResultFromAgency = ExecuteExcelQuery(xlsfilePathAgency[indexOfAgencies], inProcessQuery);
-                string agencyName = GetFileNameWithoutExtension(xlsfilePathAgency[indexOfAgencies]);
-                patientsMoreThan3Days.AddRange(GetPatientsWith3DaysOrMoreDifference(inProcessResultFromAgency, agencyName));
-            }
-
-            //send email of discrepencies if available
-            if (listOfDiscrepancies.Count > 0 || patientsMoreThan3Days.Count > 0)
-            {
-                DataTable configurationInfo = ReadCsvFile("ConfigFile.csv", "SmtpInfo", "Details");
-                string sendToEmail = GetCSVInfoByInfoName(configurationInfo, "SmtpInfo", "Details", "sendToEmail");
-                string sendToName = GetCSVInfoByInfoName(configurationInfo, "SmtpInfo", "Details", "sendToName");
-                SendNOAEmailWithTemplate(sendToName, sendToEmail, listOfDiscrepancies, patientsMoreThan3Days);
-            }
-
-            UndoModifyExcelFile(originalChangesFilename);
         }
     }
 }

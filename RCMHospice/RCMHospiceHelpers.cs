@@ -28,6 +28,23 @@ namespace RCMHospice
 {
     public static class RCMHospiceHelpers
     {
+        public static int GetSheetIndexByName(List<string> sheetNamesOfAgencyFile, string sheetName)
+        {
+            if (sheetNamesOfAgencyFile == null)
+                throw new ArgumentNullException(nameof(sheetNamesOfAgencyFile));
+
+            if (string.IsNullOrWhiteSpace(sheetName))
+                throw new ArgumentException("Sheet name cannot be empty.", nameof(sheetName));
+
+            for (int i = 0; i < sheetNamesOfAgencyFile.Count; i++)
+            {
+                if (sheetNamesOfAgencyFile[i].Trim().Equals(sheetName.Trim(), StringComparison.OrdinalIgnoreCase))
+                    return i;
+            }
+
+            throw new Exception($"Worksheet '{sheetName}' was not found in sheetNamesOfAgencyFile.");
+        }
+
         public static (int capYear, string sheetName) GetCapYearAndSheet(DateTime date)
         {
             int capYear = date.Month >= 10 ? date.Year + 1 : date.Year;
@@ -330,6 +347,7 @@ namespace RCMHospice
                 ws.Cells[row, monthColumns[i]].Style.Numberformat.Format = "m/d/yyyy";
             }
         }
+
         public static bool HasAnyScheduledNumberForToday(DataTable resultFromPaymentSummary)
         {
             if (resultFromPaymentSummary == null)
@@ -1538,75 +1556,7 @@ namespace RCMHospice
 
             return modifiedDataTable;
         }
-
-        public static Tuple<int, int> FindCellLocation(string excelFilePath, string valueToFind, string columnName, string dateToSearch)
-        {
-            using (ExcelPackage package = new ExcelPackage(new FileInfo(excelFilePath)))
-            {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming you want to search the first worksheet.
-
-                int hicColumnIndex = -1;
-                int patientsNameColumnIndex = -1;
-                int dateColumnIndex = -1;
-
-                // Find the column indices for "HIC/MBI" and the provided columnName.
-                for (int col = 1; col <= worksheet.Dimension.Columns; col++)
-                {
-                    if (worksheet.Cells[1, col].Text == "HIC/MBI")
-                    {
-                        hicColumnIndex = col;
-                    }
-                    else if (worksheet.Cells[1, col].Text == columnName)
-                    {
-                        dateColumnIndex = col;
-                    }
-                }
-
-                // Find the column indices for "PATIENTS NAME" and the provided columnName.
-                for (int col = 1; col <= worksheet.Dimension.Columns; col++)
-                {
-                    if (worksheet.Cells[1, col].Text == "PATIENTS NAME")
-                    {
-                        patientsNameColumnIndex = col;
-                    }
-                }
-
-                if (hicColumnIndex == -1 || dateColumnIndex == -1 || patientsNameColumnIndex == -1)
-                {
-                    // One or both column names not found.
-                    return null;
-                }
-
-                // Convert date string to DateTime object for comparison.
-                DateTime searchDate;
-                if (!DateTime.TryParseExact(dateToSearch, "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out searchDate))
-                {
-                    // Invalid date format.
-                    return null;
-                }
-
-                // Search for the value within the "PATIENTS NAME" column that matches the date in the specified column.
-                for (int row = 2; row <= worksheet.Dimension.Rows; row++) // Assuming header is in row 1.
-                {
-                    // Check if the date in the specified column matches the dateToSearch.
-                    DateTime cellDate;
-                    if (DateTime.TryParseExact(worksheet.Cells[row, dateColumnIndex].Text, "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out cellDate))
-                    {
-                        string hicFromAgencySheet = worksheet.Cells[row, hicColumnIndex].Text;
-
-                        if (cellDate == searchDate && hicFromAgencySheet == valueToFind)
-                        {
-                            // Return the location [row, patientsNameColumnIndex] as a Tuple.
-                            return System.Tuple.Create(row, patientsNameColumnIndex);
-                        }
-                    }
-                }
-            }
-
-            // If the value is not found, return null.
-            return null;
-        }
-
+                
         public static Tuple<int, int> FindCellLocation(string excelFilePath, string valueToFind, string dateToFind)
         {
             using (ExcelPackage package = new ExcelPackage(new FileInfo(excelFilePath)))
@@ -1649,40 +1599,7 @@ namespace RCMHospice
 
             // If the value is not found, return null.
             return null;
-        }
-
-        public static string FindCellLocationAlpha(string excelFilePath, Tuple<int, int> indexOfCell)
-        {
-            int rowIndex = indexOfCell.Item1; // Row index
-            int columnIndex = indexOfCell.Item2; // Column index
-
-            using (ExcelPackage package = new ExcelPackage(new FileInfo(excelFilePath)))
-            {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming you want to search the first worksheet.
-
-                // Convert the row index to numeric value and column index to alphabetical value.
-                string columnAlphabeticalValue = GetExcelColumnName(columnIndex);
-
-                // Create a string in the format "ColumnNameRowNumber" and return it.
-                string location = columnAlphabeticalValue + rowIndex;
-
-                // Check if the cell exists within the worksheet dimensions
-                if (rowIndex <= worksheet.Dimension.Rows && columnIndex <= worksheet.Dimension.Columns)
-                {
-                    // Retrieve the value in the specified cell
-                    var cellValue = worksheet.Cells[rowIndex, columnIndex].Text;
-
-                    // Check if the cell contains the desired value
-                    if (cellValue != null && cellValue.Trim() != "")
-                    {
-                        return location; // Return the cell location if value found
-                    }
-                }
-            }
-
-            // If the value is not found or the cell is out of bounds, return null.
-            return null;
-        }
+        }       
 
         public static string FindCellLocationAlpha(string excelFilePath, string hicToFind, string dateToFind)
         {
@@ -2240,6 +2157,7 @@ namespace RCMHospice
 
             return credential;
         }
+
         public static void LogError(string errorMessage, string logFilePath)
         {
             try
@@ -2298,84 +2216,7 @@ namespace RCMHospice
                 return match.Groups[1].Value.Trim();
             }
             return "Default Subject"; // Provide a default subject if the title tag is not found.
-        }
-
-        public static void InsertHeaderRowWithFormatting(string excelFilePath, string worksheetName, int sourceHeaderRow, int destinationRow)
-        {
-            // Set the license context to suppress the LicenseException
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-            using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
-            {
-                var worksheet = package.Workbook.Worksheets[worksheetName];
-
-                if (worksheet == null)
-                {
-                    throw new ArgumentException($"Worksheet '{worksheetName}' not found in the Excel file.");
-                }
-
-                int rowCount = worksheet.Dimension.End.Row;
-                int columnCount = worksheet.Dimension.End.Column;
-
-                if (sourceHeaderRow < 1 || sourceHeaderRow > rowCount)
-                {
-                    throw new ArgumentOutOfRangeException("sourceHeaderRow", "Invalid source header row number.");
-                }
-
-                if (destinationRow < 1 || destinationRow > rowCount + 1)
-                {
-                    throw new ArgumentOutOfRangeException("destinationRow", "Invalid destination row number.");
-                }
-
-                // Increment the row count since we inserted a new row
-                rowCount++;
-
-                // Shift existing rows down
-                for (int row = rowCount; row > destinationRow; row--)
-                {
-                    for (int col = 1; col <= columnCount; col++)
-                    {
-                        var sourceCell = worksheet.Cells[row - 1, col];
-                        var destinationCell = worksheet.Cells[row, col];
-                        var destinationCellStyle = destinationCell.Style;
-
-                        // Copy cell value and apply style from the row above
-                        destinationCell.Value = sourceCell.Text;
-                        destinationCellStyle.Font.Bold = sourceCell.Style.Font.Bold;
-                        destinationCellStyle.Font.Italic = sourceCell.Style.Font.Italic;
-                        // Copy other style properties as needed
-                    }
-                }
-
-                // Clear all formatting on the destination row
-                for (int col = 1; col <= columnCount; col++)
-                {
-                    var destinationCell = worksheet.Cells[destinationRow, col];
-                    var destinationCellStyle = destinationCell.Style;
-
-                    // Clear all formatting
-                    destinationCellStyle.Font.Bold = false;
-                    destinationCellStyle.Font.Italic = false;
-
-                }
-
-                // Copy the source header row to the destination row including style
-                for (int col = 1; col <= columnCount; col++)
-                {
-                    var sourceCell = worksheet.Cells[sourceHeaderRow, col];
-                    var destinationCell = worksheet.Cells[destinationRow, col];
-                    var destinationCellStyle = destinationCell.Style;
-
-                    // Copy cell value and apply style from the source header row
-                    destinationCell.Value = sourceCell.Text;
-                    destinationCellStyle.Font.Bold = sourceCell.Style.Font.Bold;
-                    destinationCellStyle.Font.Italic = sourceCell.Style.Font.Italic;
-                    // Copy other style properties as needed
-                }
-
-                package.Save();
-            }
-        }
+        }        
 
         //method to move a row down and insert a new row with the specified data.
         public static void InsertRowAndData(string filePath, string worksheetName, int rowNumber, string patientName, string startDate, string paidDate, string reimb, string hicValue)
@@ -2961,32 +2802,7 @@ namespace RCMHospice
                 return result.ToString("M/d/yyyy");
             }
             return null;
-        }
-
-        public static void RecalculateFormulas(string filePath)
-        {
-            Excel.Application excelApp = new Excel.Application();
-            Excel.Workbook workbook = excelApp.Workbooks.Open(filePath);
-
-            try
-            {
-                foreach (Excel.Worksheet worksheet in workbook.Sheets)
-                {
-                    worksheet.Calculate();
-                }
-
-                workbook.Save(); // Save the changes
-            }
-            finally
-            {
-                workbook.Close();
-                excelApp.Quit();
-
-                // Release COM objects to avoid memory leaks
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
-            }
-        }
+        }        
         
         public static string RemoveMiddleName(string fullName)
         {
@@ -3316,27 +3132,7 @@ namespace RCMHospice
             }
             // If the column with the specified header is not found, return -1
             return -1;
-        }
-
-        public static DataTable MergeIdenticalDataTables(DataTable table1, DataTable table2)
-        {
-            /// Create a new DataTable with the same structure as the input tables
-            DataTable mergedTable = table1.Clone();
-
-            // Copy rows from table1 to mergedTable
-            foreach (DataRow row in table1.Rows)
-            {
-                mergedTable.ImportRow(row);
-            }
-
-            // Copy rows from table2 to mergedTable
-            foreach (DataRow row in table2.Rows)
-            {
-                mergedTable.ImportRow(row);
-            }
-
-            return mergedTable;
-        }
+        }        
 
         public static int FindLastRowWithValue(ExcelWorksheet worksheet, int column)
         {
@@ -3396,141 +3192,7 @@ namespace RCMHospice
 
             // Return the new date as a string in "MM/dd/yyyy" format
             return newDate.ToString("MM/dd/yyyy");
-        }
-
-        public static void ProcessPaymentSummary(string fileName, string paymentSummarySheet, string paymentsSheet,
-                                         string hicMbi, string startDate, string submitDate, string reimb, string status, string type = null)
-        {
-            // Load the Excel package
-            FileInfo fileInfo = new FileInfo(fileName);
-            using (ExcelPackage package = new ExcelPackage(fileInfo))
-            {
-                // Get the payment summary worksheet
-                ExcelWorksheet summarySheet = package.Workbook.Worksheets[paymentSummarySheet];
-                if (summarySheet == null)
-                    throw new Exception($"Worksheet {paymentSummarySheet} not found");
-
-                // Get the payments worksheet
-                ExcelWorksheet paymentsSheetObj = package.Workbook.Worksheets[paymentsSheet];
-                if (paymentsSheetObj == null)
-                    throw new Exception($"Worksheet {paymentsSheet} not found");
-
-                // Find the row in payment summary that matches HIC/MBI and Start Date
-                bool isFound = true;
-                int summaryRow = FindRowByHicMbiAndStartDate(summarySheet, hicMbi, startDate);
-                if (summaryRow == -1)
-                {
-                    isFound = false;
-                }
-
-                decimal reimbNew = 0;
-                decimal reimbOriginal = 0;
-
-                // Parse the date string into a DateTime object
-                DateTime date = DateTime.ParseExact(submitDate, "MM/dd/yyyy", null);
-
-                // Convert it to the desired format "M/d/yyyy"
-                string formattedDate = date.ToString("M/d/yyyy");
-                int paymentsRow = FindRowByDate(paymentsSheetObj, formattedDate);
-                if (paymentsRow == -1)
-                {
-                    Console.WriteLine($"No matching row found in payments sheet for date: {submitDate}");
-                    return;
-                }
-
-                if (isFound)
-                {
-                    // Get the Reimb. value from that row and subtract the passed value
-                    reimbOriginal = Convert.ToDecimal(summarySheet.Cells[summaryRow, GetColumnIndex(summarySheet, "Reimb")].Value);
-                    decimal reimbToDeduct = Convert.ToDecimal(reimb.Replace("$", "").Replace(",", ""));
-                    reimbNew = reimbOriginal - reimbToDeduct;
-
-                    // Update the Reimb. in the summary sheet
-                    summarySheet.Cells[summaryRow, GetColumnIndex(summarySheet, "Reimb")].Value = reimbNew;
-
-                    // Get the SUSPENSE field and aggregate with the new Reimb.
-                    int suspenseColumn = GetColumnIndex(paymentsSheetObj, "SUSPENSE");
-                    decimal suspenseOriginal = Convert.ToDecimal(paymentsSheetObj.Cells[paymentsRow, suspenseColumn].Value);
-                    paymentsSheetObj.Cells[paymentsRow, suspenseColumn].Value = suspenseOriginal + reimbNew;
-
-                    // Find the NOTES column and insert the status
-                    int notesColumn = GetColumnIndex(paymentsSheetObj, "NOTES");
-                    paymentsSheetObj.Cells[paymentsRow, notesColumn].Value = status;
-
-                    // Get the AMOUNT field value
-                    int amountColumn = GetColumnIndex(paymentsSheetObj, "AMOUNT");
-                    decimal amountOriginal = Convert.ToDecimal(paymentsSheetObj.Cells[paymentsRow, amountColumn].Value);
-
-                    // Add AMOUNT and SUSPENSE values together and store it in the TOTAL field
-                    int totalColumn = GetColumnIndex(paymentsSheetObj, "TOTAL");
-                    decimal totalValue = amountOriginal + suspenseOriginal + reimbNew;
-                    paymentsSheetObj.Cells[paymentsRow, totalColumn].Value = totalValue;
-                }
-                else
-                {
-                    DateTime parsedDate;
-                    decimal suspenseOriginal;
-                    decimal currentCalc;
-
-                    if (DateTime.TryParseExact(submitDate, "MM/dd/yyyy",
-                        CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate))
-                    {
-                        if (parsedDate < DateTime.Today)
-                        {
-                            // Date is in the past
-                            int pastDueColumn = GetColumnIndex(paymentsSheetObj, "PAST DUE");
-                            decimal reimDec = Convert.ToDecimal(reimb.Replace(",", "").Replace("$", ""));
-                            if (paymentsSheetObj.Cells[1, pastDueColumn + 1].Text == "")
-                                currentCalc = 0;
-                            else
-                                currentCalc = Convert.ToDecimal(paymentsSheetObj.Cells[1, pastDueColumn + 1].Text);
-
-                            paymentsSheetObj.Cells[1, pastDueColumn + 1].Value = currentCalc + reimDec;
-                            Console.WriteLine("submitDate is in the past.");
-                        }
-                        else
-                        {
-                            // Date is today or in the future
-                            reimbNew = Convert.ToDecimal(reimb.Replace("$", "").Replace(",", ""));
-                            int suspenseColumn = GetColumnIndex(paymentsSheetObj, "SUSPENSE");
-                            suspenseOriginal = Convert.ToDecimal(paymentsSheetObj.Cells[paymentsRow, suspenseColumn].Value);
-                            paymentsSheetObj.Cells[paymentsRow, suspenseColumn].Value = suspenseOriginal + reimbNew;
-
-                            // Get the AMOUNT field value
-                            int amountColumn = GetColumnIndex(paymentsSheetObj, "AMOUNT");
-                            decimal amountOriginal = Convert.ToDecimal(paymentsSheetObj.Cells[paymentsRow, amountColumn].Value);
-
-                            // Add AMOUNT and SUSPENSE values together and store it in the TOTAL field
-                            int totalColumn = GetColumnIndex(paymentsSheetObj, "TOTAL");
-                            decimal totalValue = amountOriginal + suspenseOriginal + reimbNew;
-                            paymentsSheetObj.Cells[paymentsRow, totalColumn].Value = totalValue;
-                            Console.WriteLine("submitDate is not in the past.");
-
-                            // Handle the "type" input and store it in the "NOTES" column
-                            int notesColumn = GetColumnIndex(paymentsSheetObj, "NOTES");
-                            if (notesColumn != -1)
-                            {
-                                if (type == "projected")
-                                {
-                                    paymentsSheetObj.Cells[paymentsRow, notesColumn].Value = "Projected";
-                                }
-                                if (type == "suspense projection")
-                                {
-                                    paymentsSheetObj.Cells[paymentsRow, notesColumn].Value = "Projected";
-                                }
-                                else
-                                {
-                                    paymentsSheetObj.Cells[paymentsRow, notesColumn].Value = status;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Save the changes
-                package.Save();
-            }
-        }
+        }        
 
         public static void UpdatePaymentsSheetAggregate(string agencyFile, string worksheetName, string payDate, string amount, string type)
         {
@@ -3634,6 +3296,7 @@ namespace RCMHospice
                 package.Save();
             }
         }
+
         public static bool TryParseDecimalCell(ExcelRangeBase cell, out decimal value)
         {
             value = 0m;
@@ -3745,30 +3408,6 @@ namespace RCMHospice
 
                 package.Save();
             }
-        }
-
-        public static int FindRowByHicMbiAndStartDate(ExcelWorksheet worksheet, string hicMbi, string startDate)
-        {
-            for (int row = worksheet.Dimension.Start.Row + 1; row <= worksheet.Dimension.End.Row; row++)
-            {
-                string hicMbiValue = worksheet.Cells[row, GetColumnIndex(worksheet, "HIC/MBI")].Text;
-                string startDateValue = worksheet.Cells[row, GetColumnIndex(worksheet, "Start Date")].Text;
-
-                if (hicMbiValue == hicMbi && startDateValue == startDate)
-                    return row;
-            }
-            return -1;
-        }
-
-        public static int FindRowByDate(ExcelWorksheet worksheet, string date)
-        {
-            for (int row = worksheet.Dimension.Start.Row + 1; row <= worksheet.Dimension.End.Row; row++)
-            {
-                string dateValue = worksheet.Cells[row, GetColumnIndex(worksheet, "DATE")].Text;
-                if (dateValue == date)
-                    return row;
-            }
-            return -1;
         }
 
         public static void RunStep(string stepName, Action stepAction)
