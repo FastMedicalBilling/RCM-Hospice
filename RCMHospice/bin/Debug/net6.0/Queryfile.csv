@@ -10,3 +10,5 @@ get all relevant search table rows|SELECT [Patient Name],[Agency],[Start Date],[
 search table by TOB|SELECT [Patient Name],[Agency],[Start Date],[Paid Date],[Reimb],[TOB],[HIC/MBI],[S/Loc],[Cancelled Date] FROM [Search Report$] WHERE [Agency] like('%AgencyName%')
 Suspense Table|SELECT * FROM [Suspense$] WHERE [Agency] like('%AgencyName%')
 Payments table|SELECT * FROM [worksheet$] where [Provider] like('%AgencyName%')
+NOE Filter|SELECT * FROM [Search Report$]
+Final All Search Rows|SELECT [Patient Name],[Agency],[Admit Date],[Start Date],[Through Date],[Reimb],[HIC/MBI],[TOB],[S/Loc],[Cancelled Date] FROM [Search Report$]

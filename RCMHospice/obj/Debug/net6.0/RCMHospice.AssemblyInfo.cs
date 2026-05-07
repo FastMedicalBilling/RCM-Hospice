@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RCMHospice")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfac720b12f8c3cd685b7b5e35afe9b1118ec454")]
 [assembly: System.Reflection.AssemblyProductAttribute("RCMHospice")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RCMHospice")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
