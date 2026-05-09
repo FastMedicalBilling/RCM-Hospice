@@ -3430,7 +3430,7 @@ namespace RCMHospice
         {
             try
             {
-                TwilioClient.Init("YOUR_TWILIO_ACCOUNT_SID", "YOUR_TWILIO_AUTH_TOKEN");
+                TwilioClient.Init("test", "test");
 
                 var message = MessageResource.Create(
                     body: messageBody,
