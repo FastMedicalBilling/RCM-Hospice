@@ -65,10 +65,10 @@ namespace RCMHospice
 
             //RCMHospiceHelpers.RunStep("Main NOE Process", () => NOEProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
             //RCMHospiceHelpers.RunStep("Final Process", () => FinalProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
-            RCMHospiceHelpers.RunStep("Future Payment Process", () => FuturePaymentProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
-            RCMHospiceHelpers.RunStep("Payment Summary Process", () => PaymentSummaryProcess(xlsFilePaymentSummary, agencyXlsxFiles, csvFilePath));
-            RCMHospiceHelpers.RunStep("Suspense Process", () => SuspenseProcess(xlsFileSuspenseReport, agencyXlsxFiles, csvFilePath));
-            RCMHospiceHelpers.RunStep("Move Future Payment To Summary Process", () => MoveFuturePaymentToSummaryProcess(agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Future Payment Process", () => FuturePaymentProcess(xlsFileSearchReportP, agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Payment Summary Process", () => PaymentSummaryProcess(xlsFilePaymentSummary, agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Suspense Process", () => SuspenseProcess(xlsFileSuspenseReport, agencyXlsxFiles, csvFilePath));
+            //RCMHospiceHelpers.RunStep("Move Future Payment To Summary Process", () => MoveFuturePaymentToSummaryProcess(agencyXlsxFiles, csvFilePath));
 
             #region change to proper case
             RCMHospiceHelpers.NamesToProperCaseOnAllAgencies(agencyXlsxFiles);

@@ -213,9 +213,10 @@ namespace RCMHospice
                 csvData = ReadCsvFile(csvFilePath, "QueryName", "SqlQuery");
                 changesQuery = GetSqlQueryByQueryName(csvData, "select all");
                 List<string> sheetNamesOfAgencyFile = GetSheetNames(xlsfilePathAgency[indexOfAgencies]);
+                int paymentsTabInd = GetSheetIndexByName(sheetNamesOfAgencyFile, "PAYMENTS");
                 string agencyName = xlsfilePathAgency[indexOfAgencies].Replace("C:\\Automation\\Files\\AgenciesHospice\\", "").Replace(" HH", "").Replace(".xlsx", "");
                 Console.WriteLine($"Starting work on {agencyName}");
-                changesQuery = changesQuery.Replace("worksheet", sheetNamesOfAgencyFile[1]);
+                changesQuery = changesQuery.Replace("worksheet", sheetNamesOfAgencyFile[paymentsTabInd]);
                 resultFromPayment = ExecuteExcelQuery(xlsfilePathAgency[indexOfAgencies], changesQuery);
                 resultFromPayment = ConvertDatesToDateOnly(resultFromPayment);
 
