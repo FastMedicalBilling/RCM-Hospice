@@ -8,6 +8,147 @@ namespace RCMHospice
 {
     public static class RCMHospiceMainProcess
     {
+        public static void NOEProcess(string searchReportPath, string[] agencyFiles, string queryFilePath)
+        {
+            Console.WriteLine("NOE Process Started");
+
+            Directory.CreateDirectory("ErrorLogs");
+            string logFileName = $"logNOEProcess_{DateTime.Now:yyyyMMddHHmmssfff}.txt";
+            string logFilePath = Path.Combine("ErrorLogs", logFileName);
+
+            ArchiveFiles(searchReportPath, "SearchReport");
+
+            string originalChangesFilename = ModifyExcelFile(searchReportPath, "Search");
+
+            for (int indexOfAgencies = 0; indexOfAgencies < agencyFiles.Length; indexOfAgencies++)
+            {
+                ArchiveFiles(agencyFiles[indexOfAgencies], "Agencies");
+            }
+
+            DataTable csvData = ReadCsvFile(queryFilePath, "QueryName", "SqlQuery");
+
+            for (int indexOfAgencies = 0; indexOfAgencies < agencyFiles.Length; indexOfAgencies++)
+            {
+                string agencyFilePath = agencyFiles[indexOfAgencies];
+
+                string agencyName = agencyFilePath
+                    .Replace("C:\\Automation\\Files\\AgenciesHospice\\", "")
+                    .Replace(" HH", "")
+                    .Replace(".xlsx", "")
+                    .Trim();
+
+                Console.WriteLine($"Starting NOE work on {agencyName}");
+                RCMHospiceHelpers.ForceColumnToText(searchReportPath, "TOB");
+
+                string noeQuery = GetSqlQueryByQueryName(csvData, "NOE Filter");
+
+                DataTable resultFromSearchReport = ExecuteExcelQuery(searchReportPath, noeQuery);
+                resultFromSearchReport = ConvertDatesToDateOnly(resultFromSearchReport);
+
+                resultFromSearchReport = RCMHospiceHelpers.FilterNOESearchReportRows(
+                    resultFromSearchReport,
+                    agencyName
+                );
+
+                if (resultFromSearchReport.Rows.Count == 0)
+                {
+                    Console.WriteLine($"No NOE rows found for {agencyName}");
+                    continue;
+                }
+
+                string newFilePath = "RecalculatedFile.xlsx";
+                File.Copy(agencyFilePath, newFilePath, true);
+
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(newFilePath)))
+                {
+                    for (int indexOfPatients = 0; indexOfPatients < resultFromSearchReport.Rows.Count; indexOfPatients++)
+                    {
+                        string patientName = resultFromSearchReport.Rows[indexOfPatients]["Patient Name"].ToString().Trim();
+                        string hicMbi = resultFromSearchReport.Rows[indexOfPatients]["HIC/MBI"].ToString().Trim();
+                        string sLoc = resultFromSearchReport.Rows[indexOfPatients]["S/Loc"].ToString().Trim();
+
+                        if (string.IsNullOrWhiteSpace(hicMbi))
+                            continue;
+
+                        if (!DateTime.TryParse(resultFromSearchReport.Rows[indexOfPatients]["Start Date"].ToString(), out DateTime startDate))
+                            continue;
+
+                        bool startsWithS = sLoc.StartsWith("S", StringComparison.OrdinalIgnoreCase);
+                        bool startsWithP = sLoc.StartsWith("P", StringComparison.OrdinalIgnoreCase);
+
+                        if (!startsWithS && !startsWithP)
+                            continue;
+
+                        string statusToWrite = startsWithP ? "Approved" : "Accepted";
+
+                        var (capYear, sheetName) = RCMHospiceHelpers.GetCapYearAndSheet(startDate);
+
+                        ExcelWorksheet ws;
+
+                        try
+                        {
+                            ws = RCMHospiceHelpers.EnsureClaimsYearSheetExists(package, sheetName);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            LogError(ex.Message, logFilePath);
+                            continue;
+                        }
+
+                        int patientsNameCol = RCMHospiceHelpers.GetColumnByHeader(ws, "PATIENTS NAME");
+                        int statusCol = RCMHospiceHelpers.GetColumnByHeader(ws, "Status");
+                        int socCol = RCMHospiceHelpers.GetColumnByHeader(ws, "SOC");
+                        int dcStatusCol = RCMHospiceHelpers.GetColumnByHeader(ws, "DC Status");
+                        int hicMbiCol = RCMHospiceHelpers.GetColumnByHeader(ws, "HIC/MBI");
+
+                        List<int> monthColumns = RCMHospiceHelpers.GetMonthColumns(ws);
+
+                        if (patientsNameCol <= 0 || statusCol <= 0 || socCol <= 0 || dcStatusCol <= 0 || hicMbiCol <= 0 || monthColumns.Count == 0)
+                        {
+                            Console.WriteLine($"Required columns were not found on sheet {sheetName} for {agencyName}");
+                            LogError($"Required columns were not found on sheet {sheetName} for {agencyName}", logFilePath);
+                            continue;
+                        }
+
+                        int existingRow = RCMHospiceHelpers.FindRowByHicMbi(ws, hicMbi, hicMbiCol);
+                        int targetRow = existingRow > 0 ? existingRow : RCMHospiceHelpers.GetNextPatientRow(ws, patientsNameCol);
+                        Console.WriteLine($"Writing patient {patientName} to row {targetRow} on {sheetName}");
+
+                        List<DateTime> monthDates = RCMHospiceHelpers.GenerateMonthDates(startDate, capYear);
+
+                        ws.Cells[targetRow, patientsNameCol].Value = patientName;
+                        ws.Cells[targetRow, statusCol].Value = statusToWrite;
+                        ws.Cells[targetRow, socCol].Value = startDate;
+                        ws.Cells[targetRow, socCol].Style.Numberformat.Format = "m/d/yyyy";
+                        ws.Cells[targetRow, dcStatusCol].Value = "Active";
+                        ws.Cells[targetRow, hicMbiCol].Value = hicMbi;
+
+                        RCMHospiceHelpers.WriteMonthDatesToMonthColumns(ws, targetRow, monthDates, monthColumns);
+
+                        if (existingRow > 0)
+                        {
+                            Console.WriteLine($"Updated patient {patientName} with HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}, status {statusToWrite}");
+                            LogError($"Updated patient {patientName} with HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}, status {statusToWrite}", logFilePath);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Inserted patient {patientName} with HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}, status {statusToWrite}");
+                            LogError($"Inserted patient {patientName} with HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}, status {statusToWrite}", logFilePath);
+                        }
+                    }
+
+                    package.Save();
+                }
+
+                File.Copy(newFilePath, agencyFilePath, true);
+                File.Delete(newFilePath);
+            }
+
+            UndoModifyExcelFile(originalChangesFilename);
+            Console.WriteLine("NOE Process Completed");
+        }
+
         public static void FutureSummaryProcess(string xlsFileSearchReport, string[] xlsfilePathAgency, string csvFilePath)
         {
             Console.WriteLine($"Future Summary Process Initiated");
@@ -413,6 +554,11 @@ namespace RCMHospice
                             Console.WriteLine($"EIDM downloader failed: {err} skipping this company");
                             continue;
                         }
+                        else
+                        {
+                            //if downloaded successfully wait 5 mins
+                            Thread.Sleep(TimeSpan.FromMinutes(5));
+                        }
 
                         string fileName = RCMHospiceHelpers.GetCompanyFileNameFromMappingFile();
 
@@ -619,7 +765,6 @@ namespace RCMHospice
             Console.WriteLine($"Final Process Initiated");
 
             Directory.CreateDirectory("ErrorLogs");
-
             ArchiveFiles(xlsFileSearchReport, "SearchReport");
 
             string logFileName = $"logFinalProcess_{DateTime.Now:yyyyMMddHHmmssfff}.txt";
@@ -668,37 +813,38 @@ namespace RCMHospice
                     {
                         DataRow searchRow = resultFromSearch.Rows[indexOfPatients];
 
-                        string patientName = searchRow["Patient Name"].ToString().Trim();
-                        string hicMbi = searchRow["HIC/MBI"].ToString().Trim();
-                        string tob = searchRow["TOB"].ToString().Trim();
-                        string sLoc = searchRow["S/Loc"].ToString().Trim();
-                        string reimbValue = searchRow["Reimb"].ToString().Trim();
+                        string patientName = RCMHospiceHelpers.GetDataRowValue(searchRow, "Patient Name", "E");
+                        string hicMbi = RCMHospiceHelpers.GetDataRowValue(searchRow, "HIC/MBI", "D");
+                        string startDateValue = RCMHospiceHelpers.GetDataRowValue(searchRow, "Start Date", "G");
+                        string throughDateValue = RCMHospiceHelpers.GetDataRowValue(searchRow, "Through Date", "H");
+                        string reimbValue = RCMHospiceHelpers.GetDataRowValue(searchRow, "Reimb", "AF");
+                        string tob = RCMHospiceHelpers.GetDataRowValue(searchRow, "TOB", "L");
+                        string sLoc = RCMHospiceHelpers.GetDataRowValue(searchRow, "S/LOC", "M");
 
                         if (string.IsNullOrWhiteSpace(hicMbi))
                             continue;
 
-                        if (!DateTime.TryParse(searchRow["Start Date"].ToString(), out DateTime startDate))
+                        if (!DateTime.TryParse(startDateValue, out DateTime startDate))
+                        {
+                            Console.WriteLine($"Could not parse Start Date for {patientName} ({hicMbi})");
+                            LogError($"Could not parse Start Date for {patientName} ({hicMbi})", logFilePath);
                             continue;
-
-                        DateTime admitDate = startDate;
-
-                        if (searchRow.Table.Columns.Contains("Admit Date"))
-                            DateTime.TryParse(searchRow["Admit Date"].ToString(), out admitDate);
+                        }
 
                         DateTime? throughDate = null;
-
-                        if (searchRow.Table.Columns.Contains("Through Date"))
-                        {
-                            if (DateTime.TryParse(searchRow["Through Date"].ToString(), out DateTime parsedThrough))
-                                throughDate = parsedThrough;
-                        }
+                        if (DateTime.TryParse(throughDateValue, out DateTime parsedThroughDate))
+                            throughDate = parsedThroughDate;
 
                         double reimb = RCMHospiceHelpers.ParseDoubleSafe(reimbValue);
 
                         bool startsWithP = sLoc.StartsWith("P", StringComparison.OrdinalIgnoreCase);
                         bool startsWithS = sLoc.StartsWith("S", StringComparison.OrdinalIgnoreCase);
 
-                        if (!startsWithP && !startsWithS)
+                        bool isDeathDischargeTob = tob.Contains("811") || tob.Contains("814");
+                        bool isRegularDischargeTob = tob.Contains("81B");
+                        bool isDischargeTob = isDeathDischargeTob || isRegularDischargeTob;
+
+                        if (!startsWithP && !startsWithS && !isDischargeTob)
                             continue;
 
                         var (capYear, sheetName) = RCMHospiceHelpers.GetCapYearAndSheet(startDate);
@@ -717,6 +863,8 @@ namespace RCMHospice
                         }
 
                         int hicMbiCol = RCMHospiceHelpers.GetColumnByHeader(ws, "HIC/MBI");
+                        int dcStatusCol = RCMHospiceHelpers.GetColumnByHeader(ws, "DC Status");
+                        int endDateCol = RCMHospiceHelpers.GetColumnByHeader(ws, "End Date");
 
                         if (hicMbiCol <= 0)
                         {
@@ -740,96 +888,67 @@ namespace RCMHospice
                         {
                             Console.WriteLine($"Could not find HIC/MBI {hicMbi} with Start Date {startDate:M/d/yyyy} in {agencyName}, sheet {sheetName}");
                             LogError($"Could not find HIC/MBI {hicMbi} with Start Date {startDate:M/d/yyyy} in {agencyName}, sheet {sheetName}", logFilePath);
-                        }
-                        else
-                        {
-                            int monthCol = RCMHospiceHelpers.FindMatchingMonthColumn(ws, rowIndex, startDate, monthColumns);
-
-                            if (monthCol <= 0)
-                            {
-                                Console.WriteLine($"Could not find matching month date {startDate:M/d/yyyy} for HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}");
-                                LogError($"Could not find matching month date {startDate:M/d/yyyy} for HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}", logFilePath);
-                            }
-                            else
-                            {
-                                int paidCol = monthCol + 1;
-                                int statusCol = monthCol + 2;
-
-                                if (startsWithP)
-                                {
-                                    ws.Cells[rowIndex, paidCol].Value = reimb;
-                                    ws.Cells[rowIndex, statusCol].Value = "Paid";
-
-                                    Console.WriteLine($"Paid posted for {patientName} ({hicMbi}) on {startDate:M/d/yyyy}, amount {reimb}");
-                                    LogError($"Paid posted for {patientName} ({hicMbi}) on {startDate:M/d/yyyy}, amount {reimb}", logFilePath);
-                                }
-
-                                if (startsWithS)
-                                {
-                                    ws.Cells[rowIndex, statusCol].Value = "In Process";
-
-                                    Console.WriteLine($"In Process posted for {patientName} ({hicMbi}) on {startDate:M/d/yyyy}");
-                                    LogError($"In Process posted for {patientName} ({hicMbi}) on {startDate:M/d/yyyy}", logFilePath);
-                                }
-                            }
+                            continue;
                         }
 
-                        if (tob.Contains("811") || tob.Contains("814"))
+                        int monthCol = RCMHospiceHelpers.FindMatchingMonthColumn(ws, rowIndex, startDate, monthColumns);
+
+                        if (monthCol <= 0)
                         {
-                            var (admitCapYear, admitSheetName) = RCMHospiceHelpers.GetCapYearAndSheet(admitDate);
+                            Console.WriteLine($"Could not find matching month date {startDate:M/d/yyyy} for HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}");
+                            LogError($"Could not find matching month date {startDate:M/d/yyyy} for HIC/MBI {hicMbi} in {agencyName}, sheet {sheetName}", logFilePath);
+                            continue;
+                        }
 
-                            ExcelWorksheet wsAdmit;
+                        int paidCol = monthCol + 1;
+                        int monthStatusCol = monthCol + 2;
 
-                            try
-                            {
-                                wsAdmit = RCMHospiceHelpers.EnsureClaimsYearSheetExists(package, admitSheetName);
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine(ex.Message);
-                                LogError(ex.Message, logFilePath);
-                                continue;
-                            }
+                        if (startsWithP)
+                        {
+                            ws.Cells[rowIndex, paidCol].Value = reimb;
+                            ws.Cells[rowIndex, monthStatusCol].Value = "Paid";
 
-                            int admitHicCol = RCMHospiceHelpers.GetColumnByHeader(wsAdmit, "HIC/MBI");
-                            int dcStatusCol = RCMHospiceHelpers.GetColumnByHeader(wsAdmit, "DC Status");
-                            int endDateCol = RCMHospiceHelpers.GetColumnByHeader(wsAdmit, "End Date");
+                            Console.WriteLine($"Paid posted for {patientName} ({hicMbi}) on {startDate:M/d/yyyy}, amount {reimb}");
+                            LogError($"Paid posted for {patientName} ({hicMbi}) on {startDate:M/d/yyyy}, amount {reimb}", logFilePath);
+                        }
 
-                            List<int> admitMonthColumns = RCMHospiceHelpers.GetMonthColumns(wsAdmit);
+                        if (startsWithS)
+                        {
+                            ws.Cells[rowIndex, monthStatusCol].Value = "In Process";
 
-                            int admitRowIndex = RCMHospiceHelpers.FindRowByHicAndDate(wsAdmit, hicMbi, admitDate, admitHicCol, admitMonthColumns);
+                            Console.WriteLine($"In Process posted for {patientName} ({hicMbi}) on {startDate:M/d/yyyy}");
+                            LogError($"In Process posted for {patientName} ({hicMbi}) on {startDate:M/d/yyyy}", logFilePath);
+                        }
 
-                            if (admitRowIndex <= 0)
-                            {
-                                Console.WriteLine($"Could not find admit row for HIC/MBI {hicMbi} with Admit Date {admitDate:M/d/yyyy} in {agencyName}, sheet {admitSheetName}");
-                                LogError($"Could not find admit row for HIC/MBI {hicMbi} with Admit Date {admitDate:M/d/yyyy} in {agencyName}, sheet {admitSheetName}", logFilePath);
-                                continue;
-                            }
-
+                        if (isDischargeTob)
+                        {
                             if (dcStatusCol <= 0 || endDateCol <= 0)
                             {
-                                Console.WriteLine($"DC Status or End Date column was not found on {admitSheetName} for {agencyName}");
-                                LogError($"DC Status or End Date column was not found on {admitSheetName} for {agencyName}", logFilePath);
+                                Console.WriteLine($"DC Status or End Date column was not found on {sheetName} for {agencyName}");
+                                LogError($"DC Status or End Date column was not found on {sheetName} for {agencyName}", logFilePath);
                                 continue;
                             }
 
-                            string colZValue = wsAdmit.Cells[admitRowIndex, 26].Text.Trim();
-                            string colAAValue = wsAdmit.Cells[admitRowIndex, 27].Text.Trim();
+                            string searchReportColZ = RCMHospiceHelpers.GetDataRowValueByExcelColumn(searchRow, "Z");
+                            string searchReportColAA = RCMHospiceHelpers.GetDataRowValueByExcelColumn(searchRow, "AA");
 
-                            bool isDeath =
-                                colZValue == "55" ||
-                                colAAValue == "55";
+                            bool isDeath = false;
 
-                            wsAdmit.Cells[admitRowIndex, dcStatusCol].Value = isDeath ? "Death" : "DC";
+                            if (isDeathDischargeTob)
+                                isDeath = RCMHospiceHelpers.HasDeathCode55(searchReportColZ, searchReportColAA);
+
+                            ws.Cells[rowIndex, dcStatusCol].Value = isDeath ? "Death" : "DC";
 
                             if (throughDate.HasValue)
                             {
-                                wsAdmit.Cells[admitRowIndex, endDateCol].Value = throughDate.Value;
-                                wsAdmit.Cells[admitRowIndex, endDateCol].Style.Numberformat.Format = "m/d/yyyy";
+                                ws.Cells[rowIndex, endDateCol].Value = throughDate.Value;
+                                ws.Cells[rowIndex, endDateCol].Style.Numberformat.Format = "m/d/yyyy";
                             }
 
-                            Console.WriteLine($"DC updated for {patientName} ({hicMbi}) as {(isDeath ? "Death" : "DC")}");
-                            LogError($"DC updated for {patientName} ({hicMbi}) as {(isDeath ? "Death" : "DC")}", logFilePath);
+                            RCMHospiceHelpers.ClearAfterStatusAndMarkDc(ws, rowIndex, monthStatusCol);
+
+                            Console.WriteLine($"Discharge updated for {patientName} ({hicMbi}) as {(isDeath ? "Death" : "DC")} with End Date {(throughDate.HasValue ? throughDate.Value.ToString("M/d/yyyy") : "blank")} | TOB={tob} | Z={searchReportColZ} | AA={searchReportColAA}");
+                            LogError($"Discharge updated for {patientName} ({hicMbi}) as {(isDeath ? "Death" : "DC")} with End Date {(throughDate.HasValue ? throughDate.Value.ToString("M/d/yyyy") : "blank")} | TOB={tob} | Z={searchReportColZ} | AA={searchReportColAA}", logFilePath);
                         }
                     }
 
@@ -847,4 +966,4 @@ namespace RCMHospice
             Console.WriteLine("Final Process Completed");
         }
     }
-}
+ }

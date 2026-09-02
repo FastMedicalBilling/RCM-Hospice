@@ -22,12 +22,161 @@ using System.Runtime.InteropServices;
 using Path = System.IO.Path;
 using System.Diagnostics;
 using Microsoft.VisualBasic.FileIO;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.Drawing;
 
 
 namespace RCMHospice
 {
     public static class RCMHospiceHelpers
     {
+        public static DataTable FilterFinalSearchReportRows(DataTable searchReportTable, string agencyName)
+        {
+            DataTable filteredTable = searchReportTable.Clone();
+
+            string[] validTobs = { "811", "812", "813", "814", "817", "81G", "81I", "81B" };
+
+            foreach (DataRow row in searchReportTable.Rows)
+            {
+                string agency = row.Table.Columns.Contains("Agency") ? row["Agency"].ToString().Trim() : "";
+                string tob = row.Table.Columns.Contains("TOB") ? row["TOB"].ToString().Trim() : "";
+
+                bool agencyMatches = agency.IndexOf(agencyName, StringComparison.OrdinalIgnoreCase) >= 0;
+                bool tobMatches = validTobs.Any(x => tob.IndexOf(x, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                if (agencyMatches && tobMatches)
+                    filteredTable.ImportRow(row);
+            }
+
+            return filteredTable;
+        }
+
+        public static bool HasDeathCode55(params string[] values)
+        {
+            foreach (string value in values)
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    continue;
+
+                string cleanValue = value.Trim();
+
+                if (cleanValue == "55")
+                    return true;
+
+                if (double.TryParse(cleanValue, out double numericValue))
+                {
+                    if (numericValue == 55)
+                        return true;
+                }
+
+                string[] parts = cleanValue.Split(new char[] { ',', ';', '|', ' ', '/', '\\', '-' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (string part in parts)
+                {
+                    string cleanPart = part.Trim();
+
+                    if (cleanPart == "55")
+                        return true;
+
+                    if (double.TryParse(cleanPart, out double partNumber) && partNumber == 55)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static void ClearAfterStatusAndMarkDc(ExcelWorksheet ws, int row, int statusCol)
+        {
+            if (ws == null || ws.Dimension == null)
+                return;
+
+            int lastCol = ws.Dimension.End.Column;
+
+            for (int col = statusCol + 1; col <= lastCol; col++)
+            {
+                ws.Cells[row, col].Value = null;
+            }
+
+            int dcCol = statusCol + 1;
+
+            ws.Cells[row, dcCol].Value = "DC";
+            ws.Cells[row, dcCol].Style.Font.Color.SetColor(Color.Black);
+            ws.Cells[row, dcCol].Style.Fill.PatternType = ExcelFillStyle.Solid;
+            ws.Cells[row, dcCol].Style.Fill.BackgroundColor.SetColor(Color.Red);
+        }
+
+        public static void StartConsoleLogToFile()
+        {
+            string logFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LogFiles");
+            Directory.CreateDirectory(logFolderPath);
+
+            string logFileName = $"ConsoleLog_{DateTime.Now:yyyyMMdd_HHmmssfff}.txt";
+            string logFilePath = Path.Combine(logFolderPath, logFileName);
+
+            TextWriter originalConsoleOut = Console.Out;
+            StreamWriter logWriter = new StreamWriter(logFilePath, append: false);
+            logWriter.AutoFlush = true;
+
+            ConsoleAndFileWriter dualWriter = new ConsoleAndFileWriter(originalConsoleOut, logWriter);
+
+            Console.SetOut(dualWriter);
+            Console.SetError(dualWriter);
+        }
+
+        public static string GetDataRowValue(DataRow row, string headerName, string fallbackExcelColumn)
+        {
+            if (row == null)
+                return string.Empty;
+
+            if (row.Table.Columns.Contains(headerName))
+                return row[headerName].ToString().Trim();
+
+            return GetDataRowValueByExcelColumn(row, fallbackExcelColumn);
+        }
+
+        public static string GetDataRowValueByExcelColumn(DataRow row, string excelColumn)
+        {
+            if (row == null)
+                return string.Empty;
+
+            int columnIndex = ExcelColumnNameToNumber(excelColumn) - 1;
+
+            if (columnIndex < 0)
+                return string.Empty;
+
+            if (columnIndex >= row.Table.Columns.Count)
+                return string.Empty;
+
+            object value = row[columnIndex];
+
+            if (value == null)
+                return string.Empty;
+
+            return value.ToString().Trim();
+        }
+
+        public static int ExcelColumnNameToNumber(string columnName)
+        {
+            if (string.IsNullOrWhiteSpace(columnName))
+                return 0;
+
+            columnName = columnName.Trim().ToUpper();
+
+            int sum = 0;
+
+            foreach (char c in columnName)
+            {
+                if (c < 'A' || c > 'Z')
+                    continue;
+
+                sum *= 26;
+                sum += (c - 'A' + 1);
+            }
+
+            return sum;
+        }
         public static int GetSheetIndexByName(List<string> sheetNamesOfAgencyFile, string sheetName)
         {
             if (sheetNamesOfAgencyFile == null)
@@ -185,27 +334,6 @@ namespace RCMHospice
             }
 
             return -1;
-        }
-
-        public static DataTable FilterFinalSearchReportRows(DataTable searchReportTable, string agencyName)
-        {
-            DataTable filteredTable = searchReportTable.Clone();
-
-            string[] validTobs = { "811", "812", "813", "814", "817", "81G", "81I" };
-
-            foreach (DataRow row in searchReportTable.Rows)
-            {
-                string agency = row.Table.Columns.Contains("Agency") ? row["Agency"].ToString().Trim() : "";
-                string tob = row.Table.Columns.Contains("TOB") ? row["TOB"].ToString().Trim() : "";
-
-                bool agencyMatches = agency.IndexOf(agencyName, StringComparison.OrdinalIgnoreCase) >= 0;
-                bool tobMatches = validTobs.Any(x => tob.IndexOf(x, StringComparison.OrdinalIgnoreCase) >= 0);
-
-                if (agencyMatches && tobMatches)
-                    filteredTable.ImportRow(row);
-            }
-
-            return filteredTable;
         }
 
         public static double ParseDoubleSafe(string value)
@@ -3430,7 +3558,7 @@ namespace RCMHospice
         {
             try
             {
-                TwilioClient.Init("test", "test");
+                TwilioClient.Init("YOUR_TWILIO_ACCOUNT_SID", "YOUR_TWILIO_AUTH_TOKEN");
 
                 var message = MessageResource.Create(
                     body: messageBody,
@@ -4094,4 +4222,36 @@ namespace RCMHospice
             public string AdmitDate { get; set; }
             public string Agency { get; internal set; }
         }
+
+    public class ConsoleAndFileWriter : TextWriter
+    {
+        private readonly TextWriter consoleWriter;
+        private readonly TextWriter fileWriter;
+
+        public ConsoleAndFileWriter(TextWriter consoleWriter, TextWriter fileWriter)
+        {
+            this.consoleWriter = consoleWriter;
+            this.fileWriter = fileWriter;
+        }
+
+        public override Encoding Encoding => consoleWriter.Encoding;
+
+        public override void Write(char value)
+        {
+            consoleWriter.Write(value);
+            fileWriter.Write(value);
+        }
+
+        public override void WriteLine(string? value)
+        {
+            consoleWriter.WriteLine(value);
+            fileWriter.WriteLine(value);
+        }
+
+        public override void Flush()
+        {
+            consoleWriter.Flush();
+            fileWriter.Flush();
+        }
+    }
 }
