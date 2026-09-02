@@ -554,11 +554,7 @@ namespace RCMHospice
                             Console.WriteLine($"EIDM downloader failed: {err} skipping this company");
                             continue;
                         }
-                        else
-                        {
-                            //if downloaded successfully wait 5 mins
-                            Thread.Sleep(TimeSpan.FromMinutes(5));
-                        }
+                        Console.WriteLine("EIDM reports downloaded; processing saved CSVs.");
 
                         string fileName = RCMHospiceHelpers.GetCompanyFileNameFromMappingFile();
 
