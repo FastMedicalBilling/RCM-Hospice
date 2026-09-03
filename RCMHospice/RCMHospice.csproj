@@ -17,7 +17,6 @@
     <PackageReference Include="MimeKit" Version="4.2.0" />
     <PackageReference Include="NPOI" Version="2.6.2" />
     <PackageReference Include="System.Data.OleDb" Version="7.0.0" />
-    <PackageReference Include="Twilio" Version="7.13.4" />
   </ItemGroup>
 
   <ItemGroup>

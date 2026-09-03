@@ -15,9 +15,6 @@ using Google.Apis.Util.Store;
 using Google.Apis.Gmail.v1;
 using Google.Apis.Services;
 using Google.Apis.Util;
-using Twilio;
-using Twilio.Rest.Api.V2010.Account;
-using Twilio.Types;
 using System.Runtime.InteropServices;
 using Path = System.IO.Path;
 using System.Diagnostics;
@@ -3556,17 +3553,33 @@ namespace RCMHospice
 
         public static void SendSms(string fromNumber, string toNumber, string messageBody)
         {
+            const string senderPath = @"C:\Automation\Codebase\TwillioTextSender\TwillioTextSender\bin\Debug\net8.0\TwillioTextSender.exe";
             try
             {
-                TwilioClient.Init("YOUR_TWILIO_ACCOUNT_SID", "YOUR_TWILIO_AUTH_TOKEN");
+                if (!File.Exists(senderPath))
+                    throw new FileNotFoundException("SMS sender executable not found.", senderPath);
 
-                var message = MessageResource.Create(
-                    body: messageBody,
-                    from: new PhoneNumber(fromNumber),
-                    to: new PhoneNumber(toNumber)
-                );
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = senderPath,
+                    WorkingDirectory = Path.GetDirectoryName(senderPath)!,
+                    UseShellExecute = false
+                };
+                // Pass each value as one argument, including messages with quotes or newlines.
+                startInfo.ArgumentList.Add(fromNumber);
+                startInfo.ArgumentList.Add(toNumber);
+                startInfo.ArgumentList.Add(messageBody);
 
-                Console.WriteLine($"SMS sent! SID: {message.Sid}");
+                // Share the console: the sender sets console properties and prints its result.
+                using var process = Process.Start(startInfo)
+                    ?? throw new InvalidOperationException("Could not start the SMS sender.");
+                if (!process.WaitForExit(60_000))
+                {
+                    process.Kill(entireProcessTree: true);
+                    throw new TimeoutException("SMS sender exceeded 60 seconds; delivery status is unknown.");
+                }
+                if (process.ExitCode != 0)
+                    throw new InvalidOperationException($"SMS sender exited with code {process.ExitCode}.");
             }
             catch (Exception ex)
             {
